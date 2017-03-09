@@ -1,0 +1,79 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[tblGroup]
+       [dbo].[tblGroupInvite]
+       [dbo].[tblGroupUser]
+       [dbo].[tblInviteStatus]
+       [dbo].[tblPost]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Id in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER
+         NOT NULL. There is no implicit or explicit conversion.
+       The type for column OwnerGroupId in table [dbo].[tblGroup] is currently  INT NULL but is being changed to 
+         UNIQUEIDENTIFIER NULL. There is no implicit or explicit conversion.
+       The type for column OwnerUserId in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column Id in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column OwnerUserId in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column TargetGroupId in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column TargetUserId in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column GroupId in table [dbo].[tblGroupUser] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column Id in table [dbo].[tblGroupUser] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column UserId in table [dbo].[tblGroupUser] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column Id in table [dbo].[tblPost] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT
+         NULL. There is no implicit or explicit conversion.
+       The type for column OwnerUserId in table [dbo].[tblPost] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column TargetGroupId in table [dbo].[tblPost] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column MiddleInitial in table [dbo].[tblUser] is currently  VARCHAR (50) NOT NULL but is being changed to 
+         NVARCHAR (2) NULL. Data loss could occur.
+       The type for column Zip in table [dbo].[tblUser] is currently  VARCHAR (50) NULL but is being changed to  INT NULL. Data
+         loss could occur.
+
+** User actions
+     Rename
+       [dbo].[tblUser].[MiddleInitial] (Column)
+     Alter
+       [dbo].[tblCity] (Table)
+       [dbo].[tblGroupType] (Table)
+       [dbo].[tblState] (Table)
+       [dbo].[tblUser] (Table)
+     Table rebuild
+       [dbo].[tblGroup] (Table)
+       [dbo].[tblGroupInvite] (Table)
+       [dbo].[tblGroupUser] (Table)
+       [dbo].[tblInviteStatus] (Table)
+       [dbo].[tblPost] (Table)
+     Create
+       [dbo].[spCreateUser] (Procedure)
+       [dbo].[spDoLogin] (Procedure)
+
+** Supporting actions
+
+The type for column Id in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column OwnerGroupId in table [dbo].[tblGroup] is currently  INT NULL but is being changed to  UNIQUEIDENTIFIER NULL. There is no implicit or explicit conversion.
+The type for column OwnerUserId in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column Id in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column OwnerUserId in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column TargetGroupId in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column TargetUserId in table [dbo].[tblGroupInvite] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column GroupId in table [dbo].[tblGroupUser] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column Id in table [dbo].[tblGroupUser] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column UserId in table [dbo].[tblGroupUser] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column Id in table [dbo].[tblPost] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column OwnerUserId in table [dbo].[tblPost] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column TargetGroupId in table [dbo].[tblPost] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column MiddleInitial in table [dbo].[tblUser] is currently  VARCHAR (50) NOT NULL but is being changed to  NVARCHAR (2) NULL. Data loss could occur.
+The type for column Zip in table [dbo].[tblUser] is currently  VARCHAR (50) NULL but is being changed to  INT NULL. Data loss could occur.
+

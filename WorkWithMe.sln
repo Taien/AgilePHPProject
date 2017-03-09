@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WorkWithMe.DB", "WorkWithMe.DB\WorkWithMe.DB.sqlproj", "{5FA97F7C-82CF-4574-B57B-1C92C0EF42EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithMe.BL", "WorkWithMe.BL\WorkWithMe.BL.csproj", "{8AFCDA0B-298A-4F6E-AD70-0287C276618E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithMe.PL", "WorkWithMe.PL\WorkWithMe.PL.csproj", "{176DDC67-173A-433D-916A-9AFEE587572B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithMe.SL", "WorkWithMe.SL\WorkWithMe.SL.csproj", "{E9416038-7F16-4590-8055-E1135EE81D76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FA97F7C-82CF-4574-B57B-1C92C0EF42EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA97F7C-82CF-4574-B57B-1C92C0EF42EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA97F7C-82CF-4574-B57B-1C92C0EF42EE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5FA97F7C-82CF-4574-B57B-1C92C0EF42EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA97F7C-82CF-4574-B57B-1C92C0EF42EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA97F7C-82CF-4574-B57B-1C92C0EF42EE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8AFCDA0B-298A-4F6E-AD70-0287C276618E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFCDA0B-298A-4F6E-AD70-0287C276618E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFCDA0B-298A-4F6E-AD70-0287C276618E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFCDA0B-298A-4F6E-AD70-0287C276618E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{176DDC67-173A-433D-916A-9AFEE587572B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176DDC67-173A-433D-916A-9AFEE587572B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176DDC67-173A-433D-916A-9AFEE587572B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176DDC67-173A-433D-916A-9AFEE587572B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9416038-7F16-4590-8055-E1135EE81D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9416038-7F16-4590-8055-E1135EE81D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9416038-7F16-4590-8055-E1135EE81D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9416038-7F16-4590-8055-E1135EE81D76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tjterrell.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WorkWithMe.DB\\WorkWithMe.DB.sqlproj
+		SccProjectName1 = WorkWithMe.DB
+		SccLocalPath1 = WorkWithMe.DB
+		SccProjectUniqueName2 = WorkWithMe.BL\\WorkWithMe.BL.csproj
+		SccProjectName2 = WorkWithMe.BL
+		SccLocalPath2 = WorkWithMe.BL
+		SccProjectUniqueName3 = WorkWithMe.PL\\WorkWithMe.PL.csproj
+		SccProjectName3 = WorkWithMe.PL
+		SccLocalPath3 = WorkWithMe.PL
+		SccProjectUniqueName4 = WorkWithMe.SL\\WorkWithMe.SL.csproj
+		SccProjectName4 = WorkWithMe.SL
+		SccLocalPath4 = WorkWithMe.SL
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.dacpac
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.pdb
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\obj\Debug\Model.xml
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\obj\Debug\refactor.xml
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\obj\Debug\postdeploy.sql
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\obj\Debug\predeploy.sql
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.pdb

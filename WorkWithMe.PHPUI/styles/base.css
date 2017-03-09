@@ -1,0 +1,241 @@
+/* Header - Title and horizontal link bar */
+header{
+    width: 100%;
+    float: left;
+    font-family: Georgia;
+    text-align: center;
+    background-color: lightsteelblue;
+    padding: 0px;
+}
+
+header img{
+    float: left;
+    max-width: 64px;
+    max-height: 64px;
+}
+
+header h1{
+    margin-left: 15px;
+    float: left;
+    color: white;
+    text-align: left;
+    text-indent: 20px;
+}
+
+header h1 a{
+    text-decoration: none;
+    color: white;
+}
+
+header h1 a:visited{
+    color: white;
+}
+
+header ul{
+    display: block;
+}
+
+header li{
+    display: inline;
+    margin: 0px 5px;
+    width: 20%;
+}
+
+header li a{
+    text-decoration: none;
+    color: black;
+    line-height: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+header li input:focus{
+    background-color: #DDDDFF;
+}
+
+header li input:hover{
+    background-color: #DDDDFF;
+}
+
+header li input{
+    height: 20px;
+    border: 1px solid lightgray;
+    width: 20%;
+}
+
+/* Make placeholder text italic */
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+:-moz-placeholder {
+    font-style: italic;
+}
+::-moz-placeholder {
+    font-style: italic;
+}
+:-ms-input-placeholder {
+    font-style: italic;
+}
+
+/* login and logout buttons (header) */
+#btnLogin {
+    height: 24px;
+    border: 1px solid lightgray;
+    width: 20%;
+    padding-bottom: 0;
+}
+
+#btnLogout {
+    height: 24px;
+    border: 1px solid lightgray;
+    width: 20%;
+    padding-bottom: 0;
+}
+
+/* Nav Bar - Left Side Vertical Links */
+nav {
+    width: 20%;
+    float: left;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    background-color: #EEEEEE;
+    border: 2px solid #555555;
+}
+
+nav ul a{
+    display: block;
+    color: #000000;
+    text-decoration: none;
+}
+
+nav li{
+    text-align: left;
+    padding: 4px 4px;
+    border-bottom: 2px solid #D3D3D3;
+}
+
+nav li:last-child{
+    border-bottom: 0;
+}
+
+nav li a:hover{
+    background-color: #000000;
+    color: #88DDFF;
+}
+
+main{
+    width: 60%;
+    float: left;
+    font-size: large;
+    text-align: center;
+    background-color: #C0D4EE;
+}
+
+main ul{
+    list-style: none;
+    float: left;
+}
+
+main img{
+    max-width: 50%;
+}
+
+main p{
+    margin: 0px 20px;
+}
+
+main form {
+    width: 60%;
+    margin: 0 auto;
+    font-family: Verdana, sans-serif;
+    text-align: left;
+}
+
+main label{
+    width: 40%;
+    display: block;
+    float: left;
+    text-align: right;
+    padding-right: 20px;
+}
+
+main input{
+    width: 40%;
+}
+
+
+footer{
+    width: 100%;
+    float: left;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    color: #666666;
+}
+
+/* Right side nav panel (not used yet) */
+#rightNav{
+    width: 20%;
+    float: right;
+}
+
+#rightNav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    float: right;
+    background-color: #DDDDDD;
+    border: 2px solid #555555;
+}
+
+#rightNav ul a{
+    display: block;
+    color: #000000;
+    padding: 8px 0 8px 0;
+}
+
+#rightNav li{
+    padding: 4px 4px;
+}
+
+#eventText{
+    color: #444444;
+    font-style: italic;
+}
+/* Signup page italic text */
+#safetyWarningText{
+    text-align: center;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* index page intro text */
+#introText{
+    text-align: left;
+    text-style: italic;
+    font-size: 24px;
+}
+
+/* Signup page submit buttons */
+#buttons ul{
+    width: 93%;
+    padding: 0 20px;
+    text-align: center;
+ }
+#buttons li{
+    display: inline;
+    width: 25%;
+    padding: 0px 5px;
+}
+
+#errorText {
+    color: #FF0000;
+    text-align: right;
+}

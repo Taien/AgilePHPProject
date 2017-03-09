@@ -1,0 +1,6 @@
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.PL\bin\Release\WorkWithMe.PL.dll.config
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.PL\bin\Release\WorkWithMe.PL.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.PL\bin\Release\WorkWithMe.PL.pdb
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.PL\obj\Release\WorkWithMe.PL.csprojResolveAssemblyReference.cache
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.PL\obj\Release\WorkWithMe.PL.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.PL\obj\Release\WorkWithMe.PL.pdb

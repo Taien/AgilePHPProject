@@ -1,0 +1,24 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[tblCity] (Table)
+       [dbo].[tblGroup] (Table)
+       [dbo].[tblGroupInvite] (Table)
+       [dbo].[tblGroupType] (Table)
+       [dbo].[tblGroupUser] (Table)
+       [dbo].[tblInviteStatus] (Table)
+       [dbo].[tblPost] (Table)
+       [dbo].[tblState] (Table)
+       [dbo].[tblUser] (Table)
+       [dbo].[tblZip] (Table)
+
+** Supporting actions
