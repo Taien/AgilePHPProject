@@ -37,7 +37,7 @@ session_start();
         $_SESSION["IsAddressPrivate"] = null;
         $_SESSION["Error"] = "You have been logged out.";
     }?>
-<!doctype html>
+<!doctype html> //bhbgfhgfhgfhgfhgfhf
 <html lang="en">
 <head>
     <meta charset="UTF-8">
