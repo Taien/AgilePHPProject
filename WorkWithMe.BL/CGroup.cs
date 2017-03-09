@@ -15,7 +15,7 @@ namespace WorkWithMe.BL
 
    public class CGroup
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Description { get; set; }
         public string Name { get; set;  }
         public string GroupType { get; set; }
@@ -27,7 +27,7 @@ namespace WorkWithMe.BL
 
         public CGroup() { }
 
-        public CGroup(int id, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+        public CGroup(Guid id, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
         {
             Id = id;
             Description = description;
@@ -47,13 +47,13 @@ namespace WorkWithMe.BL
                 WorkWithMeDataContext oDC = new WorkWithMeDataContext();
 
                 tblGroup g = new tblGroup();
-               // g.Id = Id; 
+                g.Id = Id; 
                 g.Description = Description;
                 g.GroupType = GroupType;
                 g.OwnerGroupId = OwnerGroupId;
-               // g.CanPostDefault = CanPostDefault;
-               // g.CanInviteDefault = CanInviteDefault;
-               // g.CanDeleteDefault = CanDeleteDefault; 
+                g.CanPostDefault = CanPostDefault;
+                g.CanInviteDefault = CanInviteDefault;
+                g.CanDeleteDefault = CanDeleteDefault; 
                
 
                 oDC.tblGroups.InsertOnSubmit(g);
@@ -66,32 +66,31 @@ namespace WorkWithMe.BL
             }
         }
 
-        /* public void Update()
+         public void Update()
          {
              using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
              {
                  tblGroup group = (from g in oDC.tblGroups where g.Id == Id select g).FirstOrDefault();
 
-                 //group.Id = Id;
+                 group.Id = Id;
                  group.Description = Description;
                  group.GroupType = GroupType;
                  group.OwnerGroupId = OwnerGroupId;
-                 //group.CanPostDefault = CanPostDefault;
-                 // group.CanInviteDefault = CanInviteDefault;
-                 // group.CanDeleteDefault = CanDeleteDefault; 
-
+                 group.CanPostDefault = CanPostDefault;
+                 group.CanInviteDefault = CanInviteDefault;
+                 group.CanDeleteDefault = CanDeleteDefault; 
 
                  oDC.SubmitChanges();
              }
-         } */
+         } 
 
         public void Delete()
         {
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
-               // tblGroup group = (from g in oDC.tblGroups where g.Id == Id select g).FirstOrDefault();
+                tblGroup group = (from g in oDC.tblGroups where g.Id == Id select g).FirstOrDefault();
 
-              // oDC.tblGroups.DeleteOnSubmit(group);
+                oDC.tblGroups.DeleteOnSubmit(group);
                 oDC.SubmitChanges();
             }
         }

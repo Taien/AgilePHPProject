@@ -1,0 +1,34 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[tblCity]
+       [dbo].[tblState]
+       [dbo].[tblZip]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Id in table [dbo].[tblCity] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT
+         NULL. There is no implicit or explicit conversion.
+       The type for column Id in table [dbo].[tblState] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER
+         NOT NULL. There is no implicit or explicit conversion.
+       The type for column CityId in table [dbo].[tblZip] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER
+         NOT NULL. There is no implicit or explicit conversion.
+       The type for column StateId in table [dbo].[tblZip] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER
+         NOT NULL. There is no implicit or explicit conversion.
+
+** User actions
+     Table rebuild
+       [dbo].[tblCity] (Table)
+       [dbo].[tblState] (Table)
+       [dbo].[tblZip] (Table)
+     Alter
+       [dbo].[spCreateUser] (Procedure)
+
+** Supporting actions
+
+The type for column Id in table [dbo].[tblCity] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column Id in table [dbo].[tblState] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column CityId in table [dbo].[tblZip] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column StateId in table [dbo].[tblZip] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+

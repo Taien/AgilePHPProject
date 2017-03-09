@@ -8,23 +8,37 @@ CREATE PROCEDURE [dbo].[spCreateUser]
 	@Lastname nvarchar(50),
 	@Zip int,
 	@Address nvarchar(50),
+	@City nvarchar(50),
+	@State nvarchar(2),
 	@IsAddressPrivate bit,
 	@Response nvarchar(100) output
 AS
 BEGIN
 	SET NOCOUNT ON
 
-	IF EXISTS(SELECT * FROM [dbo].[tblUser] WHERE Username = @Username)
+	IF EXISTS (SELECT * FROM [dbo].[tblUser] WHERE Username = @Username)
 	BEGIN
 		SET @Response='Username is taken.'
 	    RETURN 0
 	END
     DECLARE @salt UNIQUEIDENTIFIER=NEWID()
     BEGIN TRY
-
+	
         INSERT INTO [dbo].[tblUser] (Id, Username, PasswordHash, PasswordSalt, FirstName, MiddleInitial, LastName, Zip, Address, IsAddressPrivate, UserImg)
-        VALUES(NewId(), @Username, HASHBYTES('SHA2_512', @Password+CAST(@salt AS NVARCHAR(36))), @salt, @FirstName, @MiddleInitial, @LastName, @Zip, @Address, @IsAddressPrivate, null)
+        VALUES(NewId(), @Username, HASHBYTES('SHA2_512', @Password+CAST(@salt AS NVARCHAR(36))), @salt, @FirstName, @MiddleInitial, @LastName, @Zip, @Address, @IsAddressPrivate, null);
+		
+		IF NOT EXISTS(SELECT TOP 1 s.Id FROM tblState s WHERE s.StateName = @State)
+		    INSERT INTO [dbo].[tblState] (Id, StateName) VALUES (NewId(), @State)
+	
+		IF NOT EXISTS(SELECT TOP 1 c.Id FROM tblCity c WHERE c.Cityname = @City)
+		    INSERT INTO [dbo].[tblCity] (Id, CityName) VALUES (NewId(), @City)
+		
+		DECLARE @cityId UNIQUEIDENTIFIER = (SELECT c.Id FROM tblCity c WHERE c.CityName = @City);
+		DECLARE @stateId UNIQUEIDENTIFIER = (SELECT s.Id FROM tblState s WHERE s.StateName = @State);
 
+		IF NOT EXISTS (SELECT TOP 1 z.Id FROM tblZip z WHERE z.Id = @Zip)
+		    INSERT INTO [dbo].[tblZip] (Id, CityId, StateId) VALUES (@Zip, @cityId, @stateId)
+		
         SET @Response='Successfully added user!'
 		RETURN 1
     END TRY

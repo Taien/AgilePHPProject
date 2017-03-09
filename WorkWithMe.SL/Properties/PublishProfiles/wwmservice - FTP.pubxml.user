@@ -7,21 +7,4 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <_PublishTargetUrl>ftp://waws-prod-sn1-029.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
   </PropertyGroup>
-  <ItemGroup>
-    <File Include="bin/WorkWithMe.BL.dll">
-      <publishTime>03/01/2017 02:06:07</publishTime>
-    </File>
-    <File Include="bin/WorkWithMe.PL.dll">
-      <publishTime>03/01/2017 02:06:07</publishTime>
-    </File>
-    <File Include="bin/WorkWithMe.SL.dll">
-      <publishTime>03/01/2017 02:06:07</publishTime>
-    </File>
-    <File Include="Web.config">
-      <publishTime>03/01/2017 02:07:23</publishTime>
-    </File>
-    <File Include="WorkWithMeService.svc">
-      <publishTime>02/25/2017 01:52:48</publishTime>
-    </File>
-  </ItemGroup>
 </Project>

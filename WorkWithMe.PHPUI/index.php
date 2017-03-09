@@ -7,6 +7,8 @@ session_start();
         try {
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
             $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
+            //var_dump($retval);
+            //echo $retval->DoLoginResult->Id;
             $_SESSION["UserId"] = $retval->DoLoginResult->Id;
             $_SESSION["Username"] = $retval->DoLoginResult->Username;
             $_SESSION["FirstName"] = $retval->DoLoginResult->FirstName;
@@ -37,7 +39,7 @@ session_start();
         $_SESSION["IsAddressPrivate"] = null;
         $_SESSION["Error"] = "You have been logged out.";
     }?>
-<!doctype html> //removed
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

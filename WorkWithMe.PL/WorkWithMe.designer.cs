@@ -45,9 +45,6 @@ namespace WorkWithMe.PL
     partial void InserttblGroupUser(tblGroupUser instance);
     partial void UpdatetblGroupUser(tblGroupUser instance);
     partial void DeletetblGroupUser(tblGroupUser instance);
-    partial void InserttblGroup(tblGroup instance);
-    partial void UpdatetblGroup(tblGroup instance);
-    partial void DeletetblGroup(tblGroup instance);
     partial void InserttblGroupInvite(tblGroupInvite instance);
     partial void UpdatetblGroupInvite(tblGroupInvite instance);
     partial void DeletetblGroupInvite(tblGroupInvite instance);
@@ -60,6 +57,9 @@ namespace WorkWithMe.PL
     partial void InserttblGroupType(tblGroupType instance);
     partial void UpdatetblGroupType(tblGroupType instance);
     partial void DeletetblGroupType(tblGroupType instance);
+    partial void InserttblGroup(tblGroup instance);
+    partial void UpdatetblGroup(tblGroup instance);
+    partial void DeletetblGroup(tblGroup instance);
     #endregion
 		
 		public WorkWithMeDataContext() : 
@@ -132,14 +132,6 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		public System.Data.Linq.Table<tblGroup> tblGroups
-		{
-			get
-			{
-				return this.GetTable<tblGroup>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblGroupInvite> tblGroupInvites
 		{
 			get
@@ -172,12 +164,12 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreateUser")]
-		public int spCreateUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="NVarChar(40)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(24)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="NVarChar(50)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MiddleInitial", DbType="NVarChar(2)")] string middleInitial, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Lastname", DbType="NVarChar(50)")] string lastname, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Zip", DbType="Int")] System.Nullable<int> zip, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address", DbType="NVarChar(50)")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsAddressPrivate", DbType="Bit")] System.Nullable<bool> isAddressPrivate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Response", DbType="NVarChar(100)")] ref string response)
+		public System.Data.Linq.Table<tblGroup> tblGroups
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password, firstName, middleInitial, lastname, zip, address, isAddressPrivate, response);
-			response = ((string)(result.GetParameterValue(8)));
-			return ((int)(result.ReturnValue));
+			get
+			{
+				return this.GetTable<tblGroup>();
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spDoLogin")]
@@ -185,6 +177,14 @@ namespace WorkWithMe.PL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password);
 			return ((ISingleResult<spDoLoginResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreateUser")]
+		public int spCreateUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="NVarChar(40)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(24)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="NVarChar(50)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MiddleInitial", DbType="NVarChar(2)")] string middleInitial, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Lastname", DbType="NVarChar(50)")] string lastname, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Zip", DbType="Int")] System.Nullable<int> zip, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address", DbType="NVarChar(50)")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="City", DbType="NVarChar(50)")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="State", DbType="NVarChar(2)")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsAddressPrivate", DbType="Bit")] System.Nullable<bool> isAddressPrivate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Response", DbType="NVarChar(100)")] ref string response)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password, firstName, middleInitial, lastname, zip, address, city, state, isAddressPrivate, response);
+			response = ((string)(result.GetParameterValue(10)));
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -731,7 +731,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary UserImg
 		{
 			get
@@ -953,284 +953,6 @@ namespace WorkWithMe.PL
 					this._CanDelete = value;
 					this.SendPropertyChanged("CanDelete");
 					this.OnCanDeleteChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGroup")]
-	public partial class tblGroup : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _Id;
-		
-		private string _Name;
-		
-		private string _Description;
-		
-		private string _GroupType;
-		
-		private System.Guid _OwnerUserId;
-		
-		private System.Nullable<System.Guid> _OwnerGroupId;
-		
-		private System.Data.Linq.Binary _GroupImg;
-		
-		private int _CanPostDefault;
-		
-		private int _CanInviteDefault;
-		
-		private int _CanDeleteDefault;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(System.Guid value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnGroupTypeChanging(string value);
-    partial void OnGroupTypeChanged();
-    partial void OnOwnerUserIdChanging(System.Guid value);
-    partial void OnOwnerUserIdChanged();
-    partial void OnOwnerGroupIdChanging(System.Nullable<System.Guid> value);
-    partial void OnOwnerGroupIdChanged();
-    partial void OnGroupImgChanging(System.Data.Linq.Binary value);
-    partial void OnGroupImgChanged();
-    partial void OnCanPostDefaultChanging(int value);
-    partial void OnCanPostDefaultChanged();
-    partial void OnCanInviteDefaultChanging(int value);
-    partial void OnCanInviteDefaultChanged();
-    partial void OnCanDeleteDefaultChanging(int value);
-    partial void OnCanDeleteDefaultChanged();
-    #endregion
-		
-		public tblGroup()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string GroupType
-		{
-			get
-			{
-				return this._GroupType;
-			}
-			set
-			{
-				if ((this._GroupType != value))
-				{
-					this.OnGroupTypeChanging(value);
-					this.SendPropertyChanging();
-					this._GroupType = value;
-					this.SendPropertyChanged("GroupType");
-					this.OnGroupTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OwnerUserId
-		{
-			get
-			{
-				return this._OwnerUserId;
-			}
-			set
-			{
-				if ((this._OwnerUserId != value))
-				{
-					this.OnOwnerUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerUserId = value;
-					this.SendPropertyChanged("OwnerUserId");
-					this.OnOwnerUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerGroupId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> OwnerGroupId
-		{
-			get
-			{
-				return this._OwnerGroupId;
-			}
-			set
-			{
-				if ((this._OwnerGroupId != value))
-				{
-					this.OnOwnerGroupIdChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerGroupId = value;
-					this.SendPropertyChanged("OwnerGroupId");
-					this.OnOwnerGroupIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary GroupImg
-		{
-			get
-			{
-				return this._GroupImg;
-			}
-			set
-			{
-				if ((this._GroupImg != value))
-				{
-					this.OnGroupImgChanging(value);
-					this.SendPropertyChanging();
-					this._GroupImg = value;
-					this.SendPropertyChanged("GroupImg");
-					this.OnGroupImgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanPostDefault", DbType="Int NOT NULL")]
-		public int CanPostDefault
-		{
-			get
-			{
-				return this._CanPostDefault;
-			}
-			set
-			{
-				if ((this._CanPostDefault != value))
-				{
-					this.OnCanPostDefaultChanging(value);
-					this.SendPropertyChanging();
-					this._CanPostDefault = value;
-					this.SendPropertyChanged("CanPostDefault");
-					this.OnCanPostDefaultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanInviteDefault", DbType="Int NOT NULL")]
-		public int CanInviteDefault
-		{
-			get
-			{
-				return this._CanInviteDefault;
-			}
-			set
-			{
-				if ((this._CanInviteDefault != value))
-				{
-					this.OnCanInviteDefaultChanging(value);
-					this.SendPropertyChanging();
-					this._CanInviteDefault = value;
-					this.SendPropertyChanged("CanInviteDefault");
-					this.OnCanInviteDefaultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanDeleteDefault", DbType="Int NOT NULL")]
-		public int CanDeleteDefault
-		{
-			get
-			{
-				return this._CanDeleteDefault;
-			}
-			set
-			{
-				if ((this._CanDeleteDefault != value))
-				{
-					this.OnCanDeleteDefaultChanging(value);
-					this.SendPropertyChanging();
-					this._CanDeleteDefault = value;
-					this.SendPropertyChanged("CanDeleteDefault");
-					this.OnCanDeleteDefaultChanged();
 				}
 			}
 		}
@@ -1815,6 +1537,284 @@ namespace WorkWithMe.PL
 					this._Description = value;
 					this.SendPropertyChanged("Description");
 					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGroup")]
+	public partial class tblGroup : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _Name;
+		
+		private string _Description;
+		
+		private string _GroupType;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Nullable<System.Guid> _OwnerGroupId;
+		
+		private System.Data.Linq.Binary _GroupImg;
+		
+		private bool _CanPostDefault;
+		
+		private bool _CanInviteDefault;
+		
+		private bool _CanDeleteDefault;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnGroupTypeChanging(string value);
+    partial void OnGroupTypeChanged();
+    partial void OnOwnerUserIdChanging(System.Guid value);
+    partial void OnOwnerUserIdChanged();
+    partial void OnOwnerGroupIdChanging(System.Nullable<System.Guid> value);
+    partial void OnOwnerGroupIdChanged();
+    partial void OnGroupImgChanging(System.Data.Linq.Binary value);
+    partial void OnGroupImgChanged();
+    partial void OnCanPostDefaultChanging(bool value);
+    partial void OnCanPostDefaultChanged();
+    partial void OnCanInviteDefaultChanging(bool value);
+    partial void OnCanInviteDefaultChanged();
+    partial void OnCanDeleteDefaultChanging(bool value);
+    partial void OnCanDeleteDefaultChanged();
+    #endregion
+		
+		public tblGroup()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string GroupType
+		{
+			get
+			{
+				return this._GroupType;
+			}
+			set
+			{
+				if ((this._GroupType != value))
+				{
+					this.OnGroupTypeChanging(value);
+					this.SendPropertyChanging();
+					this._GroupType = value;
+					this.SendPropertyChanged("GroupType");
+					this.OnGroupTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this.OnOwnerUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerUserId = value;
+					this.SendPropertyChanged("OwnerUserId");
+					this.OnOwnerUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerGroupId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> OwnerGroupId
+		{
+			get
+			{
+				return this._OwnerGroupId;
+			}
+			set
+			{
+				if ((this._OwnerGroupId != value))
+				{
+					this.OnOwnerGroupIdChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerGroupId = value;
+					this.SendPropertyChanged("OwnerGroupId");
+					this.OnOwnerGroupIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary GroupImg
+		{
+			get
+			{
+				return this._GroupImg;
+			}
+			set
+			{
+				if ((this._GroupImg != value))
+				{
+					this.OnGroupImgChanging(value);
+					this.SendPropertyChanging();
+					this._GroupImg = value;
+					this.SendPropertyChanged("GroupImg");
+					this.OnGroupImgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanPostDefault", DbType="Bit NOT NULL")]
+		public bool CanPostDefault
+		{
+			get
+			{
+				return this._CanPostDefault;
+			}
+			set
+			{
+				if ((this._CanPostDefault != value))
+				{
+					this.OnCanPostDefaultChanging(value);
+					this.SendPropertyChanging();
+					this._CanPostDefault = value;
+					this.SendPropertyChanged("CanPostDefault");
+					this.OnCanPostDefaultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanInviteDefault", DbType="Bit NOT NULL")]
+		public bool CanInviteDefault
+		{
+			get
+			{
+				return this._CanInviteDefault;
+			}
+			set
+			{
+				if ((this._CanInviteDefault != value))
+				{
+					this.OnCanInviteDefaultChanging(value);
+					this.SendPropertyChanging();
+					this._CanInviteDefault = value;
+					this.SendPropertyChanged("CanInviteDefault");
+					this.OnCanInviteDefaultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanDeleteDefault", DbType="Bit NOT NULL")]
+		public bool CanDeleteDefault
+		{
+			get
+			{
+				return this._CanDeleteDefault;
+			}
+			set
+			{
+				if ((this._CanDeleteDefault != value))
+				{
+					this.OnCanDeleteDefaultChanging(value);
+					this.SendPropertyChanging();
+					this._CanDeleteDefault = value;
+					this.SendPropertyChanged("CanDeleteDefault");
+					this.OnCanDeleteDefaultChanged();
 				}
 			}
 		}

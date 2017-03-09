@@ -1,7 +1,7 @@
-C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.BL.dll
-C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.BL.pdb
-C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.PL.dll
-C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.PL.pdb
-C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.BL\obj\Release\WorkWithMe.BL.csprojResolveAssemblyReference.cache
-C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.BL\obj\Release\WorkWithMe.BL.dll
-C:\Users\Tyler\Source\Workspaces\Workspace\WorkWithMe\WorkWithMe.BL\obj\Release\WorkWithMe.BL.pdb
+C:\dev\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.BL.dll
+C:\dev\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.BL.pdb
+C:\dev\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.PL.dll
+C:\dev\WorkWithMe\WorkWithMe.BL\bin\Release\WorkWithMe.PL.pdb
+C:\dev\WorkWithMe\WorkWithMe.BL\obj\Release\WorkWithMe.BL.csprojResolveAssemblyReference.cache
+C:\dev\WorkWithMe\WorkWithMe.BL\obj\Release\WorkWithMe.BL.dll
+C:\dev\WorkWithMe\WorkWithMe.BL\obj\Release\WorkWithMe.BL.pdb

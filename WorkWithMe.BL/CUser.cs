@@ -49,11 +49,11 @@ namespace WorkWithMe.BL
             IsAddressPrivate = isAddressPrivate;
         }
 
-        public bool Create(string password, ref string response)
+        public bool Create(string password, string city, string state, ref string response)
         {
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
-                if (oDC.spCreateUser(Username, password, FirstName, MiddleInitial, LastName, Zip, Address, IsAddressPrivate, ref response) == 0) return false;
+                if (oDC.spCreateUser(Username, password, FirstName, MiddleInitial, LastName, Zip, Address, city, state, IsAddressPrivate, ref response) == 0) return false;
                 else return true;
             }
         }

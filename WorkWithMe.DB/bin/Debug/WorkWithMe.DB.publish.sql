@@ -36,195 +36,52 @@ IF N'$(__IsSqlCmdEnabled)' NOT LIKE N'True'
 
 
 GO
-IF EXISTS (SELECT 1
-           FROM   [sys].[databases]
-           WHERE  [name] = N'$(DatabaseName)')
-    BEGIN
-        ALTER DATABASE [$(DatabaseName)]
-            SET ANSI_NULLS ON,
-                ANSI_PADDING ON,
-                ANSI_WARNINGS ON,
-                ARITHABORT ON,
-                CONCAT_NULL_YIELDS_NULL ON,
-                QUOTED_IDENTIFIER ON,
-                ANSI_NULL_DEFAULT ON 
-            WITH ROLLBACK IMMEDIATE;
-    END
+/*
+The type for column CanDeleteDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT NOT NULL. Data loss could occur.
+
+The type for column CanInviteDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT NOT NULL. Data loss could occur.
+
+The type for column CanPostDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT NOT NULL. Data loss could occur.
+*/
+
+IF EXISTS (select top 1 1 from [dbo].[tblGroup])
+    RAISERROR (N'Rows were detected. The schema update is terminating because data loss might occur.', 16, 127) WITH NOWAIT
+
+GO
+PRINT N'Altering [dbo].[tblGroup]...';
 
 
 GO
-IF EXISTS (SELECT 1
-           FROM   [sys].[databases]
-           WHERE  [name] = N'$(DatabaseName)')
-    BEGIN
-        ALTER DATABASE [$(DatabaseName)]
-            SET ALLOW_SNAPSHOT_ISOLATION OFF;
-    END
+ALTER TABLE [dbo].[tblGroup] ALTER COLUMN [CanDeleteDefault] BIT NOT NULL;
+
+ALTER TABLE [dbo].[tblGroup] ALTER COLUMN [CanInviteDefault] BIT NOT NULL;
+
+ALTER TABLE [dbo].[tblGroup] ALTER COLUMN [CanPostDefault] BIT NOT NULL;
 
 
 GO
-IF EXISTS (SELECT 1
-           FROM   [sys].[databases]
-           WHERE  [name] = N'$(DatabaseName)')
-    BEGIN
-        ALTER DATABASE [$(DatabaseName)]
-            SET QUERY_STORE (OPERATION_MODE = READ_WRITE) 
-            WITH ROLLBACK IMMEDIATE;
-    END
+/*
+Post-Deployment Script Template							
+--------------------------------------------------------------------------------------
+ This file contains SQL statements that will be appended to the build script.		
+ Use SQLCMD syntax to include a file in the post-deployment script.			
+ Example:      :r .\myfile.sql								
+ Use SQLCMD syntax to reference a variable in the post-deployment script.		
+ Example:      :setvar TableName MyTable							
+               SELECT * FROM [$(TableName)]					
+--------------------------------------------------------------------------------------
+*/
+declare @response nvarchar(100);
 
-
+exec spCreateUser @Username = 'Test',
+ @Password = 'Test', @FirstName = 'Testy', 
+ @MiddleInitial = 'T', 
+ @Lastname = 'McTesterson',
+ @Zip = 54914,
+ @Address = '1234 Street Rd',
+ @IsAddressPrivate = 0,
+ @Response = @response output;
 GO
-PRINT N'Creating [dbo].[tblCity]...';
-
-
-GO
-CREATE TABLE [dbo].[tblCity] (
-    [Id]       INT          NOT NULL,
-    [CityName] VARCHAR (50) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblGroup]...';
-
-
-GO
-CREATE TABLE [dbo].[tblGroup] (
-    [Id]               INT          NOT NULL,
-    [Name]             VARCHAR (50) NOT NULL,
-    [Description]      VARCHAR (50) NOT NULL,
-    [GroupType]        VARCHAR (50) NOT NULL,
-    [OwnerUserId]      INT          NOT NULL,
-    [OwnerGroupId]     INT          NULL,
-    [GroupImg]         IMAGE        NULL,
-    [CanPostDefault]   INT          NOT NULL,
-    [CanInviteDefault] INT          NOT NULL,
-    [CanDeleteDefault] INT          NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblGroupInvite]...';
-
-
-GO
-CREATE TABLE [dbo].[tblGroupInvite] (
-    [Id]            INT NOT NULL,
-    [OwnerUserId]   INT NOT NULL,
-    [TargetUserId]  INT NOT NULL,
-    [TargetGroupId] INT NOT NULL,
-    [InviteStatus]  INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblGroupType]...';
-
-
-GO
-CREATE TABLE [dbo].[tblGroupType] (
-    [Id]          INT          NOT NULL,
-    [Description] VARCHAR (50) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblGroupUser]...';
-
-
-GO
-CREATE TABLE [dbo].[tblGroupUser] (
-    [Id]           INT NOT NULL,
-    [UserId]       INT NOT NULL,
-    [GroupId]      INT NOT NULL,
-    [IsGroupAdmin] BIT NOT NULL,
-    [CanPost]      BIT NOT NULL,
-    [CanInvite]    BIT NOT NULL,
-    [CanDelete]    BIT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblInviteStatus]...';
-
-
-GO
-CREATE TABLE [dbo].[tblInviteStatus] (
-    [Id]          BIT          NOT NULL,
-    [Description] VARCHAR (50) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblPost]...';
-
-
-GO
-CREATE TABLE [dbo].[tblPost] (
-    [Id]             INT          NOT NULL,
-    [OwnerUserId]    INT          NOT NULL,
-    [TargetGroupId]  INT          NOT NULL,
-    [Title]          VARCHAR (50) NOT NULL,
-    [Content]        VARCHAR (50) NOT NULL,
-    [IsSticky]       BIT          NOT NULL,
-    [IsDeleted]      BIT          NOT NULL,
-    [TimeStamp]      DATETIME     NOT NULL,
-    [EventTimeStamp] DATETIME     NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblState]...';
-
-
-GO
-CREATE TABLE [dbo].[tblState] (
-    [Id]        INT          NOT NULL,
-    [StateName] VARCHAR (50) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblUser]...';
-
-
-GO
-CREATE TABLE [dbo].[tblUser] (
-    [Id]               UNIQUEIDENTIFIER NOT NULL,
-    [Username]         VARCHAR (50)     NOT NULL,
-    [PasswordHash]     BINARY (64)      NOT NULL,
-    [PasswordSalt]     UNIQUEIDENTIFIER NOT NULL,
-    [FirstName]        VARCHAR (50)     NOT NULL,
-    [MiddleIntial]     VARCHAR (50)     NOT NULL,
-    [LastName]         VARCHAR (50)     NOT NULL,
-    [Zip]              VARCHAR (50)     NULL,
-    [Address]          VARCHAR (50)     NULL,
-    [IsAddressPrivate] BIT              NOT NULL,
-    [UserImg]          IMAGE            NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
-GO
-PRINT N'Creating [dbo].[tblZip]...';
-
-
-GO
-CREATE TABLE [dbo].[tblZip] (
-    [Id]      INT NOT NULL,
-    [CityId]  INT NOT NULL,
-    [StateId] INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
 
 GO
 PRINT N'Update complete.';

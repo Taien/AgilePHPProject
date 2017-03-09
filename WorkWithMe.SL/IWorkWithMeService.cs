@@ -18,6 +18,6 @@ namespace WorkWithMe.SL
         CUser DoLogin(string username, string password);
 
         [OperationContract]
-        bool CreateUser(string username, string password, string firstname, string middleInitial, string lastName, int? zip, string address, bool isAddressPrivate, ref string response);
+        bool CreateUser(string username, string password, string firstname, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, ref string response);
     }
 }

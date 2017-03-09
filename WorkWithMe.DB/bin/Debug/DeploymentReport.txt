@@ -6,19 +6,20 @@
      Clustered indexes that will be created
        None
      Possible data issues
-       None
+       The type for column CanDeleteDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT
+         NOT NULL. Data loss could occur.
+       The type for column CanInviteDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT
+         NOT NULL. Data loss could occur.
+       The type for column CanPostDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT NOT
+         NULL. Data loss could occur.
 
 ** User actions
-     Create
-       [dbo].[tblCity] (Table)
+     Alter
        [dbo].[tblGroup] (Table)
-       [dbo].[tblGroupInvite] (Table)
-       [dbo].[tblGroupType] (Table)
-       [dbo].[tblGroupUser] (Table)
-       [dbo].[tblInviteStatus] (Table)
-       [dbo].[tblPost] (Table)
-       [dbo].[tblState] (Table)
-       [dbo].[tblUser] (Table)
-       [dbo].[tblZip] (Table)
 
 ** Supporting actions
+
+The type for column CanDeleteDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT NOT NULL. Data loss could occur.
+The type for column CanInviteDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT NOT NULL. Data loss could occur.
+The type for column CanPostDefault in table [dbo].[tblGroup] is currently  INT NOT NULL but is being changed to  BIT NOT NULL. Data loss could occur.
+

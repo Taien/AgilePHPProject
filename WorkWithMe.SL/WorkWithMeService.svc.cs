@@ -15,11 +15,11 @@ namespace WorkWithMe.SL
     {
       
         public bool CreateUser(string username, string password, string firstName, string middleInitial, string lastName, 
-                               int? zip, string address, bool isAddressPrivate, ref string response)
+                               int? zip, string address, string city, string state, bool isAddressPrivate, ref string response)
         {
             CUser newUser = new CUser(username, firstName, middleInitial, lastName, zip, address, isAddressPrivate);
 
-            return newUser.Create(password, ref response);
+            return newUser.Create(password, city, state, ref response);
         }
 
         public CUser DoLogin(string username, string password)

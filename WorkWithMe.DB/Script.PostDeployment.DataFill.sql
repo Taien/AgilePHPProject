@@ -9,6 +9,8 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+delete from tblUser WHERE Username = 'Test'; 
+
 declare @response nvarchar(100);
 
 exec spCreateUser @Username = 'Test',
@@ -16,6 +18,10 @@ exec spCreateUser @Username = 'Test',
  @MiddleInitial = 'T', 
  @Lastname = 'McTesterson',
  @Zip = 54914,
+ @City = 'Appleton',
+ @State = 'WI',
  @Address = '1234 Street Rd',
  @IsAddressPrivate = 0,
  @Response = @response output;
+
+ PRINT @response;
