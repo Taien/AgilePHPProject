@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+  <component name="DataSourceManagerImpl" format="xml" hash="2741291583">
     <data-source source="LOCAL" name="WorkWithMe@workwithme.database.windows.net" uuid="762258eb-37a6-4586-b386-320a7531cb7d">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://workwithme.database.windows.net:1433;databaseName=WorkWithMe</jdbc-url>
+      <libraries />
     </data-source>
   </component>
 </project>

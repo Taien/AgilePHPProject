@@ -81,8 +81,8 @@ session_start();
             }
             else
             {
-                echo "<h2>Welcome to our cool messaging/project managing thing!!</h2><br />";
-                echo "<div id=\"introText\">Here's a bunch of features!</div><br />";
+                echo "<h2>Welcome to Work With Me</h2><br />";
+                echo "<div id=\"introText\">Interact with co-workers and friends for project management, lunch plans, a corporate event and more.</div><br />";
                 echo "<ul>";
                 $i = 0;
                 while ($i < 20)
