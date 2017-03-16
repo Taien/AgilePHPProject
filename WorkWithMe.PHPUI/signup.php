@@ -75,10 +75,10 @@ if (isset($_POST["btnRegister"]))
 
             <div id="safetyWarningText">Your address will not be shared with anyone unless you choose to share it.</div>
             <label for="txtAddress">Address:</label>
-            <input type="text" name="txtAddress" id="txtAddress" placeholder="address" required></input><br />
+            <input type="text" name="txtAddress" id="txtAddress" placeholder="address" required><br />
 
             <label for="txtCity">City:</label>
-            <input type="text" name="txtCity" id="txtCity" placeholder="city" required></input><br />
+            <input type="text" name="txtCity" id="txtCity" placeholder="city" required><br />
 
             <label for="lstState" class="dropdown">State:</label>
             <select name="lstState" id="lstState" value="select" required>
@@ -134,18 +134,22 @@ if (isset($_POST["btnRegister"]))
                 <option value="WV">WV</option>
                 <option value="WI">WI</option>
                 <option value="WY">WY</option>
-            </select><br /><br />
+            </select><br />
 
             <label for="txtZip">Zip:</label>
             <input type="text" name="txtZip" id="txtZip" maxlength="5"
-                   placeholder="5 digit zip code" required></input><br /><br />
+                   placeholder="5 digit zip code" required><br />
+
+            <label for="chkAddressPrivate">Keep Address Private:</label>
+            <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="true"><br/>
+
         </fieldset>
 
         <fieldset>
             <legend>Security</legend><br />
 
             <label for="txtUsername">Username:</label>
-            <input type="text" name="txtUsername" id="txtUsername" placeholder="username" required></input><br />
+            <input type="text" name="txtUsername" id="txtUsername" placeholder="username" required><br />
 
             <label for="txtPassword">Password:</label>
             <input type="password" name="txtPassword" id="txtPassword" placeholder="enter password" required minlength="6" maxlength="24"><br />

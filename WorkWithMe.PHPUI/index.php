@@ -36,7 +36,20 @@ session_start();
         $_SESSION["Address"] = null;
         $_SESSION["IsAddressPrivate"] = null;
         $_SESSION["Error"] = "You have been logged out.";
-    }?>
+    }
+    elseif (isset($_POST["btnPost"]))
+    {
+        try{
+            $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>"test",'content'=>$_POST["txtMessage"],'isSticky'=>false,null));
+            echo 'Success';
+        } catch (SoapFault $exception)
+        {
+            //DoLogin returns null when the login fails
+            $_SESSION["Error"] = "Message failed to post for some reason: " . $exception->getMessage();
+        }
+    }
+    ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -53,14 +66,18 @@ session_start();
         <?php
             if (isset($_SESSION["UserId"]))
             {
-                echo "<h2>" . $_SESSION["FirstName"] . " " . $_SESSION["MiddleInitial"] . ". " . $_SESSION["LastName"] . "'s Information (temp page)</h2>";
+                echo '<form method="post" id="postForm">';
+                echo '<textarea name="txtMessage" id="txtMessage" cols="80" rows="5"></textarea>';
+                echo '<input type="submit" name="btnPost" id="btnPost" value="Post Message">';
+                echo '</form>';
+                /* echo "<h2>" . $_SESSION["FirstName"] . " " . $_SESSION["MiddleInitial"] . ". " . $_SESSION["LastName"] . "'s Information (temp page)</h2>";
                 echo "<br/><b>Username: </b> " . $_SESSION["Username"];
                 echo "<br/><b>Id: </b> " . $_SESSION["UserId"];
                 echo "<br/><b>Address: </b> " . $_SESSION["Address"];
                 echo "<br/><b>Zip: </b> " . $_SESSION["Zip"];
                 echo "<br/><b>IsAddressPrivate: </b> ";
                 if ($_SESSION["IsAddressPrivate"]) echo "Yes";
-                else echo "No";
+                else echo "No"; */
             }
             else
             {

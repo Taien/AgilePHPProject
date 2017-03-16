@@ -239,3 +239,25 @@ footer{
     color: #FF0000;
     text-align: right;
 }
+
+#chkAddressPrivate {
+    width: auto;
+}
+
+#postForm {
+    width: 95%;
+}
+
+#btnPost {
+    width: 18%;
+    float: right;
+    margin: 27px 0;
+    height: 40px;
+}
+
+textarea {
+    resize: none;
+    width: 80%;
+    float: left;
+    margin: 10px 0;
+}
