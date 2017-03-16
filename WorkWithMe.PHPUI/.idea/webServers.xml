@@ -3,11 +3,10 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="8c45de86-a138-4577-9216-0fef6c80f09e" name="Azure Server" url="http://waws-prod-sn1-029.ftp.azurewebsites.windows.net">
-        <fileTransfer host="waws-prod-sn1-029.ftp.azurewebsites.windows.net" port="21" rootFolder="/site/wwwroot">
+        <fileTransfer host="waws-prod-sn1-029.ftp.azurewebsites.windows.net" port="21" rootFolder="/site/wwwroot" username="wwm\overseer">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
           </advancedOptions>
-          <option name="port" value="21" />
         </fileTransfer>
       </webServer>
     </option>

@@ -5,26 +5,26 @@ session_start();
 if (isset($_POST["btnRegister"]))
 {
     try {
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->CreateUser(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
-                                        'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
-                                        'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
-                                        'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
-                                        'state'=>$_POST["lstState"],'isAddressPrivate'=>true));
-    if ($retval->CreateUserResult)
-    {
-        $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
-        $_SESSION["UserId"] = $retval->DoLoginResult->Id;
-        $_SESSION["Username"] = $retval->DoLoginResult->Username;
-        $_SESSION["FirstName"] = $retval->DoLoginResult->FirstName;
-        $_SESSION["MiddleInitial"] = $retval->DoLoginResult->MiddleInitial;
-        $_SESSION["LastName"] = $retval->DoLoginResult->LastName;
-        $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
-        $_SESSION["Address"] = $retval->DoLoginResult->Address;
-        $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
-        $_SESSION["FirstLogin"] = true;
-        header("Location:index.php");
-    }
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->CreateUser(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
+            'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
+            'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
+            'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
+            'state'=>$_POST["lstState"],'isAddressPrivate'=>true));
+        if ($retval->CreateUserResult)
+        {
+            $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
+            $_SESSION["UserId"] = $retval->DoLoginResult->Id;
+            $_SESSION["Username"] = $retval->DoLoginResult->Username;
+            $_SESSION["FirstName"] = $retval->DoLoginResult->FirstName;
+            $_SESSION["MiddleInitial"] = $retval->DoLoginResult->MiddleInitial;
+            $_SESSION["LastName"] = $retval->DoLoginResult->LastName;
+            $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
+            $_SESSION["Address"] = $retval->DoLoginResult->Address;
+            $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
+            $_SESSION["FirstLogin"] = true;
+            header("Location:index.php");
+        }
 
     } catch (SoapFault $exception)
     {
@@ -54,7 +54,7 @@ if (isset($_POST["btnRegister"]))
     <form action="signup.php" method="post">
 
         <fieldset>
-            <legend>About You</legend><br />
+            <legend>Update About You</legend><br />
 
             <label for="txtFName">First Name:</label>
             <input type="text" id="txtFName" name="txtFName" placeholder="first name" autofocus required><br />
@@ -71,7 +71,7 @@ if (isset($_POST["btnRegister"]))
         </fieldset>
 
         <fieldset>
-            <legend>Address Information</legend><br />
+            <legend>Update Address</legend><br />
 
             <div id="safetyWarningText">Your address will not be shared with anyone unless you choose to share it.</div>
             <label for="txtAddress">Address:</label>
@@ -142,7 +142,7 @@ if (isset($_POST["btnRegister"]))
         </fieldset>
 
         <fieldset>
-            <legend>Security</legend><br />
+            <legend>Update Password</legend><br />
 
             <label for="txtUsername">Username:</label>
             <input type="text" name="txtUsername" id="txtUsername" placeholder="username" required></input><br />
@@ -159,7 +159,7 @@ if (isset($_POST["btnRegister"]))
 
             <div id="buttons">
                 <ul>
-                    <li><input type="submit" class="button" id="btnRegister" name="btnRegister" value="Register"></li>
+                    <li><input type="submit" class="button" id="btnUpdate" name="btnUpdate" value="Update"></li>
                     <li><input type="reset" class="button" id="btnClear" name="btnClear" value="Clear"></li>
                 </ul>
             </div>
