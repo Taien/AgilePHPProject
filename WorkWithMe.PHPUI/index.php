@@ -18,12 +18,10 @@ session_start();
             $_SESSION["Address"] = $retval->DoLoginResult->Address;
             $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
             $_SESSION["Error"] = "You have successfully logged in.";
-
         } catch (SoapFault $exception)
         {
             //DoLogin returns null when the login fails
             $_SESSION["Error"] = "Login failed, username/password combination is invalid.";
-            //invalid login - handle it somehow
         }
 
     }

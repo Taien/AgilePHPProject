@@ -17,8 +17,8 @@ if (isset($_SESSION["UserId"]))
 else
 {
     echo "<form method=\"post\" action=\"./index.php\"><ul>";
-    echo "<li><input type=\"text\" id=\"txtUsername\" name=\"txtUsername\" placeholder=\"Username\"></li>";
-    echo "<li><input type=\"password\" id=\"txtPassword\" name=\"txtPassword\" placeholder=\"Password\"></li>";
+    echo "<li><input type=\"text\" id=\"txtUsername\" name=\"txtUsername\" placeholder=\"Username\" required></li>";
+    echo "<li><input type=\"password\" id=\"txtPassword\" name=\"txtPassword\" placeholder=\"Password\" required></li>";
     echo "<li><input type=\"submit\" onclick=\"index.php\" id=\"btnLogin\" name=\"btnLogin\" value=\"Login\"></li>";
     echo "<li><a href=\"signup.php\"> Register</a></li>";
     echo "</ul></form>";

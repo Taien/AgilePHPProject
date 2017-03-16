@@ -28,5 +28,10 @@ namespace WorkWithMe.SL
             if (user.Login(username, password)) return user;
             else return null;
         }
+
+        public bool CreatePost(Guid posterId, Guid? targetGroupId, string title, string content, bool isSticky, DateTime eventTimeStamp)
+        {
+            return false;
+        }
     }
 }

@@ -7,3 +7,12 @@ C:\dev\WorkWithMe\WorkWithMe.DB\obj\Debug\Model.xml
 C:\dev\WorkWithMe\WorkWithMe.DB\obj\Debug\refactor.xml
 C:\dev\WorkWithMe\WorkWithMe.DB\obj\Debug\postdeploy.sql
 C:\dev\WorkWithMe\WorkWithMe.DB\obj\Debug\predeploy.sql
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.dacpac
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.pdb
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\Model.xml
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\refactor.xml
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\postdeploy.sql
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\predeploy.sql
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.pdb

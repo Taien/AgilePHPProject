@@ -2,7 +2,36 @@
 session_start();
 
 /* Check if there is an incoming POST */
+if (isset($_POST["btnRegister"]))
+{
+    try {
+    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+    $retval = $client->CreateUser(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
+                                        'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
+                                        'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
+                                        'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
+                                        'state'=>$_POST["lstState"],'isAddressPrivate'=>true));
+    if ($retval->CreateUserResult)
+    {
+        $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
+        $_SESSION["UserId"] = $retval->DoLoginResult->Id;
+        $_SESSION["Username"] = $retval->DoLoginResult->Username;
+        $_SESSION["FirstName"] = $retval->DoLoginResult->FirstName;
+        $_SESSION["MiddleInitial"] = $retval->DoLoginResult->MiddleInitial;
+        $_SESSION["LastName"] = $retval->DoLoginResult->LastName;
+        $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
+        $_SESSION["Address"] = $retval->DoLoginResult->Address;
+        $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
+        $_SESSION["FirstLogin"] = true;
+        header("Location:index.php");
+    }
 
+    } catch (SoapFault $exception)
+    {
+        //DoLogin returns null when the login fails
+        $_SESSION["Error"] = $exception->getMessage();
+    }
+}
 /* If so, process the user request */
 
 /* Store result in a variable.  false = failed to create user, true = created successfully */
@@ -30,11 +59,14 @@ session_start();
             <label for="txtFName">First Name:</label>
             <input type="text" id="txtFName" name="txtFName" placeholder="first name" autofocus required><br />
 
-            <label for="LastName">Last Name:</label>
+            <label for="txtMI">Middle Initial:</label>
+            <input type="text" id="txtMI" name="txtMI" placeholder="middle initial" required maxlength="2"><br />
+
+            <label for="txtLName">Last Name:</label>
             <input type="text" id="txtLName" name="txtLName" placeholder="last name" required><br />
 
             <label for="Email">E-mail:</label>
-            <input type="email" id="email" name="email" placeholder="e-mail" required><br />
+            <input type="email" id="txtEmail" name="txtEmail" placeholder="e-mail" required><br />
 
         </fieldset>
 
@@ -116,10 +148,10 @@ session_start();
             <input type="text" name="txtUsername" id="txtUsername" placeholder="username" required></input><br />
 
             <label for="txtPassword">Password:</label>
-            <input type="password" name="txtPassword" id="txtPassword" placeholder="enter password" required><br />
+            <input type="password" name="txtPassword" id="txtPassword" placeholder="enter password" required minlength="6" maxlength="24"><br />
 
             <label for="txtPwdVerify">Password Verify:</label>
-            <input type="password" name="txtPwdVerify" id="txtPwdVerify" placeholder="re-enter password" required><br />
+            <input type="password" name="txtPwdVerify" id="txtPwdVerify" placeholder="re-enter password" required minlength="6" maxlength="24"><br />
         </fieldset>
 
         <fieldset>
