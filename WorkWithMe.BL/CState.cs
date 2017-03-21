@@ -9,25 +9,25 @@ namespace WorkWithMe.BL
 {
    public class CState
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string StateName { get; set; }
 
         public CState()  {}
 
-        public CState(int id, string statename)
+        public CState(Guid id, string stateName)
         {
             Id = id;
-            StateName = statename; 
+            StateName = stateName; 
         }
 
 
-        public void Insert(CState state)
+        public void Create()
         {
             try
             {
                 WorkWithMeDataContext oDC = new WorkWithMeDataContext();
                 tblState s = new tblState();
-                s.Id = Id;
+                s.Id = Guid.NewGuid();
                 s.StateName = StateName;
 
                 oDC.tblStates.InsertOnSubmit(s);

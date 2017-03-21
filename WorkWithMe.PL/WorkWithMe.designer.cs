@@ -30,27 +30,12 @@ namespace WorkWithMe.PL
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InserttblZip(tblZip instance);
-    partial void UpdatetblZip(tblZip instance);
-    partial void DeletetblZip(tblZip instance);
-    partial void InserttblCity(tblCity instance);
-    partial void UpdatetblCity(tblCity instance);
-    partial void DeletetblCity(tblCity instance);
-    partial void InserttblState(tblState instance);
-    partial void UpdatetblState(tblState instance);
-    partial void DeletetblState(tblState instance);
     partial void InserttblUser(tblUser instance);
     partial void UpdatetblUser(tblUser instance);
     partial void DeletetblUser(tblUser instance);
     partial void InserttblGroupUser(tblGroupUser instance);
     partial void UpdatetblGroupUser(tblGroupUser instance);
     partial void DeletetblGroupUser(tblGroupUser instance);
-    partial void InserttblGroupInvite(tblGroupInvite instance);
-    partial void UpdatetblGroupInvite(tblGroupInvite instance);
-    partial void DeletetblGroupInvite(tblGroupInvite instance);
-    partial void InserttblInviteStatus(tblInviteStatus instance);
-    partial void UpdatetblInviteStatus(tblInviteStatus instance);
-    partial void DeletetblInviteStatus(tblInviteStatus instance);
     partial void InserttblGroupType(tblGroupType instance);
     partial void UpdatetblGroupType(tblGroupType instance);
     partial void DeletetblGroupType(tblGroupType instance);
@@ -60,6 +45,24 @@ namespace WorkWithMe.PL
     partial void InserttblPost(tblPost instance);
     partial void UpdatetblPost(tblPost instance);
     partial void DeletetblPost(tblPost instance);
+    partial void InserttblState(tblState instance);
+    partial void UpdatetblState(tblState instance);
+    partial void DeletetblState(tblState instance);
+    partial void InserttblZip(tblZip instance);
+    partial void UpdatetblZip(tblZip instance);
+    partial void DeletetblZip(tblZip instance);
+    partial void InserttblCity(tblCity instance);
+    partial void UpdatetblCity(tblCity instance);
+    partial void DeletetblCity(tblCity instance);
+    partial void InserttblInviteStatus(tblInviteStatus instance);
+    partial void UpdatetblInviteStatus(tblInviteStatus instance);
+    partial void DeletetblInviteStatus(tblInviteStatus instance);
+    partial void InserttblGroupInvite(tblGroupInvite instance);
+    partial void UpdatetblGroupInvite(tblGroupInvite instance);
+    partial void DeletetblGroupInvite(tblGroupInvite instance);
+    partial void InserttblUserContact(tblUserContact instance);
+    partial void UpdatetblUserContact(tblUserContact instance);
+    partial void DeletetblUserContact(tblUserContact instance);
     #endregion
 		
 		public WorkWithMeDataContext() : 
@@ -92,30 +95,6 @@ namespace WorkWithMe.PL
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<tblZip> tblZips
-		{
-			get
-			{
-				return this.GetTable<tblZip>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblCity> tblCities
-		{
-			get
-			{
-				return this.GetTable<tblCity>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblState> tblStates
-		{
-			get
-			{
-				return this.GetTable<tblState>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblUser> tblUsers
 		{
 			get
@@ -129,22 +108,6 @@ namespace WorkWithMe.PL
 			get
 			{
 				return this.GetTable<tblGroupUser>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblGroupInvite> tblGroupInvites
-		{
-			get
-			{
-				return this.GetTable<tblGroupInvite>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblInviteStatus> tblInviteStatus
-		{
-			get
-			{
-				return this.GetTable<tblInviteStatus>();
 			}
 		}
 		
@@ -172,6 +135,54 @@ namespace WorkWithMe.PL
 			}
 		}
 		
+		public System.Data.Linq.Table<tblState> tblStates
+		{
+			get
+			{
+				return this.GetTable<tblState>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblZip> tblZips
+		{
+			get
+			{
+				return this.GetTable<tblZip>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblCity> tblCities
+		{
+			get
+			{
+				return this.GetTable<tblCity>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblInviteStatus> tblInviteStatus
+		{
+			get
+			{
+				return this.GetTable<tblInviteStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblGroupInvite> tblGroupInvites
+		{
+			get
+			{
+				return this.GetTable<tblGroupInvite>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblUserContact> tblUserContacts
+		{
+			get
+			{
+				return this.GetTable<tblUserContact>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spDoLogin")]
 		public ISingleResult<spDoLoginResult> spDoLogin([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="NVarChar(50)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(24)")] string password)
 		{
@@ -192,288 +203,6 @@ namespace WorkWithMe.PL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), posterId, targetGroupId, title, content, isSticky, eventTimeStamp);
 			return ((int)(result.ReturnValue));
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblZip")]
-	public partial class tblZip : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CityId;
-		
-		private int _StateId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCityIdChanging(int value);
-    partial void OnCityIdChanged();
-    partial void OnStateIdChanging(int value);
-    partial void OnStateIdChanged();
-    #endregion
-		
-		public tblZip()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CityId", DbType="Int NOT NULL")]
-		public int CityId
-		{
-			get
-			{
-				return this._CityId;
-			}
-			set
-			{
-				if ((this._CityId != value))
-				{
-					this.OnCityIdChanging(value);
-					this.SendPropertyChanging();
-					this._CityId = value;
-					this.SendPropertyChanged("CityId");
-					this.OnCityIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateId", DbType="Int NOT NULL")]
-		public int StateId
-		{
-			get
-			{
-				return this._StateId;
-			}
-			set
-			{
-				if ((this._StateId != value))
-				{
-					this.OnStateIdChanging(value);
-					this.SendPropertyChanging();
-					this._StateId = value;
-					this.SendPropertyChanged("StateId");
-					this.OnStateIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCity")]
-	public partial class tblCity : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _CityName;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCityNameChanging(string value);
-    partial void OnCityNameChanged();
-    #endregion
-		
-		public tblCity()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CityName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string CityName
-		{
-			get
-			{
-				return this._CityName;
-			}
-			set
-			{
-				if ((this._CityName != value))
-				{
-					this.OnCityNameChanging(value);
-					this.SendPropertyChanging();
-					this._CityName = value;
-					this.SendPropertyChanged("CityName");
-					this.OnCityNameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblState")]
-	public partial class tblState : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _StateName;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnStateNameChanging(string value);
-    partial void OnStateNameChanged();
-    #endregion
-		
-		public tblState()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string StateName
-		{
-			get
-			{
-				return this._StateName;
-			}
-			set
-			{
-				if ((this._StateName != value))
-				{
-					this.OnStateNameChanging(value);
-					this.SendPropertyChanging();
-					this._StateName = value;
-					this.SendPropertyChanged("StateName");
-					this.OnStateNameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -738,7 +467,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary UserImg
 		{
 			get
@@ -960,250 +689,6 @@ namespace WorkWithMe.PL
 					this._CanDelete = value;
 					this.SendPropertyChanged("CanDelete");
 					this.OnCanDeleteChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGroupInvite")]
-	public partial class tblGroupInvite : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _Id;
-		
-		private System.Guid _OwnerUserId;
-		
-		private System.Guid _TargetUserId;
-		
-		private System.Guid _TargetGroupId;
-		
-		private int _InviteStatus;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(System.Guid value);
-    partial void OnIdChanged();
-    partial void OnOwnerUserIdChanging(System.Guid value);
-    partial void OnOwnerUserIdChanged();
-    partial void OnTargetUserIdChanging(System.Guid value);
-    partial void OnTargetUserIdChanged();
-    partial void OnTargetGroupIdChanging(System.Guid value);
-    partial void OnTargetGroupIdChanged();
-    partial void OnInviteStatusChanging(int value);
-    partial void OnInviteStatusChanged();
-    #endregion
-		
-		public tblGroupInvite()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OwnerUserId
-		{
-			get
-			{
-				return this._OwnerUserId;
-			}
-			set
-			{
-				if ((this._OwnerUserId != value))
-				{
-					this.OnOwnerUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerUserId = value;
-					this.SendPropertyChanged("OwnerUserId");
-					this.OnOwnerUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetUserId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid TargetUserId
-		{
-			get
-			{
-				return this._TargetUserId;
-			}
-			set
-			{
-				if ((this._TargetUserId != value))
-				{
-					this.OnTargetUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._TargetUserId = value;
-					this.SendPropertyChanged("TargetUserId");
-					this.OnTargetUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetGroupId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid TargetGroupId
-		{
-			get
-			{
-				return this._TargetGroupId;
-			}
-			set
-			{
-				if ((this._TargetGroupId != value))
-				{
-					this.OnTargetGroupIdChanging(value);
-					this.SendPropertyChanging();
-					this._TargetGroupId = value;
-					this.SendPropertyChanged("TargetGroupId");
-					this.OnTargetGroupIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InviteStatus", DbType="Int NOT NULL")]
-		public int InviteStatus
-		{
-			get
-			{
-				return this._InviteStatus;
-			}
-			set
-			{
-				if ((this._InviteStatus != value))
-				{
-					this.OnInviteStatusChanging(value);
-					this.SendPropertyChanging();
-					this._InviteStatus = value;
-					this.SendPropertyChanged("InviteStatus");
-					this.OnInviteStatusChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblInviteStatus")]
-	public partial class tblInviteStatus : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Description;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    #endregion
-		
-		public tblInviteStatus()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
 				}
 			}
 		}
@@ -1492,7 +977,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary GroupImg
 		{
 			get
@@ -1822,6 +1307,666 @@ namespace WorkWithMe.PL
 					this._EventTimeStamp = value;
 					this.SendPropertyChanged("EventTimeStamp");
 					this.OnEventTimeStampChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblState")]
+	public partial class tblState : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _StateName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnStateNameChanging(string value);
+    partial void OnStateNameChanged();
+    #endregion
+		
+		public tblState()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string StateName
+		{
+			get
+			{
+				return this._StateName;
+			}
+			set
+			{
+				if ((this._StateName != value))
+				{
+					this.OnStateNameChanging(value);
+					this.SendPropertyChanging();
+					this._StateName = value;
+					this.SendPropertyChanged("StateName");
+					this.OnStateNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblZip")]
+	public partial class tblZip : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _CityId;
+		
+		private System.Guid _StateId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCityIdChanging(System.Guid value);
+    partial void OnCityIdChanged();
+    partial void OnStateIdChanging(System.Guid value);
+    partial void OnStateIdChanged();
+    #endregion
+		
+		public tblZip()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CityId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid CityId
+		{
+			get
+			{
+				return this._CityId;
+			}
+			set
+			{
+				if ((this._CityId != value))
+				{
+					this.OnCityIdChanging(value);
+					this.SendPropertyChanging();
+					this._CityId = value;
+					this.SendPropertyChanged("CityId");
+					this.OnCityIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid StateId
+		{
+			get
+			{
+				return this._StateId;
+			}
+			set
+			{
+				if ((this._StateId != value))
+				{
+					this.OnStateIdChanging(value);
+					this.SendPropertyChanging();
+					this._StateId = value;
+					this.SendPropertyChanged("StateId");
+					this.OnStateIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCity")]
+	public partial class tblCity : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _CityName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnCityNameChanging(string value);
+    partial void OnCityNameChanged();
+    #endregion
+		
+		public tblCity()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CityName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CityName
+		{
+			get
+			{
+				return this._CityName;
+			}
+			set
+			{
+				if ((this._CityName != value))
+				{
+					this.OnCityNameChanging(value);
+					this.SendPropertyChanging();
+					this._CityName = value;
+					this.SendPropertyChanged("CityName");
+					this.OnCityNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblInviteStatus")]
+	public partial class tblInviteStatus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Description;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public tblInviteStatus()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGroupInvite")]
+	public partial class tblGroupInvite : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Guid _TargetUserId;
+		
+		private System.Guid _TargetGroupId;
+		
+		private int _InviteStatusId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnOwnerUserIdChanging(System.Guid value);
+    partial void OnOwnerUserIdChanged();
+    partial void OnTargetUserIdChanging(System.Guid value);
+    partial void OnTargetUserIdChanged();
+    partial void OnTargetGroupIdChanging(System.Guid value);
+    partial void OnTargetGroupIdChanged();
+    partial void OnInviteStatusIdChanging(int value);
+    partial void OnInviteStatusIdChanged();
+    #endregion
+		
+		public tblGroupInvite()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this.OnOwnerUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerUserId = value;
+					this.SendPropertyChanged("OwnerUserId");
+					this.OnOwnerUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TargetUserId
+		{
+			get
+			{
+				return this._TargetUserId;
+			}
+			set
+			{
+				if ((this._TargetUserId != value))
+				{
+					this.OnTargetUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._TargetUserId = value;
+					this.SendPropertyChanged("TargetUserId");
+					this.OnTargetUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetGroupId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TargetGroupId
+		{
+			get
+			{
+				return this._TargetGroupId;
+			}
+			set
+			{
+				if ((this._TargetGroupId != value))
+				{
+					this.OnTargetGroupIdChanging(value);
+					this.SendPropertyChanging();
+					this._TargetGroupId = value;
+					this.SendPropertyChanged("TargetGroupId");
+					this.OnTargetGroupIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InviteStatusId", DbType="Int NOT NULL")]
+		public int InviteStatusId
+		{
+			get
+			{
+				return this._InviteStatusId;
+			}
+			set
+			{
+				if ((this._InviteStatusId != value))
+				{
+					this.OnInviteStatusIdChanging(value);
+					this.SendPropertyChanging();
+					this._InviteStatusId = value;
+					this.SendPropertyChanged("InviteStatusId");
+					this.OnInviteStatusIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUserContact")]
+	public partial class tblUserContact : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Guid _TargetUserId;
+		
+		private int _InviteStatusId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnOwnerUserIdChanging(System.Guid value);
+    partial void OnOwnerUserIdChanged();
+    partial void OnTargetUserIdChanging(System.Guid value);
+    partial void OnTargetUserIdChanged();
+    partial void OnInviteStatusIdChanging(int value);
+    partial void OnInviteStatusIdChanged();
+    #endregion
+		
+		public tblUserContact()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this.OnOwnerUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerUserId = value;
+					this.SendPropertyChanged("OwnerUserId");
+					this.OnOwnerUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TargetUserId
+		{
+			get
+			{
+				return this._TargetUserId;
+			}
+			set
+			{
+				if ((this._TargetUserId != value))
+				{
+					this.OnTargetUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._TargetUserId = value;
+					this.SendPropertyChanged("TargetUserId");
+					this.OnTargetUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InviteStatusId", DbType="Int NOT NULL")]
+		public int InviteStatusId
+		{
+			get
+			{
+				return this._InviteStatusId;
+			}
+			set
+			{
+				if ((this._InviteStatusId != value))
+				{
+					this.OnInviteStatusIdChanging(value);
+					this.SendPropertyChanging();
+					this._InviteStatusId = value;
+					this.SendPropertyChanged("InviteStatusId");
+					this.OnInviteStatusIdChanged();
 				}
 			}
 		}

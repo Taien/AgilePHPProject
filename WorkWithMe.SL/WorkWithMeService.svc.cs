@@ -31,6 +31,8 @@ namespace WorkWithMe.SL
 
         public bool CreatePost(Guid posterId, Guid? targetGroupId, string title, string content, bool isSticky, DateTime eventTimeStamp)
         {
+            CPost post = new CPost(posterId, targetGroupId, title, content, isSticky, false, DateTime.Now, eventTimeStamp);
+            if (post.Create() > 0) return true;
             return false;
         }
     }

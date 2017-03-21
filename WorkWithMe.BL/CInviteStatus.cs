@@ -20,7 +20,7 @@ namespace WorkWithMe.BL
             Description = description;
         }
 
-        public void Insert(CInviteStatus invitestatus)
+        public void Create()
         {
             try
             {

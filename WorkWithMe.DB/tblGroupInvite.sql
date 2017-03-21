@@ -4,5 +4,5 @@
     [OwnerUserId] UNIQUEIDENTIFIER NOT NULL, 
     [TargetUserId] UNIQUEIDENTIFIER NOT NULL, 
     [TargetGroupId] UNIQUEIDENTIFIER NOT NULL, 
-    [InviteStatus] INT NOT NULL
+    [InviteStatusId] INT NOT NULL
 )

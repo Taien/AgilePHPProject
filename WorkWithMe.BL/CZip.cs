@@ -10,19 +10,19 @@ namespace WorkWithMe.BL
     public class CZip
     {
         public int Id { get; set; }
-        public int CityId { get; set; }
-        public int StateId { get; set; }
+        public Guid CityId { get; set; }
+        public Guid StateId { get; set; }
 
         public CZip() { }
 
-        public CZip(int id, int cityid, int stateid)
+        public CZip(int id, Guid cityId, Guid stateId)
         {
             Id = id;
-            CityId = cityid;
-            StateId = stateid; 
+            CityId = cityId;
+            StateId = stateId; 
         }
 
-        public void Insert(CZip zip)
+        public void Create()
         {
             try
             {

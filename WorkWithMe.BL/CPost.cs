@@ -11,55 +11,52 @@ namespace WorkWithMe.BL
     {
         public Guid Id { get; set; }
         public Guid OwnerUserId { get; set; }
-        public Guid TargetGroupId { get; set; }
+        public Guid? TargetGroupId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public bool IsSticky { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime TimeStamp { get; set; }
-        public DateTime EventTimeStamp { get; set; }
+        public DateTime? EventTimeStamp { get; set; }
 
         public CPost() { }
 
-        public CPost(Guid id, Guid owneruserid, Guid targetgroupid, string title, string content, bool issticky, bool isdeleted, DateTime timestamp, DateTime eventtimestamp)
+        public CPost(Guid ownerUserId, Guid? targetGroupId, string title, string content, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
         {
-            Id = id;
-            OwnerUserId = owneruserid;
-            TargetGroupId = targetgroupid;
+            OwnerUserId = ownerUserId;
+            TargetGroupId = targetGroupId;
             Title = title;
             Content = content;
-            IsSticky = issticky;
-            IsDeleted = isdeleted;
+            IsSticky = isSticky;
+            IsDeleted = isDeleted;
             TimeStamp = timestamp;
-            EventTimeStamp = eventtimestamp; 
+            EventTimeStamp = eventTimestamp;
         }
 
-        public void Insert(CPost post)
+        public CPost(Guid id, Guid ownerUserId, Guid? targetGroupId, string title, string content, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
+        {
+            Id = id;
+            OwnerUserId = ownerUserId;
+            TargetGroupId = targetGroupId;
+            Title = title;
+            Content = content;
+            IsSticky = isSticky;
+            IsDeleted = isDeleted;
+            TimeStamp = timestamp;
+            EventTimeStamp = eventTimestamp; 
+        }
+
+        public int Create()
         {
             try
             {
                 WorkWithMeDataContext oDC = new WorkWithMeDataContext();
-                tblPost p = new tblPost();
-                p.Id = Id;
-                p.OwnerUserId = OwnerUserId;
-                p.TargetGroupId = TargetGroupId;
-                p.Title = Title;
-                p.Content = Content;
-                p.IsSticky = IsSticky;
-                p.IsDeleted = IsDeleted;
-                p.TimeStamp = TimeStamp;
-                p.EventTimeStamp = EventTimeStamp; 
-               
-
-                oDC.tblPosts.InsertOnSubmit(p);
-                oDC.SubmitChanges();
+                return oDC.spCreatePost(OwnerUserId, TargetGroupId, Title, Content, IsSticky, EventTimeStamp);
             }
             catch(Exception ex)
             {
                 throw ex; 
             }
-          
-
         }
 
         public void Update()
@@ -91,4 +88,13 @@ namespace WorkWithMe.BL
             oDC.SubmitChanges();
         }
     }
+
+    public class CPostList : List<CPost>
+    {
+        public void LoadPostsForUser(Guid userId)
+        {
+
+        }
+    }
+
 }

@@ -20,7 +20,7 @@ namespace WorkWithMe.BL
             Description = description;
         }
 
-        public void Insert(CGroupType grouptype)
+        public void Create()
         {
             try
             {

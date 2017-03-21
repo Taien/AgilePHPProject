@@ -7,4 +7,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="MiddleInitial" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3f3ee060-748a-43be-ae14-8f107c3c4961" ChangeDateTime="03/21/2017 06:32:23" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[tblUserContact].[Own]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblUserContact]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OwnerUserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c210c68e-a702-4852-bfa8-c46400301c64" ChangeDateTime="03/21/2017 06:33:09" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[tblUserContact].[InviteStatus]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblUserContact]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InviteStatusId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ab3b76b7-b2c6-482d-a7d8-6ab3c6d80008" ChangeDateTime="03/21/2017 06:33:19" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[tblGroupInvite].[InviteStatus]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblGroupInvite]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InviteStatusId" />
+  </Operation>
 </Operations>

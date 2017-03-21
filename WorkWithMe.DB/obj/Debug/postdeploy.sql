@@ -25,4 +25,26 @@ exec spCreateUser @Username = 'Test',
  @Response = @response output;
 
  PRINT @response;
+
+ delete from tblInviteStatus;
+
+ insert into tblInviteStatus (Id, Description)
+ values 
+   (0,'Invited'),
+   (1,'Declined'),
+   (2,'Accepted'),
+   (3,'Blocked');
+
+ delete from tblUserContact where OwnerUserId = '00000000-0000-0000-0000-000000000000';
+
+ insert into tblUserContact (Id, OwnerUserId, TargetUserId, InviteStatusId)
+ values (NewID(), '00000000-0000-0000-0000-000000000000','00000000-0000-0000-0000-000000000001',2);
+
+ delete from tblPost where OwnerUserId = '00000000-0000-0000-0000-000000000000';
+ delete from tblPost where OwnerUserId = '00000000-0000-0000-0000-000000000001';
+
+ insert into tblPost (Id, OwnerUserId, Title, Content, IsSticky, IsDeleted, TimeStamp, EventTimeStamp)
+ values
+ (NewId(),'00000000-0000-0000-0000-000000000000','Test Post from User 0','Stuff A',0,0, GETDATE(),null),
+ (NewId(),'00000000-0000-0000-0000-000000000001','Test Post from User 1','Stuff B',0,0, GETDATE(),null);
 GO

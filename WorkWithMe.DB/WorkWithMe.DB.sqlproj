@@ -76,6 +76,8 @@
     <Build Include="spDoLogin.sql" />
     <Build Include="spCreateUser.sql" />
     <Build Include="spCreatePost.sql" />
+    <Build Include="tblUserContact.sql" />
+    <Build Include="spGetPostsForUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WorkWithMe.DB.refactorlog" />

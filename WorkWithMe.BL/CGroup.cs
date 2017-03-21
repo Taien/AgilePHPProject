@@ -40,7 +40,7 @@ namespace WorkWithMe.BL
            
         }
 
-        public void Insert(CGroup group)
+        public void Create()
         {
             try
             {

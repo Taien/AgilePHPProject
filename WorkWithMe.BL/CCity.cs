@@ -10,24 +10,24 @@ namespace WorkWithMe.BL
    public class CCity
     {
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string CityName { get; set; }
 
         public CCity() { }
 
-        public CCity(int id, string cityname)
+        public CCity(Guid id, string cityName)
         {
             Id = id;
-            CityName = cityname;
+            CityName = cityName;
         }
 
-        public void Insert(CCity city)
+        public void Create()
         {
             try
             {
                 WorkWithMeDataContext oDC = new WorkWithMeDataContext();
                 tblCity c = new tblCity();
-                c.Id = Id;
+                c.Id = Guid.NewGuid();
                 c.CityName = CityName;
 
                 oDC.tblCities.InsertOnSubmit(c);

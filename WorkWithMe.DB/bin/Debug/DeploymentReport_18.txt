@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[tblUserContact]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Id in table [dbo].[tblUserContact] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+
+** User actions
+     Table rebuild
+       [dbo].[tblUserContact] (Table)
+
+** Supporting actions
+     Refresh
+       [dbo].[spGetPostsForUser] (Procedure)
+
+The type for column Id in table [dbo].[tblUserContact] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[tblUserContact]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [OwnerUserId] UNIQUEIDENTIFIER NOT NULL, 
+    [TargetUserId] UNIQUEIDENTIFIER NOT NULL, 
+    [InviteStatusId] INT NOT NULL
+)
