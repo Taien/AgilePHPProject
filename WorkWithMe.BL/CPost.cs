@@ -93,7 +93,16 @@ namespace WorkWithMe.BL
     {
         public void LoadPostsForUser(Guid userId)
         {
-
+            Clear();
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                List<spGetPostsForUserResult> list = oDC.spGetPostsForUser(userId).ToList();
+                foreach (spGetPostsForUserResult item in list)
+                {
+                    CPost post = new CPost(item.OwnerUserId, item.TargetGroupId, item.Title, item.Content, item.IsSticky, item.IsDeleted, item.TimeStamp, item.EventTimeStamp);
+                    Add(post);
+                }
+            }
         }
     }
 

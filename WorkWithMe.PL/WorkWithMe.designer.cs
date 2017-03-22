@@ -204,6 +204,13 @@ namespace WorkWithMe.PL
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), posterId, targetGroupId, title, content, isSticky, eventTimeStamp);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spGetPostsForUser")]
+		public ISingleResult<spGetPostsForUserResult> spGetPostsForUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<spGetPostsForUserResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUser")]
@@ -467,7 +474,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary UserImg
 		{
 			get
@@ -977,7 +984,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary GroupImg
 		{
 			get
@@ -2013,6 +2020,176 @@ namespace WorkWithMe.PL
 				if ((this._Id != value))
 				{
 					this._Id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spGetPostsForUserResult
+	{
+		
+		private System.Guid _Id;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Nullable<System.Guid> _TargetGroupId;
+		
+		private string _Title;
+		
+		private string _Content;
+		
+		private bool _IsSticky;
+		
+		private bool _IsDeleted;
+		
+		private System.DateTime _TimeStamp;
+		
+		private System.Nullable<System.DateTime> _EventTimeStamp;
+		
+		public spGetPostsForUserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this._OwnerUserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetGroupId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> TargetGroupId
+		{
+			get
+			{
+				return this._TargetGroupId;
+			}
+			set
+			{
+				if ((this._TargetGroupId != value))
+				{
+					this._TargetGroupId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this._Content = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSticky", DbType="Bit NOT NULL")]
+		public bool IsSticky
+		{
+			get
+			{
+				return this._IsSticky;
+			}
+			set
+			{
+				if ((this._IsSticky != value))
+				{
+					this._IsSticky = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
+		public bool IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this._IsDeleted = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="DateTime NOT NULL")]
+		public System.DateTime TimeStamp
+		{
+			get
+			{
+				return this._TimeStamp;
+			}
+			set
+			{
+				if ((this._TimeStamp != value))
+				{
+					this._TimeStamp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventTimeStamp", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EventTimeStamp
+		{
+			get
+			{
+				return this._EventTimeStamp;
+			}
+			set
+			{
+				if ((this._EventTimeStamp != value))
+				{
+					this._EventTimeStamp = value;
 				}
 			}
 		}

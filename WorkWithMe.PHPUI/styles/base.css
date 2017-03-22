@@ -261,3 +261,19 @@ textarea {
     float: left;
     margin: 10px 0;
 }
+
+#message {
+    text-align: left;
+    border: 1px dashed;
+    margin: 5px;
+}
+
+#message h3{
+    padding: 0;
+    margin: 0;
+}
+
+#timestampInfo{
+    font-size: 12px;
+    padding: 0;
+}

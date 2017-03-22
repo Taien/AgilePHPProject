@@ -41,8 +41,7 @@ session_start();
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>"test",'content'=>$_POST["txtMessage"],'isSticky'=>false,null));
-            echo 'Success';
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>$_POST["txtTitle"],'content'=>$_POST["txtMessage"],'isSticky'=>false));
         } catch (SoapFault $exception)
         {
             //DoLogin returns null when the login fails
@@ -67,17 +66,35 @@ session_start();
             if (isset($_SESSION["UserId"]))
             {
                 echo '<form method="post" id="postForm">';
-                echo '<textarea name="txtMessage" id="txtMessage" cols="80" rows="5"></textarea>';
+                echo '<input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>';
+                echo '<textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>';
                 echo '<input type="submit" name="btnPost" id="btnPost" value="Post Message">';
                 echo '</form>';
-                /* echo "<h2>" . $_SESSION["FirstName"] . " " . $_SESSION["MiddleInitial"] . ". " . $_SESSION["LastName"] . "'s Information (temp page)</h2>";
-                echo "<br/><b>Username: </b> " . $_SESSION["Username"];
-                echo "<br/><b>Id: </b> " . $_SESSION["UserId"];
-                echo "<br/><b>Address: </b> " . $_SESSION["Address"];
-                echo "<br/><b>Zip: </b> " . $_SESSION["Zip"];
-                echo "<br/><b>IsAddressPrivate: </b> ";
-                if ($_SESSION["IsAddressPrivate"]) echo "Yes";
-                else echo "No"; */
+
+                try {
+                    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+                    $retval = $client->GetPostsForUser(array('userId'=>$_SESSION["UserId"]));
+                    $resultArray = $retval->GetPostsForUserResult->CPost;
+                } catch (SoapFault $exception)
+                {
+                    //DoLogin returns null when the login fails
+                    $_SESSION["Error"] = "Message failed to post for some reason: " . $exception->getMessage();
+                }
+
+                for ($i = 0; $i < count($resultArray); $i++)
+                {
+                    $title = $resultArray[$i]->Title;
+                    $content = $resultArray[$i]->Content;
+                    $ownerUserId = $resultArray[$i]->OwnerUserId; //get the username from this later
+                    $targetGroupId = $resultArray[$i]->TargetGroupId;
+                    $timestamp = $resultArray[$i]->TimeStamp;
+
+                    echo '<table id="message" width="99%">';
+                    echo '<tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerUserId . ' At ' . $timestamp . '</div><hr/></td></tr>';
+                    echo '<tr><td width="85%">'. $content . '</td>';
+                    echo '<td width="15%">Reply Button</td></tr>';
+                    echo '</table>';
+                }
             }
             else
             {

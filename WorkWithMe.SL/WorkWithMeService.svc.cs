@@ -29,11 +29,18 @@ namespace WorkWithMe.SL
             else return null;
         }
 
-        public bool CreatePost(Guid posterId, Guid? targetGroupId, string title, string content, bool isSticky, DateTime eventTimeStamp)
+        public bool CreatePost(string posterId, string targetGroupId, string title, string content, bool isSticky, DateTime? eventTimeStamp)
         {
-            CPost post = new CPost(posterId, targetGroupId, title, content, isSticky, false, DateTime.Now, eventTimeStamp);
+            CPost post = new CPost(Guid.Parse(posterId), (targetGroupId == null) ? Guid.Empty : Guid.Parse(targetGroupId), title, content, isSticky, false, DateTime.Now, eventTimeStamp);
             if (post.Create() > 0) return true;
             return false;
+        }
+
+        public CPostList GetPostsForUser(string userId)
+        {
+            CPostList list = new CPostList();
+            list.LoadPostsForUser(Guid.Parse(userId));
+            return list;
         }
     }
 }

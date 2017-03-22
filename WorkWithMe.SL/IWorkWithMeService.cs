@@ -14,12 +14,15 @@ namespace WorkWithMe.SL
     public interface IWorkWithMeService
     {
         [OperationContract]
-        bool CreatePost(Guid posterId, Guid? targetGroupId, string title, string content, bool isSticky, DateTime eventTimeStamp);
+        bool CreatePost(string posterId, string targetGroupId, string title, string content, bool isSticky, DateTime? eventTimeStamp);
 
         [OperationContract]
         CUser DoLogin(string username, string password);
 
         [OperationContract]
         bool CreateUser(string username, string password, string firstName, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, ref string response);
+
+        [OperationContract]
+        CPostList GetPostsForUser(string userId);
     }
 }
