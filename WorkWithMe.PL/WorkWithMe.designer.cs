@@ -474,7 +474,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary UserImg
 		{
 			get
@@ -984,7 +984,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary GroupImg
 		{
 			get
@@ -2046,6 +2046,8 @@ namespace WorkWithMe.PL
 		
 		private System.Nullable<System.DateTime> _EventTimeStamp;
 		
+		private string _OwnerFullName;
+		
 		public spGetPostsForUserResult()
 		{
 		}
@@ -2190,6 +2192,22 @@ namespace WorkWithMe.PL
 				if ((this._EventTimeStamp != value))
 				{
 					this._EventTimeStamp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerFullName", DbType="NVarChar(105)")]
+		public string OwnerFullName
+		{
+			get
+			{
+				return this._OwnerFullName;
+			}
+			set
+			{
+				if ((this._OwnerFullName != value))
+				{
+					this._OwnerFullName = value;
 				}
 			}
 		}

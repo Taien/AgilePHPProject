@@ -24,6 +24,11 @@ namespace WorkWithMe.BL
 
         }
 
+        public CUser(Guid id)
+        {
+            Id = id;
+        }
+
         public CUser(Guid id, string username, string firstName, string middleInitial, string lastName,
                      int? zip, string address, bool isAddressPrivate/*, SomeKindOfImage image*/)
         {
@@ -107,6 +112,22 @@ namespace WorkWithMe.BL
                 oDC.SubmitChanges();
             }
         }
+
+        public void Load()
+        {
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                tblUser user = (from u in oDC.tblUsers where u.Id == Id select u).FirstOrDefault();
+                Username = user.Username;
+                FirstName = user.FirstName;
+                MiddleInitial = user.MiddleInitial;
+                LastName = user.LastName;
+                Zip = user.Zip;
+                Address = user.Address;
+                IsAddressPrivate = user.IsAddressPrivate;
+            }
+        }
+        
     }
       
     public class CUserList : List<CUser>

@@ -78,7 +78,7 @@ session_start();
                 } catch (SoapFault $exception)
                 {
                     //DoLogin returns null when the login fails
-                    $_SESSION["Error"] = "Message failed to post for some reason: " . $exception->getMessage();
+                    $_SESSION["Error"] = "Failed to retrieve posts for user. Details: " . $exception->getMessage();
                 }
 
                 for ($i = 0; $i < count($resultArray); $i++)
@@ -88,12 +88,13 @@ session_start();
                     $ownerUserId = $resultArray[$i]->OwnerUserId; //get the username from this later
                     $targetGroupId = $resultArray[$i]->TargetGroupId;
                     $timestamp = $resultArray[$i]->TimeStamp;
+                    $ownerFullName = $resultArray[$i]->OwnerFullName;
 
-                    echo '<table id="message" width="99%">';
-                    echo '<tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerUserId . ' At ' . $timestamp . '</div><hr/></td></tr>';
+                    echo '<form action="reply.php" method="post"></form><table id="message" width="99%">';
+                    echo '<tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>';
                     echo '<tr><td width="85%">'. $content . '</td>';
-                    echo '<td width="15%">Reply Button</td></tr>';
-                    echo '</table>';
+                    echo '<td width="15%"><input type="submit" value="Reply" id="btnReply" name="btnReply"/></td></tr>';
+                    echo '</table></form>';
                 }
             }
             else

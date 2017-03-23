@@ -24,5 +24,6 @@ namespace WorkWithMe.SL
 
         [OperationContract]
         CPostList GetPostsForUser(string userId);
+
     }
 }

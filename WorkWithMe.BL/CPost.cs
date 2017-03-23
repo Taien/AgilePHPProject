@@ -14,6 +14,7 @@ namespace WorkWithMe.BL
         public Guid? TargetGroupId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string OwnerFullName { get; set; }
         public bool IsSticky { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime TimeStamp { get; set; }
@@ -33,13 +34,14 @@ namespace WorkWithMe.BL
             EventTimeStamp = eventTimestamp;
         }
 
-        public CPost(Guid id, Guid ownerUserId, Guid? targetGroupId, string title, string content, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
+        public CPost(Guid id, Guid ownerUserId, Guid? targetGroupId, string title, string content, string ownerFullName, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
         {
             Id = id;
             OwnerUserId = ownerUserId;
             TargetGroupId = targetGroupId;
             Title = title;
             Content = content;
+            OwnerFullName = ownerFullName;
             IsSticky = isSticky;
             IsDeleted = isDeleted;
             TimeStamp = timestamp;
@@ -99,7 +101,7 @@ namespace WorkWithMe.BL
                 List<spGetPostsForUserResult> list = oDC.spGetPostsForUser(userId).ToList();
                 foreach (spGetPostsForUserResult item in list)
                 {
-                    CPost post = new CPost(item.OwnerUserId, item.TargetGroupId, item.Title, item.Content, item.IsSticky, item.IsDeleted, item.TimeStamp, item.EventTimeStamp);
+                    CPost post = new CPost(item.Id, item.OwnerUserId, item.TargetGroupId, item.Title, item.Content, item.OwnerFullName, item.IsSticky, item.IsDeleted, item.TimeStamp, item.EventTimeStamp);
                     Add(post);
                 }
             }

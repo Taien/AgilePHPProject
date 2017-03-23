@@ -3,11 +3,62 @@
   <component name="ChangeListManager">
     <list default="true" id="36f4f56a-697d-48bd-a2f7-06a8c891af14" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.vs/WorkWithMe/v14/.suo" afterPath="$PROJECT_DIR$/../.vs/WorkWithMe/v14/.suo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.BL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.BL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Debug/WorkWithMe.PL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Debug/WorkWithMe.BL.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Debug/WorkWithMe.BL.csprojResolveAssemblyReference.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Debug/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Debug/WorkWithMe.BL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Debug/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Debug/WorkWithMe.BL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.csprojResolveAssemblyReference.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/WorkWithMe.DB.dbmdl" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/WorkWithMe.DB.dbmdl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dacpac" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dacpac" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Debug/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Debug/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Debug/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Debug/WorkWithMe.PL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/TempPE/WorkWithMe.designer.cs.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/TempPE/WorkWithMe.designer.cs.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/WorkWithMe.PL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/TempPE/WorkWithMe.designer.cs.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/TempPE/WorkWithMe.designer.cs.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Debug/WorkWithMe.SL.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Debug/WorkWithMe.SL.csprojResolveAssemblyReference.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Debug/WorkWithMe.SL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Debug/WorkWithMe.SL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Debug/WorkWithMe.SL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Debug/WorkWithMe.SL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.BL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.PL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.SL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.SL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.csprojResolveAssemblyReference.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/CPost.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/CPost.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/CUser.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/CUser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/Model.xml" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/Model.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/spGetPostsForUser.sql" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/spGetPostsForUser.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/base.css" afterPath="$PROJECT_DIR$/styles/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.dbml" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.dbml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.designer.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.designer.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/IWorkWithMeService.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/IWorkWithMeService.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/WorkWithMeService.svc.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/WorkWithMeService.svc.cs" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,7 +130,7 @@
       <file leaf-file-name="signup.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/signup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2346">
+            <state relative-caret-position="2499">
               <caret line="147" column="18" lean-forward="false" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
               <folding />
             </state>
@@ -96,31 +147,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/styles/base.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1107">
-              <caret line="278" column="1" lean-forward="true" selection-start-line="278" selection-start-column="1" selection-end-line="278" selection-end-column="1" />
+            <state relative-caret-position="546">
+              <caret line="291" column="27" lean-forward="false" selection-start-line="291" selection-start-column="27" selection-end-line="291" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-697">
-              <caret line="37" column="57" lean-forward="true" selection-start-line="37" selection-start-column="57" selection-end-line="37" selection-end-column="57" />
-              <folding>
-                <marker date="1490171628513" expanded="true" signature="2236:2409" ph="..." />
-                <marker date="1490171628513" expanded="true" signature="2243:2262" ph="..." />
-                <marker date="1490171628513" expanded="true" signature="2243:2379" ph="..." />
-                <marker date="1490171628513" expanded="true" signature="2386:2409" ph="..." />
-                <marker date="1490171628513" expanded="true" signature="2506:2608" ph="..." />
-                <marker date="1490171628513" expanded="true" signature="2514:2552" ph="..." />
-                <marker date="1490171628513" expanded="true" signature="2514:2608" ph="..." />
-                <marker date="1490171628513" expanded="true" signature="4753:4956" ph="..." />
-              </folding>
+            <state relative-caret-position="376">
+              <caret line="95" column="106" lean-forward="false" selection-start-line="95" selection-start-column="106" selection-end-line="95" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkWithMe.dbo.tblUser" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/bb031311/762258eb-37a6-4586-b386-320a7531cb7d/WorkWithMe.dbo.tblUser">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkWithMe.dbo.tblPost" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/bb031311/762258eb-37a6-4586-b386-320a7531cb7d/WorkWithMe.dbo.tblPost">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -169,8 +241,8 @@
         <option value="$PROJECT_DIR$/includes/template.php" />
         <option value="$PROJECT_DIR$/includes/header.php" />
         <option value="$PROJECT_DIR$/signup.php" />
-        <option value="$PROJECT_DIR$/styles/base.css" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/styles/base.css" />
       </list>
     </option>
   </component>
@@ -208,6 +280,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -236,8 +310,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,7 +331,16 @@
     <option name="SHOW_DIALOG" value="false" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -273,6 +354,10 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="8c45de86-a138-4577-9216-0fef6c80f09e" server_name="Azure Server">
       <method />
     </configuration>
@@ -284,6 +369,26 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
       <method />
     </configuration>
   </component>
@@ -316,11 +421,12 @@
       <workItem from="1489697987200" duration="4569000" />
       <workItem from="1489702677435" duration="55000" />
       <workItem from="1490166032038" duration="5541000" />
+      <workItem from="1490249484523" duration="6434000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49317000" />
+    <option name="totallyTimeSpent" value="55751000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -338,9 +444,9 @@
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23697917" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5083333" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5104167" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.49166667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.48958334" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -375,6 +481,54 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/includes/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4726">
+          <caret line="278" column="1" lean-forward="true" selection-start-line="278" selection-start-column="1" selection-end-line="278" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/azuredeploy.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/rightnav.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/signup.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -403,16 +557,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-          <folding>
-            <marker date="1490171628513" expanded="true" signature="2236:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2262" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2379" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2386:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2506:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2552" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="4753:4956" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -445,16 +590,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <marker date="1490171628513" expanded="true" signature="2236:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2262" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2379" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2386:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2506:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2552" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="4753:4956" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -493,16 +629,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="44" lean-forward="true" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-          <folding>
-            <marker date="1490171628513" expanded="true" signature="2236:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2262" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2379" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2386:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2506:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2552" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="4753:4956" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -516,7 +643,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/signup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
+        <state relative-caret-position="2499">
           <caret line="147" column="18" lean-forward="false" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
           <folding />
         </state>
@@ -565,16 +692,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1490171628513" expanded="true" signature="2236:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2262" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2379" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2386:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2506:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2552" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="4753:4956" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -670,15 +788,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1107">
-          <caret line="278" column="1" lean-forward="true" selection-start-line="278" selection-start-column="1" selection-end-line="278" selection-end-column="1" />
+    <entry file="dbDummy://dbtable:/bb031311/762258eb-37a6-4586-b386-320a7531cb7d/WorkWithMe.dbo.tblPost">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/bb031311/762258eb-37a6-4586-b386-320a7531cb7d/WorkWithMe.dbo.tblPost">
+    <entry file="dbDummy://dbtable:/bb031311/762258eb-37a6-4586-b386-320a7531cb7d/WorkWithMe.dbo.tblUser">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -693,18 +816,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-697">
-          <caret line="37" column="57" lean-forward="true" selection-start-line="37" selection-start-column="57" selection-end-line="37" selection-end-column="57" />
-          <folding>
-            <marker date="1490171628513" expanded="true" signature="2236:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2262" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2243:2379" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2386:2409" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2506:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2552" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="2514:2608" ph="..." />
-            <marker date="1490171628513" expanded="true" signature="4753:4956" ph="..." />
-          </folding>
+        <state relative-caret-position="376">
+          <caret line="95" column="106" lean-forward="false" selection-start-line="95" selection-start-column="106" selection-end-line="95" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="291" column="27" lean-forward="false" selection-start-line="291" selection-start-column="27" selection-end-line="291" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -863,10 +863,21 @@ END]]></Value>
 		<Element Type="SqlProcedure" Name="[dbo].[spGetPostsForUser]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	SELECT * from [dbo].[tblPost] where OwnerUserId = @UserId
+	SELECT p.*, u.FirstName + 
+	CASE WHEN u.MiddleInitial=null THEN ' ' 
+	     ELSE ' ' + u.MiddleInitial + '. ' END + u.LastName AS 'OwnerFullName'
+	from [dbo].[tblPost] p
+	join [dbo].[tblUser] u on p.OwnerUserId = u.Id
+	where OwnerUserId = @UserId
 UNION
-	SELECT * from [dbo].[tblPost] where OwnerUserId in (
-		SELECT TargetUserId from [dbo].[tblUserContact] where OwnerUserId = @UserId and InviteStatusId = 2 -- 2 = accepted 
+	SELECT p.*, u.FirstName + 
+	CASE WHEN u.MiddleInitial=null THEN ' ' 
+	     ELSE ' ' + u.MiddleInitial + '. ' END + u.LastName AS 'OwnerFullName'
+	from [dbo].[tblPost] p
+	join [dbo].[tblUser] u on p.OwnerUserId = u.Id
+	where OwnerUserId in (
+		SELECT TargetUserId 
+		from [dbo].[tblUserContact] where OwnerUserId = @UserId and InviteStatusId = 2 -- 2 = accepted 
 	)
 ORDER BY TimeStamp desc]]></Value>
 			</Property>
@@ -874,6 +885,24 @@ ORDER BY TimeStamp desc]]></Value>
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[tblPost]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblPost].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[MiddleInitial]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[LastName]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[tblPost].[OwnerUserId]" />
@@ -892,9 +921,6 @@ ORDER BY TimeStamp desc]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[tblUserContact].[InviteStatusId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[tblPost].[TimeStamp]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -920,7 +946,7 @@ ORDER BY TimeStamp desc]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="343" />
+				<Property Name="Length" Value="733" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spGetPostsForUser]&#xD;&#xA;&#x9;@UserId uniqueidentifier&#xD;&#xA;AS" />

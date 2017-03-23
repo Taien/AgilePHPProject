@@ -42,5 +42,6 @@ namespace WorkWithMe.SL
             list.LoadPostsForUser(Guid.Parse(userId));
             return list;
         }
+        
     }
 }
