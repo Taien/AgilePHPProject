@@ -20,7 +20,7 @@ namespace WorkWithMe.BL
         public DateTime TimeStamp { get; set; }
         public DateTime? EventTimeStamp { get; set; }
 
-        public CPost() { }
+        public CPost() { } //hello
 
         public CPost(Guid ownerUserId, Guid? targetGroupId, string title, string content, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
         {
