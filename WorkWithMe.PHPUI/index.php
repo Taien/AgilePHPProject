@@ -17,6 +17,7 @@ session_start();
             $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
             $_SESSION["Address"] = $retval->DoLoginResult->Address;
             $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
+            $_SESSION["Email"] = $retval->DoLoginResult->Email;
             $_SESSION["Error"] = "You have successfully logged in.";
         } catch (SoapFault $exception)
         {

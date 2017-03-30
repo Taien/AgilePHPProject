@@ -22,6 +22,7 @@ exec spCreateUser @Username = 'Test',
  @State = 'WI',
  @Address = '1234 Street Rd',
  @IsAddressPrivate = 0,
+ @EmailAddress = 'test@test.test',
  @Response = @response output;
 
  PRINT @response;

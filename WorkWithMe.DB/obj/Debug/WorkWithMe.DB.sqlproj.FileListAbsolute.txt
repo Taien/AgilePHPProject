@@ -16,3 +16,12 @@ C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Deb
 C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\predeploy.sql
 C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.dll
 C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.pdb
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.dacpac
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.dll
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\bin\Debug\WorkWithMe.DB.pdb
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\Model.xml
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\refactor.xml
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\postdeploy.sql
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\predeploy.sql
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.dll
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.pdb

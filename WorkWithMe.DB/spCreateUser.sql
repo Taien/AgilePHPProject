@@ -5,12 +5,13 @@ CREATE PROCEDURE [dbo].[spCreateUser]
 	@Password nvarchar(24),
 	@FirstName nvarchar(50),
 	@MiddleInitial nvarchar(2),
-	@Lastname nvarchar(50),
+	@LastName nvarchar(50),
 	@Zip int,
 	@Address nvarchar(50),
 	@City nvarchar(50),
 	@State nvarchar(2),
 	@IsAddressPrivate bit,
+	@EmailAddress nvarchar(255),
 	@Response nvarchar(100) output
 AS
 BEGIN
@@ -21,11 +22,19 @@ BEGIN
 		SET @Response='Username is taken.'
 	    RETURN 0
 	END
+	IF EXISTS (SELECT * from [dbo].[tblUser] WHERE EmailAddress = @EmailAddress)
+	BEGIN
+	    SET @Response='Email address already exists.  Only one user per email please.'
+	    RETURN 0
+	END
+
     DECLARE @salt UNIQUEIDENTIFIER=NEWID()
+
+
     BEGIN TRY
 	
-        INSERT INTO [dbo].[tblUser] (Id, Username, PasswordHash, PasswordSalt, FirstName, MiddleInitial, LastName, Zip, Address, IsAddressPrivate, UserImg)
-        VALUES(NewId(), @Username, HASHBYTES('SHA2_512', @Password+CAST(@salt AS NVARCHAR(36))), @salt, @FirstName, @MiddleInitial, @LastName, @Zip, @Address, @IsAddressPrivate, null);
+        INSERT INTO [dbo].[tblUser] (Id, Username, PasswordHash, PasswordSalt, FirstName, MiddleInitial, LastName, EmailAddress, Zip, Address, IsAddressPrivate, UserImg)
+        VALUES(NewId(), @Username, HASHBYTES('SHA2_512', @Password+CAST(@salt AS NVARCHAR(36))), @salt, @FirstName, @MiddleInitial, @LastName, @EmailAddress, @Zip, @Address, @IsAddressPrivate, null);
 		
 		IF NOT EXISTS(SELECT TOP 1 s.Id FROM tblState s WHERE s.StateName = @State)
 		    INSERT INTO [dbo].[tblState] (Id, StateName) VALUES (NewId(), @State)

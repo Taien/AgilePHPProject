@@ -20,7 +20,7 @@ namespace WorkWithMe.SL
         CUser DoLogin(string username, string password);
 
         [OperationContract]
-        bool CreateUser(string username, string password, string firstName, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, ref string response);
+        bool CreateUser(string username, string password, string firstName, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, string email, ref string response);
 
         [OperationContract]
         CPostList GetPostsForUser(string userId);

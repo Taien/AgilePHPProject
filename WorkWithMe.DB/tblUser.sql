@@ -10,5 +10,6 @@
     [Zip] INT NULL, 
     [Address] NVARCHAR(50) NULL, 
     [IsAddressPrivate] BIT NOT NULL, 
-    [UserImg] IMAGE NULL
+    [UserImg] IMAGE NULL, 
+    [EmailAddress] NVARCHAR(255) NOT NULL DEFAULT 'email'
 )

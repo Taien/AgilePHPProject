@@ -5,6 +5,7 @@
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <user-name>overseer</user-name>
+      <introspection-schemas>WorkWithMe:dbo</introspection-schemas>
     </data-source>
   </component>
 </project>

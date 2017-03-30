@@ -30,9 +30,6 @@ namespace WorkWithMe.PL
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InserttblUser(tblUser instance);
-    partial void UpdatetblUser(tblUser instance);
-    partial void DeletetblUser(tblUser instance);
     partial void InserttblGroupUser(tblGroupUser instance);
     partial void UpdatetblGroupUser(tblGroupUser instance);
     partial void DeletetblGroupUser(tblGroupUser instance);
@@ -63,6 +60,9 @@ namespace WorkWithMe.PL
     partial void InserttblUserContact(tblUserContact instance);
     partial void UpdatetblUserContact(tblUserContact instance);
     partial void DeletetblUserContact(tblUserContact instance);
+    partial void InserttblUser(tblUser instance);
+    partial void UpdatetblUser(tblUser instance);
+    partial void DeletetblUser(tblUser instance);
     #endregion
 		
 		public WorkWithMeDataContext() : 
@@ -93,14 +93,6 @@ namespace WorkWithMe.PL
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<tblUser> tblUsers
-		{
-			get
-			{
-				return this.GetTable<tblUser>();
-			}
 		}
 		
 		public System.Data.Linq.Table<tblGroupUser> tblGroupUsers
@@ -183,19 +175,19 @@ namespace WorkWithMe.PL
 			}
 		}
 		
+		public System.Data.Linq.Table<tblUser> tblUsers
+		{
+			get
+			{
+				return this.GetTable<tblUser>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spDoLogin")]
 		public ISingleResult<spDoLoginResult> spDoLogin([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="NVarChar(50)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(24)")] string password)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password);
 			return ((ISingleResult<spDoLoginResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreateUser")]
-		public int spCreateUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="NVarChar(40)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(24)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="NVarChar(50)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MiddleInitial", DbType="NVarChar(2)")] string middleInitial, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Lastname", DbType="NVarChar(50)")] string lastname, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Zip", DbType="Int")] System.Nullable<int> zip, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address", DbType="NVarChar(50)")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="City", DbType="NVarChar(50)")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="State", DbType="NVarChar(2)")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsAddressPrivate", DbType="Bit")] System.Nullable<bool> isAddressPrivate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Response", DbType="NVarChar(100)")] ref string response)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password, firstName, middleInitial, lastname, zip, address, city, state, isAddressPrivate, response);
-			response = ((string)(result.GetParameterValue(10)));
-			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreatePost")]
@@ -211,307 +203,13 @@ namespace WorkWithMe.PL
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
 			return ((ISingleResult<spGetPostsForUserResult>)(result.ReturnValue));
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUser")]
-	public partial class tblUser : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _Id;
-		
-		private string _Username;
-		
-		private System.Data.Linq.Binary _PasswordHash;
-		
-		private System.Guid _PasswordSalt;
-		
-		private string _FirstName;
-		
-		private string _MiddleInitial;
-		
-		private string _LastName;
-		
-		private System.Nullable<int> _Zip;
-		
-		private string _Address;
-		
-		private bool _IsAddressPrivate;
-		
-		private System.Data.Linq.Binary _UserImg;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(System.Guid value);
-    partial void OnIdChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnPasswordHashChanging(System.Data.Linq.Binary value);
-    partial void OnPasswordHashChanged();
-    partial void OnPasswordSaltChanging(System.Guid value);
-    partial void OnPasswordSaltChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnMiddleInitialChanging(string value);
-    partial void OnMiddleInitialChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnZipChanging(System.Nullable<int> value);
-    partial void OnZipChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnIsAddressPrivateChanging(bool value);
-    partial void OnIsAddressPrivateChanged();
-    partial void OnUserImgChanging(System.Data.Linq.Binary value);
-    partial void OnUserImgChanged();
-    #endregion
-		
-		public tblUser()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreateUser")]
+		public int spCreateUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="NVarChar(40)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(24)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="NVarChar(50)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MiddleInitial", DbType="NVarChar(2)")] string middleInitial, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Lastname", DbType="NVarChar(50)")] string lastname, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Zip", DbType="Int")] System.Nullable<int> zip, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Address", DbType="NVarChar(50)")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="City", DbType="NVarChar(50)")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="State", DbType="NVarChar(2)")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsAddressPrivate", DbType="Bit")] System.Nullable<bool> isAddressPrivate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EmailAddress", DbType="NVarChar(255)")] string emailAddress, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Response", DbType="NVarChar(100)")] ref string response)
 		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="Binary(64) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary PasswordHash
-		{
-			get
-			{
-				return this._PasswordHash;
-			}
-			set
-			{
-				if ((this._PasswordHash != value))
-				{
-					this.OnPasswordHashChanging(value);
-					this.SendPropertyChanging();
-					this._PasswordHash = value;
-					this.SendPropertyChanged("PasswordHash");
-					this.OnPasswordHashChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordSalt", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid PasswordSalt
-		{
-			get
-			{
-				return this._PasswordSalt;
-			}
-			set
-			{
-				if ((this._PasswordSalt != value))
-				{
-					this.OnPasswordSaltChanging(value);
-					this.SendPropertyChanging();
-					this._PasswordSalt = value;
-					this.SendPropertyChanged("PasswordSalt");
-					this.OnPasswordSaltChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiddleInitial", DbType="NVarChar(2)")]
-		public string MiddleInitial
-		{
-			get
-			{
-				return this._MiddleInitial;
-			}
-			set
-			{
-				if ((this._MiddleInitial != value))
-				{
-					this.OnMiddleInitialChanging(value);
-					this.SendPropertyChanging();
-					this._MiddleInitial = value;
-					this.SendPropertyChanged("MiddleInitial");
-					this.OnMiddleInitialChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastName
-		{
-			get
-			{
-				return this._LastName;
-			}
-			set
-			{
-				if ((this._LastName != value))
-				{
-					this.OnLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zip", DbType="Int")]
-		public System.Nullable<int> Zip
-		{
-			get
-			{
-				return this._Zip;
-			}
-			set
-			{
-				if ((this._Zip != value))
-				{
-					this.OnZipChanging(value);
-					this.SendPropertyChanging();
-					this._Zip = value;
-					this.SendPropertyChanged("Zip");
-					this.OnZipChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAddressPrivate", DbType="Bit NOT NULL")]
-		public bool IsAddressPrivate
-		{
-			get
-			{
-				return this._IsAddressPrivate;
-			}
-			set
-			{
-				if ((this._IsAddressPrivate != value))
-				{
-					this.OnIsAddressPrivateChanging(value);
-					this.SendPropertyChanging();
-					this._IsAddressPrivate = value;
-					this.SendPropertyChanged("IsAddressPrivate");
-					this.OnIsAddressPrivateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary UserImg
-		{
-			get
-			{
-				return this._UserImg;
-			}
-			set
-			{
-				if ((this._UserImg != value))
-				{
-					this.OnUserImgChanging(value);
-					this.SendPropertyChanging();
-					this._UserImg = value;
-					this.SendPropertyChanged("UserImg");
-					this.OnUserImgChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password, firstName, middleInitial, lastname, zip, address, city, state, isAddressPrivate, emailAddress, response);
+			response = ((string)(result.GetParameterValue(11)));
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -1974,6 +1672,332 @@ namespace WorkWithMe.PL
 					this._InviteStatusId = value;
 					this.SendPropertyChanged("InviteStatusId");
 					this.OnInviteStatusIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUser")]
+	public partial class tblUser : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _Username;
+		
+		private System.Data.Linq.Binary _PasswordHash;
+		
+		private System.Guid _PasswordSalt;
+		
+		private string _FirstName;
+		
+		private string _MiddleInitial;
+		
+		private string _LastName;
+		
+		private System.Nullable<int> _Zip;
+		
+		private string _Address;
+		
+		private bool _IsAddressPrivate;
+		
+		private System.Data.Linq.Binary _UserImg;
+		
+		private string _EmailAddress;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnPasswordHashChanging(System.Data.Linq.Binary value);
+    partial void OnPasswordHashChanged();
+    partial void OnPasswordSaltChanging(System.Guid value);
+    partial void OnPasswordSaltChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnMiddleInitialChanging(string value);
+    partial void OnMiddleInitialChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnZipChanging(System.Nullable<int> value);
+    partial void OnZipChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnIsAddressPrivateChanging(bool value);
+    partial void OnIsAddressPrivateChanged();
+    partial void OnUserImgChanging(System.Data.Linq.Binary value);
+    partial void OnUserImgChanged();
+    partial void OnEmailAddressChanging(string value);
+    partial void OnEmailAddressChanged();
+    #endregion
+		
+		public tblUser()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="Binary(64) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary PasswordHash
+		{
+			get
+			{
+				return this._PasswordHash;
+			}
+			set
+			{
+				if ((this._PasswordHash != value))
+				{
+					this.OnPasswordHashChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordHash = value;
+					this.SendPropertyChanged("PasswordHash");
+					this.OnPasswordHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordSalt", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PasswordSalt
+		{
+			get
+			{
+				return this._PasswordSalt;
+			}
+			set
+			{
+				if ((this._PasswordSalt != value))
+				{
+					this.OnPasswordSaltChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordSalt = value;
+					this.SendPropertyChanged("PasswordSalt");
+					this.OnPasswordSaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiddleInitial", DbType="NVarChar(2)")]
+		public string MiddleInitial
+		{
+			get
+			{
+				return this._MiddleInitial;
+			}
+			set
+			{
+				if ((this._MiddleInitial != value))
+				{
+					this.OnMiddleInitialChanging(value);
+					this.SendPropertyChanging();
+					this._MiddleInitial = value;
+					this.SendPropertyChanged("MiddleInitial");
+					this.OnMiddleInitialChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zip", DbType="Int")]
+		public System.Nullable<int> Zip
+		{
+			get
+			{
+				return this._Zip;
+			}
+			set
+			{
+				if ((this._Zip != value))
+				{
+					this.OnZipChanging(value);
+					this.SendPropertyChanging();
+					this._Zip = value;
+					this.SendPropertyChanged("Zip");
+					this.OnZipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAddressPrivate", DbType="Bit NOT NULL")]
+		public bool IsAddressPrivate
+		{
+			get
+			{
+				return this._IsAddressPrivate;
+			}
+			set
+			{
+				if ((this._IsAddressPrivate != value))
+				{
+					this.OnIsAddressPrivateChanging(value);
+					this.SendPropertyChanging();
+					this._IsAddressPrivate = value;
+					this.SendPropertyChanged("IsAddressPrivate");
+					this.OnIsAddressPrivateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary UserImg
+		{
+			get
+			{
+				return this._UserImg;
+			}
+			set
+			{
+				if ((this._UserImg != value))
+				{
+					this.OnUserImgChanging(value);
+					this.SendPropertyChanging();
+					this._UserImg = value;
+					this.SendPropertyChanged("UserImg");
+					this.OnUserImgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailAddress", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string EmailAddress
+		{
+			get
+			{
+				return this._EmailAddress;
+			}
+			set
+			{
+				if ((this._EmailAddress != value))
+				{
+					this.OnEmailAddressChanging(value);
+					this.SendPropertyChanging();
+					this._EmailAddress = value;
+					this.SendPropertyChanged("EmailAddress");
+					this.OnEmailAddressChanged();
 				}
 			}
 		}

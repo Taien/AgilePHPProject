@@ -10,7 +10,8 @@ if (isset($_POST["btnRegister"]))
                                         'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
                                         'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
                                         'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
-                                        'state'=>$_POST["lstState"],'isAddressPrivate'=>true));
+                                        'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
+                                        'email'=>$_POST["txtEmail"]));
     if ($retval->CreateUserResult)
     {
         $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
@@ -22,6 +23,7 @@ if (isset($_POST["btnRegister"]))
         $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
         $_SESSION["Address"] = $retval->DoLoginResult->Address;
         $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
+        $_SESSION["Email"] = $retval->DoLoginResult->Email;
         $_SESSION["FirstLogin"] = true;
         header("Location:index.php");
     }

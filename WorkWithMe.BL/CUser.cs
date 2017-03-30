@@ -17,6 +17,7 @@ namespace WorkWithMe.BL
         public int? Zip { get; set; }
         public string Address { get; set; }
         public bool IsAddressPrivate { get; set; }
+        public string Email { get; set; }
         // public SomeKindOfImage Image { get; set; }
 
         public CUser()
@@ -30,7 +31,7 @@ namespace WorkWithMe.BL
         }
 
         public CUser(Guid id, string username, string firstName, string middleInitial, string lastName,
-                     int? zip, string address, bool isAddressPrivate/*, SomeKindOfImage image*/)
+                     int? zip, string address, bool isAddressPrivate, string email/*, SomeKindOfImage image*/)
         {
             Id = id;
             Username = username;
@@ -40,10 +41,11 @@ namespace WorkWithMe.BL
             Zip = zip;
             Address = address;
             IsAddressPrivate = isAddressPrivate;
+            Email = email;
         }
 
         public CUser(string username, string firstName, string middleInitial, string lastName,
-                     int? zip, string address, bool isAddressPrivate/*, SomeKindOfImage image*/)
+                     int? zip, string address, bool isAddressPrivate, string email/*, SomeKindOfImage image*/)
         {
             Username = username;
             FirstName = firstName;
@@ -52,13 +54,14 @@ namespace WorkWithMe.BL
             Zip = zip;
             Address = address;
             IsAddressPrivate = isAddressPrivate;
+            Email = email;
         }
 
         public bool Create(string password, string city, string state, ref string response)
         {
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
-                if (oDC.spCreateUser(Username, password, FirstName, MiddleInitial, LastName, Zip, Address, city, state, IsAddressPrivate, ref response) == 0) return false;
+                if (oDC.spCreateUser(Username, password, FirstName, MiddleInitial, LastName, Zip, Address, city, state, IsAddressPrivate, Email, ref response) == 0) return false;
                 else return true;
             }
         }
@@ -79,6 +82,7 @@ namespace WorkWithMe.BL
                     Zip = user.Zip;
                     Address = user.Address;
                     IsAddressPrivate = user.IsAddressPrivate;
+                    Email = user.EmailAddress;
                     return true;
                 }
                 else return false;
@@ -97,6 +101,7 @@ namespace WorkWithMe.BL
                 user.Zip = Zip;
                 user.Address = Address;
                 user.IsAddressPrivate = IsAddressPrivate;
+                user.EmailAddress = Email;
 
                 oDC.SubmitChanges();
             }
@@ -138,7 +143,7 @@ namespace WorkWithMe.BL
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
                 List<tblUser> users = (from u in oDC.tblUsers select u).ToList();
-                foreach (tblUser user in users) Add(new CUser(user.Id, user.Username, user.FirstName, user.MiddleInitial, user.LastName, user.Zip, user.Address, user.IsAddressPrivate));
+                foreach (tblUser user in users) Add(new CUser(user.Id, user.Username, user.FirstName, user.MiddleInitial, user.LastName, user.Zip, user.Address, user.IsAddressPrivate, user.EmailAddress));
             }
         }
     }  
