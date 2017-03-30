@@ -102,7 +102,7 @@ session_start();
             else
             {
                 echo "<h2>Welcome to Work With Me</h2><br />";
-                echo "<div id=\"introText\">Interact with co-workers and friends for project management, lunch plans, a corporate event and more.</div><br />";
+                echo "<div id=\"introText\">Interact with colleagues and friends for project management, corporate events, lunch plans and more.</div><br />";
                 echo "<ul>";
                 $i = 0;
                 while ($i < 20)
