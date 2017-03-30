@@ -64,6 +64,16 @@ namespace WorkWithMe.BL
             }
         }
 
+        public string GetCity(Guid cityId)
+        {
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                tblCity city = (from c in oDC.tblCities where c.Id == Id select c).FirstOrDefault();
 
+                CityName = city.CityName;
+
+                return CityName;
+            }
+        }
     }
 }

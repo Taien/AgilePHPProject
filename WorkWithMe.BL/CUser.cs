@@ -18,6 +18,7 @@ namespace WorkWithMe.BL
         public string Address { get; set; }
         public bool IsAddressPrivate { get; set; }
         public string Email { get; set; }
+
         // public SomeKindOfImage Image { get; set; }
 
         public CUser()
@@ -89,21 +90,12 @@ namespace WorkWithMe.BL
             }
         }
 
-        public void Update()
+        public bool Update(string password, string city, string state, ref string response)
         {
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
-                tblUser user = (from u in oDC.tblUsers where u.Id == Id select u).FirstOrDefault();
-                user.Username = Username;
-                user.FirstName = FirstName;
-                user.MiddleInitial = MiddleInitial;
-                user.LastName = LastName;
-                user.Zip = Zip;
-                user.Address = Address;
-                user.IsAddressPrivate = IsAddressPrivate;
-                user.EmailAddress = Email;
-
-                oDC.SubmitChanges();
+                if (oDC.spUpdateUser(Id, Username, password, FirstName, MiddleInitial, LastName, Zip, Address, city, state, IsAddressPrivate, Email, ref response) == 0) return false;
+                else return true;
             }
         }
 

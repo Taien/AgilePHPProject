@@ -22,6 +22,14 @@ namespace WorkWithMe.SL
             return newUser.Create(password, city, state, ref response);
         }
 
+        public bool UpdateUser(string id, string username, string password, string firstName, string middleInitial, string lastName,
+                               int? zip, string address, string city, string state, bool isAddressPrivate, string email, ref string response)
+        {
+            CUser user = new CUser(Guid.Parse(id), username, firstName, middleInitial, lastName, zip, address, isAddressPrivate, email);
+
+            return user.Update(password, city, state, ref response);
+        }
+        
         public CUser DoLogin(string username, string password)
         {
             CUser user = new CUser();
@@ -43,5 +51,11 @@ namespace WorkWithMe.SL
             return list;
         }
         
+        public CCityStateInfo GetCityStateInfo(int zip)
+        {
+            CCityStateInfo info = new CCityStateInfo(zip);
+            info.GetInfo();
+            return info;
+        }
     }
 }

@@ -23,7 +23,12 @@ namespace WorkWithMe.SL
         bool CreateUser(string username, string password, string firstName, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, string email, ref string response);
 
         [OperationContract]
+        bool UpdateUser(string id, string username, string password, string firstName, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, string email, ref string response);
+
+        [OperationContract]
         CPostList GetPostsForUser(string userId);
 
+        [OperationContract]
+        CCityStateInfo GetCityStateInfo(int zip);
     }
 }

@@ -36,6 +36,7 @@ session_start();
         $_SESSION["Zip"] = null;
         $_SESSION["Address"] = null;
         $_SESSION["IsAddressPrivate"] = null;
+        $_SESSION["Email"] = null;
         $_SESSION["Error"] = "You have been logged out.";
     }
     elseif (isset($_POST["btnPost"]))

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CCity.cs" />
+    <Compile Include="CCityStateInfo.cs" />
     <Compile Include="CGroup.cs" />
     <Compile Include="CGroupType.cs" />
     <Compile Include="CInviteStatus.cs" />
