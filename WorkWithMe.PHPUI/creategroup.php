@@ -24,6 +24,9 @@ session_start();
                     <label for="txtGroupDescription">Group Description:</label>
                     <input type="text" id="txtGroupDescription" name="txtGroupDescription" placeholder="enter group description" required><br /><br />
 
+                    <label for="txtGroupMembers">Group Members:</label>
+                    <input type="text" id="txtGroupMembers" name="txtGroupMembers" placeholder="enter group members" autofocus required>
+
                     <input type="submit" class="button" id="btnCreateGroup" name="btnCreateGroup" value="Create Group"> <!-- adds group to database and goes to addusers.php -->
 
                 </fieldset><br />

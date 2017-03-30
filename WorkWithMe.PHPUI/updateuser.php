@@ -40,7 +40,7 @@ if (isset($_POST["btnUpdate"]) && false)
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Update User</title>
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
 </head>
 <body>
