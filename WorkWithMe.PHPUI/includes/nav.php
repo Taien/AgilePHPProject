@@ -9,12 +9,12 @@ else
     $name = "";
 }
 
+if (isset($_SESSION["UserId"]))
+{
+    echo '<ul><li><a href="updateuser.php">Update Profile</a></li>';
+    echo '<li><a href="creategroup.php">Create a Group</a></li></ul><br/>';
+}
 ?>
-<ul>
-    <li><a href="updateuser.php">Update Profile</a></li>
-    <li><a href="creategroup.php">Create a Group</a></li>
-</ul>
-<br>
 <ul>
     <li><a href="index.php">Me <?=$name?></a></li>
     <li>&#8600 My Workplace 1</li>

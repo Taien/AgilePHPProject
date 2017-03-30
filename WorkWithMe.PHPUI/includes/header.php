@@ -1,4 +1,4 @@
-<h1><a href="./index.php"><img src="./images/wwm_logo.png"> WorkWithMe.com</a></h1>
+<h1><a href="./index.php"><img src="./images/wwm_logo_v2.png"> WorkWithMe.com</a></h1>
 
 <?php
 

@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION["UserId"])) header("Location:index.php");
 /* Check if there is an incoming POST */
-if (isset($_POST["btnRegister"]))
+if (isset($_POST["btnUpdate"]) && false)
 {
     try {
         $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
@@ -34,11 +34,6 @@ if (isset($_POST["btnRegister"]))
         $_SESSION["Error"] = $exception->getMessage();
     }
 }
-/* If so, process the user request */
-
-/* Store result in a variable.  false = failed to create user, true = created successfully */
-
-/* In the HTML below, display different stuff depending on the result */
 ?>
 
 <!doctype html>
@@ -165,7 +160,7 @@ if (isset($_POST["btnRegister"]))
 
             <div id="buttons">
                 <ul>
-                    <li><input type="submit" class="button" id="btnUpdate" name="btnUpdate" value="Update" hidden></li>
+                    <li><input type="submit" class="button" id="btnUpdate" name="btnUpdate" value="Update"></li>
                     <li><input type="reset" class="button" id="btnClear" name="btnClear" value="Clear"></li>
                 </ul>
             </div>
