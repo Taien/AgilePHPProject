@@ -7,6 +7,7 @@
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
       <user-name>overseer</user-name>
       <introspection-schemas>WorkWithMe:dbo</introspection-schemas>
     </data-source>

@@ -18,12 +18,12 @@ AS
 BEGIN
 	SET NOCOUNT ON
 
-	IF EXISTS (SELECT * FROM [dbo].[tblUser] WHERE Username = @Username)
+	IF EXISTS (SELECT * FROM [dbo].[tblUser] WHERE Username = @Username AND Id != @Id)
 	BEGIN
 		SET @Response='Username is taken.'
 	    RETURN 0
 	END
-	IF EXISTS (SELECT * from [dbo].[tblUser] WHERE EmailAddress = @EmailAddress)
+	IF EXISTS (SELECT * from [dbo].[tblUser] WHERE EmailAddress = @EmailAddress AND Id != @Id)
 	BEGIN
 	    SET @Response='Email address already exists.  Only one user per email please.'
 	    RETURN 0

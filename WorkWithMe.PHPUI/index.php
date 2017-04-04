@@ -43,7 +43,7 @@ session_start();
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>$_POST["txtTitle"],'content'=>$_POST["txtMessage"],'isSticky'=>false));
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
         } catch (SoapFault $exception)
         {
             //DoLogin returns null when the login fails
@@ -83,14 +83,28 @@ session_start();
                     $_SESSION["Error"] = "Failed to retrieve posts for user. Details: " . $exception->getMessage();
                 }
 
-                for ($i = 0; $i < count($resultArray); $i++)
+                $numOfResults = count($resultArray);
+
+                for ($i = 0; $i < $numOfResults; $i++)
                 {
-                    $title = $resultArray[$i]->Title;
-                    $content = $resultArray[$i]->Content;
-                    $ownerUserId = $resultArray[$i]->OwnerUserId; //get the username from this later
-                    $targetGroupId = $resultArray[$i]->TargetGroupId;
-                    $timestamp = $resultArray[$i]->TimeStamp;
-                    $ownerFullName = $resultArray[$i]->OwnerFullName;
+                    if ($numOfResults == 1)
+                    {
+                        $title = $resultArray->Title;
+                        $content = $resultArray->Content;
+                        $ownerUserId = $resultArray->OwnerUserId; //get the username from this later
+                        $targetGroupId = $resultArray->TargetGroupId;
+                        $timestamp = $resultArray->TimeStamp;
+                        $ownerFullName = $resultArray->OwnerFullName;
+                    }
+                    else
+                    {
+                        $title = $resultArray[$i]->Title;
+                        $content = $resultArray[$i]->Content;
+                        $ownerUserId = $resultArray[$i]->OwnerUserId; //get the username from this later
+                        $targetGroupId = $resultArray[$i]->TargetGroupId;
+                        $timestamp = $resultArray[$i]->TimeStamp;
+                        $ownerFullName = $resultArray[$i]->OwnerFullName;
+                    }
 
                     echo '<form action="reply.php" method="post"></form><table id="message" width="99%">';
                     echo '<tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>';
