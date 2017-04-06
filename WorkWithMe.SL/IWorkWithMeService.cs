@@ -30,5 +30,14 @@ namespace WorkWithMe.SL
 
         [OperationContract]
         CCityStateInfo GetCityStateInfo(int zip);
+
+        [OperationContract]
+        void CreateCity(string name);
+
+        [OperationContract]
+        void UpdateCity(string id, string name);
+
+        [OperationContract]
+        void DeleteCity(string id);
     }
 }

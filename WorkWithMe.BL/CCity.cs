@@ -15,6 +15,16 @@ namespace WorkWithMe.BL
 
         public CCity() { }
 
+        public CCity(string cityName)
+        {
+            CityName = cityName;
+        }
+
+        public CCity(Guid id)
+        {
+            Id = id;
+        }
+
         public CCity(Guid id, string cityName)
         {
             Id = id;

@@ -16,3 +16,9 @@ C:\Git Projects\AgilePHPProject\WorkWithMe.PL\bin\Debug\WorkWithMe.PL.pdb
 C:\Git Projects\AgilePHPProject\WorkWithMe.PL\obj\Debug\WorkWithMe.PL.csprojResolveAssemblyReference.cache
 C:\Git Projects\AgilePHPProject\WorkWithMe.PL\obj\Debug\WorkWithMe.PL.dll
 C:\Git Projects\AgilePHPProject\WorkWithMe.PL\obj\Debug\WorkWithMe.PL.pdb
+C:\dev\AgilePHPProject\WorkWithMe.PL\bin\Debug\WorkWithMe.PL.dll.config
+C:\dev\AgilePHPProject\WorkWithMe.PL\bin\Debug\WorkWithMe.PL.dll
+C:\dev\AgilePHPProject\WorkWithMe.PL\bin\Debug\WorkWithMe.PL.pdb
+C:\dev\AgilePHPProject\WorkWithMe.PL\obj\Debug\WorkWithMe.PL.csprojResolveAssemblyReference.cache
+C:\dev\AgilePHPProject\WorkWithMe.PL\obj\Debug\WorkWithMe.PL.dll
+C:\dev\AgilePHPProject\WorkWithMe.PL\obj\Debug\WorkWithMe.PL.pdb

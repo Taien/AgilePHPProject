@@ -57,5 +57,23 @@ namespace WorkWithMe.SL
             info.GetInfo();
             return info;
         }
+        
+        public void CreateCity(string name)
+        {
+            CCity city = new CCity(name);
+            city.Create();
+        }
+        
+        public void UpdateCity(string id, string name)
+        {
+            CCity city = new CCity(Guid.Parse(id), name);
+            city.Update();
+        }
+        
+        public void DeleteCity(string id)
+        {
+            CCity city = new CCity(Guid.Parse(id));
+            city.Delete();
+        }
     }
 }
