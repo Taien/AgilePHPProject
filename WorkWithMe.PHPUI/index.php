@@ -55,7 +55,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Work With Me</title>
+    <title><?=isset($_SESSION["UserId"]) ? 'WorkWithMe - My Messages' : 'WorkWithMe'?></title>
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
 </head>
 <body>

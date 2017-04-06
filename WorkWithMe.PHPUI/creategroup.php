@@ -1,12 +1,13 @@
 <?php
 session_start();
+if (!isset($_SESSION["UserId"])) header("Location:index.php");
 
 ?>
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Page Title Here</title>
+        <title>WorkWithMe - Create A Group</title>
         <link rel="stylesheet" type="text/css" href="./styles/base.css">
     </head>
     <body>

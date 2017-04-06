@@ -11,9 +11,9 @@ if (isset($_POST["btnUpdate"]))
             'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
             'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
             'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
-            'state'=>$_POST["lstState"],'isAddressPrivate'=>$_POST["chkAddressPrivate"],
+            'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
             'email'=>$_POST["txtEmail"]));
-        if ($retval->UpdateUserResult)
+        if ($retval->UpdateUserResult) //true if update succeeded
         {
             $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
             $_SESSION["Username"] = $_POST["txtUsername"];
@@ -24,6 +24,8 @@ if (isset($_POST["btnUpdate"]))
             $_SESSION["Address"] = $_POST["txtAddress"];
             $_SESSION["Email"] = $_POST["txtEmail"];
             $_SESSION["IsAddressPrivate"] = isset($_POST["chkAddressPrivate"]);
+            $_SESSION["State"] = $_POST["lstState"];
+            $_SESSION["City"] = $_POST["txtCity"];
         }
 
     } catch (SoapFault $exception)
@@ -38,8 +40,8 @@ else
         $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
         $retval = $client->GetCityStateInfo(array('zip'=>$_SESSION["Zip"]));
 
-        $city = $retval->GetCityStateInfoResult->CityName;
-        $state = $retval->GetCityStateInfoResult->StateName;
+        $_SESSION["City"] = $retval->GetCityStateInfoResult->CityName;
+        $_SESSION["State"] = $retval->GetCityStateInfoResult->StateName;
 
     } catch (SoapFault $exception)
     {
@@ -53,7 +55,7 @@ else
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update User</title>
+    <title>WorkWithMe - Update User Profile</title>
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
 </head>
 <body>
@@ -61,7 +63,7 @@ else
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
 <main>
-    <form action="updateuser.php" method="post">
+    <form method="post">
 
         <fieldset>
             <legend>Update Your Information</legend><br />
@@ -88,61 +90,61 @@ else
             <input type="text" name="txtAddress" id="txtAddress" placeholder="address" required value="<?=$_SESSION["Address"]?>"><br />
 
             <label for="txtCity">City:</label>
-            <input type="text" name="txtCity" id="txtCity" placeholder="city" required value="<?=$city?>"><br />
+            <input type="text" name="txtCity" id="txtCity" placeholder="city" required value="<?=$_SESSION["City"]?>"><br />
 
             <label for="lstState" class="dropdown">State:</label>
             <select id="lstState" name="lstState" required>
-                <option value="AL" <?=$state == "AL" ? 'selected' : ''?>>Alabama</option>
-                <option value="AK" <?=$state == "AK" ? 'selected' : ''?>>Alaska</option>
-                <option value="AZ" <?=$state == "AZ" ? 'selected' : ''?>>Arizona</option>
-                <option value="AR" <?=$state == "AR" ? 'selected' : ''?>>Arkansas</option>
-                <option value="CA" <?=$state == "CA" ? 'selected' : ''?>>California</option>
-                <option value="CO" <?=$state == "CO" ? 'selected' : ''?>>Colorado</option>
-                <option value="CT" <?=$state == "CT" ? 'selected' : ''?>>Connecticut</option>
-                <option value="DE" <?=$state == "DE" ? 'selected' : ''?>>Delaware</option>
-                <option value="DC" <?=$state == "DC" ? 'selected' : ''?>>District Of Columbia</option>
-                <option value="FL" <?=$state == "FL" ? 'selected' : ''?>>Florida</option>
-                <option value="GA" <?=$state == "GA" ? 'selected' : ''?>>Georgia</option>
-                <option value="HI" <?=$state == "HI" ? 'selected' : ''?>>Hawaii</option>
-                <option value="ID" <?=$state == "ID" ? 'selected' : ''?>>Idaho</option>
-                <option value="IL" <?=$state == "IL" ? 'selected' : ''?>>Illinois</option>
-                <option value="IN" <?=$state == "IN" ? 'selected' : ''?>>Indiana</option>
-                <option value="IA" <?=$state == "IA" ? 'selected' : ''?>>Iowa</option>
-                <option value="KS" <?=$state == "KS" ? 'selected' : ''?>>Kansas</option>
-                <option value="KY" <?=$state == "KY" ? 'selected' : ''?>>Kentucky</option>
-                <option value="LA" <?=$state == "LA" ? 'selected' : ''?>>Louisiana</option>
-                <option value="ME" <?=$state == "ME" ? 'selected' : ''?>>Maine</option>
-                <option value="MD" <?=$state == "MD" ? 'selected' : ''?>>Maryland</option>
-                <option value="MA" <?=$state == "MA" ? 'selected' : ''?>>Massachusetts</option>
-                <option value="MI" <?=$state == "MI" ? 'selected' : ''?>>Michigan</option>
-                <option value="MN" <?=$state == "MN" ? 'selected' : ''?>>Minnesota</option>
-                <option value="MS" <?=$state == "MS" ? 'selected' : ''?>>Mississippi</option>
-                <option value="MO" <?=$state == "MO" ? 'selected' : ''?>>Missouri</option>
-                <option value="MT" <?=$state == "MT" ? 'selected' : ''?>>Montana</option>
-                <option value="NE" <?=$state == "NE" ? 'selected' : ''?>>Nebraska</option>
-                <option value="NV" <?=$state == "NV" ? 'selected' : ''?>>Nevada</option>
-                <option value="NH" <?=$state == "NH" ? 'selected' : ''?>>New Hampshire</option>
-                <option value="NJ" <?=$state == "NJ" ? 'selected' : ''?>>New Jersey</option>
-                <option value="NM" <?=$state == "NM" ? 'selected' : ''?>>New Mexico</option>
-                <option value="NY" <?=$state == "NY" ? 'selected' : ''?>>New York</option>
-                <option value="NC" <?=$state == "NC" ? 'selected' : ''?>>North Carolina</option>
-                <option value="ND" <?=$state == "ND" ? 'selected' : ''?>>North Dakota</option>
-                <option value="OH" <?=$state == "OH" ? 'selected' : ''?>>Ohio</option>
-                <option value="OK" <?=$state == "OK" ? 'selected' : ''?>>Oklahoma</option>
-                <option value="OR" <?=$state == "OR" ? 'selected' : ''?>>Oregon</option>
-                <option value="PA" <?=$state == "PA" ? 'selected' : ''?>>Pennsylvania</option>
-                <option value="RI" <?=$state == "RI" ? 'selected' : ''?>>Rhode Island</option>
-                <option value="SC" <?=$state == "SC" ? 'selected' : ''?>>South Carolina</option>
-                <option value="SD" <?=$state == "SD" ? 'selected' : ''?>>South Dakota</option>
-                <option value="TN" <?=$state == "TN" ? 'selected' : ''?>>Tennessee</option>
-                <option value="TX" <?=$state == "TX" ? 'selected' : ''?>>Texas</option>
-                <option value="UT" <?=$state == "UT" ? 'selected' : ''?>>Utah</option>
-                <option value="VT" <?=$state == "VT" ? 'selected' : ''?>>Vermont</option>
-                <option value="VA" <?=$state == "VA" ? 'selected' : ''?>>Virginia</option>
-                <option value="WA" <?=$state == "WA" ? 'selected' : ''?>>Washington</option>
-                <option value="WV" <?=$state == "WV" ? 'selected' : ''?>>West Virginia</option>
-                <option value="WI" <?=$state == "WI" ? 'selected' : ''?>>Wisconsin</option>
-                <option value="WY" <?=$state == "WY" ? 'selected' : ''?>>Wyoming</option>
+                <option value="AL" <?=$_SESSION["State"] == "AL" ? 'selected' : ''?>>Alabama</option>
+                <option value="AK" <?=$_SESSION["State"] == "AK" ? 'selected' : ''?>>Alaska</option>
+                <option value="AZ" <?=$_SESSION["State"] == "AZ" ? 'selected' : ''?>>Arizona</option>
+                <option value="AR" <?=$_SESSION["State"] == "AR" ? 'selected' : ''?>>Arkansas</option>
+                <option value="CA" <?=$_SESSION["State"] == "CA" ? 'selected' : ''?>>California</option>
+                <option value="CO" <?=$_SESSION["State"] == "CO" ? 'selected' : ''?>>Colorado</option>
+                <option value="CT" <?=$_SESSION["State"] == "CT" ? 'selected' : ''?>>Connecticut</option>
+                <option value="DE" <?=$_SESSION["State"] == "DE" ? 'selected' : ''?>>Delaware</option>
+                <option value="DC" <?=$_SESSION["State"] == "DC" ? 'selected' : ''?>>District Of Columbia</option>
+                <option value="FL" <?=$_SESSION["State"] == "FL" ? 'selected' : ''?>>Florida</option>
+                <option value="GA" <?=$_SESSION["State"] == "GA" ? 'selected' : ''?>>Georgia</option>
+                <option value="HI" <?=$_SESSION["State"] == "HI" ? 'selected' : ''?>>Hawaii</option>
+                <option value="ID" <?=$_SESSION["State"] == "ID" ? 'selected' : ''?>>Idaho</option>
+                <option value="IL" <?=$_SESSION["State"] == "IL" ? 'selected' : ''?>>Illinois</option>
+                <option value="IN" <?=$_SESSION["State"] == "IN" ? 'selected' : ''?>>Indiana</option>
+                <option value="IA" <?=$_SESSION["State"] == "IA" ? 'selected' : ''?>>Iowa</option>
+                <option value="KS" <?=$_SESSION["State"] == "KS" ? 'selected' : ''?>>Kansas</option>
+                <option value="KY" <?=$_SESSION["State"] == "KY" ? 'selected' : ''?>>Kentucky</option>
+                <option value="LA" <?=$_SESSION["State"] == "LA" ? 'selected' : ''?>>Louisiana</option>
+                <option value="ME" <?=$_SESSION["State"] == "ME" ? 'selected' : ''?>>Maine</option>
+                <option value="MD" <?=$_SESSION["State"] == "MD" ? 'selected' : ''?>>Maryland</option>
+                <option value="MA" <?=$_SESSION["State"] == "MA" ? 'selected' : ''?>>Massachusetts</option>
+                <option value="MI" <?=$_SESSION["State"] == "MI" ? 'selected' : ''?>>Michigan</option>
+                <option value="MN" <?=$_SESSION["State"] == "MN" ? 'selected' : ''?>>Minnesota</option>
+                <option value="MS" <?=$_SESSION["State"] == "MS" ? 'selected' : ''?>>Mississippi</option>
+                <option value="MO" <?=$_SESSION["State"] == "MO" ? 'selected' : ''?>>Missouri</option>
+                <option value="MT" <?=$_SESSION["State"] == "MT" ? 'selected' : ''?>>Montana</option>
+                <option value="NE" <?=$_SESSION["State"] == "NE" ? 'selected' : ''?>>Nebraska</option>
+                <option value="NV" <?=$_SESSION["State"] == "NV" ? 'selected' : ''?>>Nevada</option>
+                <option value="NH" <?=$_SESSION["State"] == "NH" ? 'selected' : ''?>>New Hampshire</option>
+                <option value="NJ" <?=$_SESSION["State"] == "NJ" ? 'selected' : ''?>>New Jersey</option>
+                <option value="NM" <?=$_SESSION["State"] == "NM" ? 'selected' : ''?>>New Mexico</option>
+                <option value="NY" <?=$_SESSION["State"] == "NY" ? 'selected' : ''?>>New York</option>
+                <option value="NC" <?=$_SESSION["State"] == "NC" ? 'selected' : ''?>>North Carolina</option>
+                <option value="ND" <?=$_SESSION["State"] == "ND" ? 'selected' : ''?>>North Dakota</option>
+                <option value="OH" <?=$_SESSION["State"] == "OH" ? 'selected' : ''?>>Ohio</option>
+                <option value="OK" <?=$_SESSION["State"] == "OK" ? 'selected' : ''?>>Oklahoma</option>
+                <option value="OR" <?=$_SESSION["State"] == "OR" ? 'selected' : ''?>>Oregon</option>
+                <option value="PA" <?=$_SESSION["State"] == "PA" ? 'selected' : ''?>>Pennsylvania</option>
+                <option value="RI" <?=$_SESSION["State"] == "RI" ? 'selected' : ''?>>Rhode Island</option>
+                <option value="SC" <?=$_SESSION["State"] == "SC" ? 'selected' : ''?>>South Carolina</option>
+                <option value="SD" <?=$_SESSION["State"] == "SD" ? 'selected' : ''?>>South Dakota</option>
+                <option value="TN" <?=$_SESSION["State"] == "TN" ? 'selected' : ''?>>Tennessee</option>
+                <option value="TX" <?=$_SESSION["State"] == "TX" ? 'selected' : ''?>>Texas</option>
+                <option value="UT" <?=$_SESSION["State"] == "UT" ? 'selected' : ''?>>Utah</option>
+                <option value="VT" <?=$_SESSION["State"] == "VT" ? 'selected' : ''?>>Vermont</option>
+                <option value="VA" <?=$_SESSION["State"] == "VA" ? 'selected' : ''?>>Virginia</option>
+                <option value="WA" <?=$_SESSION["State"] == "WA" ? 'selected' : ''?>>Washington</option>
+                <option value="WV" <?=$_SESSION["State"] == "WV" ? 'selected' : ''?>>West Virginia</option>
+                <option value="WI" <?=$_SESSION["State"] == "WI" ? 'selected' : ''?>>Wisconsin</option>
+                <option value="WY" <?=$_SESSION["State"] == "WY" ? 'selected' : ''?>>Wyoming</option>
             </select><br />
 
             <label for="txtZip">Zip:</label>
@@ -150,8 +152,8 @@ else
                    placeholder="5 digit zip code" required value="<?=$_SESSION["Zip"]?>"><br />
 
             <label for="chkAddressPrivate">Keep Address Private:</label>
-            <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="<?=$_SESSION["IsAddressPrivate"]?>"><br/>
-
+            <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="<?=$_SESSION["IsAddressPrivate"] ? "true" : "false"?>"><br/>
+            <?php echo $_SESSION["IsAddressPrivate"];?>
         </fieldset>
 
         <fieldset>
