@@ -3,6 +3,17 @@ session_start();
 
 if (!isset($_SESSION["UserId"])) header("Location:index.php");
 
+if (isset($_POST["btnSearch"]))
+{
+    if (!isset($_POST["txtUser"]) || empty($_POST["txtUser"]))
+    {
+        $_SESSION["Error"] = "You must provide a username.";
+    }
+    else
+    {
+        
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">

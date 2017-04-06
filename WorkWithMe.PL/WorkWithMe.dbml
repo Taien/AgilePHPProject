@@ -164,4 +164,15 @@
     <Parameter Name="Response" Parameter="response" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.spSearchUser" Method="spSearchUser">
+    <Parameter Name="SearchString" Parameter="searchString" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="spSearchUserResult">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleInitial" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

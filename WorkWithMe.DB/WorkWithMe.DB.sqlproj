@@ -79,6 +79,7 @@
     <Build Include="tblUserContact.sql" />
     <Build Include="spGetPostsForUser.sql" />
     <Build Include="spUpdateUser.sql" />
+    <Build Include="spSearchUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WorkWithMe.DB.refactorlog" />

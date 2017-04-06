@@ -34,11 +34,6 @@ if (isset($_POST["btnRegister"]))
         $_SESSION["Error"] = $exception->getMessage();
     }
 }
-/* If so, process the user request */
-
-/* Store result in a variable.  false = failed to create user, true = created successfully */
-
-/* In the HTML below, display different stuff depending on the result */
 ?>
 
 <!doctype html>

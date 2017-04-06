@@ -219,6 +219,13 @@ namespace WorkWithMe.PL
 			response = ((string)(result.GetParameterValue(12)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spSearchUser")]
+		public ISingleResult<spSearchUserResult> spSearchUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SearchString", DbType="NVarChar(255)")] string searchString)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), searchString);
+			return ((ISingleResult<spSearchUserResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGroupUser")]
@@ -690,7 +697,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary GroupImg
 		{
 			get
@@ -1970,7 +1977,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary UserImg
 		{
 			get
@@ -2240,6 +2247,122 @@ namespace WorkWithMe.PL
 				if ((this._OwnerFullName != value))
 				{
 					this._OwnerFullName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spSearchUserResult
+	{
+		
+		private System.Guid _Id;
+		
+		private string _Username;
+		
+		private string _FirstName;
+		
+		private string _MiddleInitial;
+		
+		private string _LastName;
+		
+		private string _EmailAddress;
+		
+		public spSearchUserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this._Username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiddleInitial", DbType="NVarChar(2)")]
+		public string MiddleInitial
+		{
+			get
+			{
+				return this._MiddleInitial;
+			}
+			set
+			{
+				if ((this._MiddleInitial != value))
+				{
+					this._MiddleInitial = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailAddress", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string EmailAddress
+		{
+			get
+			{
+				return this._EmailAddress;
+			}
+			set
+			{
+				if ((this._EmailAddress != value))
+				{
+					this._EmailAddress = value;
 				}
 			}
 		}

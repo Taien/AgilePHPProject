@@ -1001,6 +1001,71 @@ ORDER BY TimeStamp desc]]></Value>
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spGetPostsForUser]&#xD;&#xA;&#x9;@UserId uniqueidentifier&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spSearchUser]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	select Id, Username, FirstName, MiddleInitial, LastName, EmailAddress
+	from tblUser
+	where Username like '%' + @SearchString + '%' 
+	or EmailAddress like '%' + @SearchString + '%']]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[tblUser]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[MiddleInitial]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[EmailAddress]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spSearchUser].[@SearchString]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spSearchUser].[@SearchString]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="256" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spSearchUser]&#xD;&#xA;&#x9;@SearchString nvarchar(255)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spUpdateUser]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[

@@ -39,5 +39,8 @@ namespace WorkWithMe.SL
 
         [OperationContract]
         void DeleteCity(string id);
+
+        [OperationContract]
+        CUserList SearchUser(string searchString);
     }
 }

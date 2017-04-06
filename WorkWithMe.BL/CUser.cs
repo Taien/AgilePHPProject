@@ -58,6 +58,16 @@ namespace WorkWithMe.BL
             Email = email;
         }
 
+        public CUser(Guid id, string username, string firstName, string middleInitial, string lastName, string email)
+        {
+            Id = id;
+            Username = username;
+            FirstName = firstName;
+            MiddleInitial = middleInitial;
+            LastName = lastName;
+            Email = email;
+        }
+
         public bool Create(string password, string city, string state, ref string response)
         {
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
@@ -137,6 +147,16 @@ namespace WorkWithMe.BL
                 List<tblUser> users = (from u in oDC.tblUsers select u).ToList();
                 foreach (tblUser user in users) Add(new CUser(user.Id, user.Username, user.FirstName, user.MiddleInitial, user.LastName, user.Zip, user.Address, user.IsAddressPrivate, user.EmailAddress));
             }
+        }
+
+        public void SearchForUser(string searchString)
+        {
+            Clear();
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                List<spSearchUserResult> results = oDC.spSearchUser(searchString).ToList();
+                foreach (spSearchUserResult r in results) Add(new CUser(r.Id, r.Username, r.FirstName, r.MiddleInitial, r.LastName, r.EmailAddress));
+            }    
         }
     }  
    

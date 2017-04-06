@@ -125,7 +125,7 @@ session_start();
                     $i++;
                 }
                 echo "</ul><br />";
-                echo "<img src=\"images/cat.jpg\" alt=\"placeholder\" /><br />";
+                echo "<img src=\"images\cat.jpg\" alt=\"placeholder\" /><br />";
                 echo "<h2>I can be placeholder for cool javascript image slideshow?</h2>";
             }
         ?>
