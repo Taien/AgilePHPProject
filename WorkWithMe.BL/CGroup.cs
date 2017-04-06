@@ -27,11 +27,12 @@ namespace WorkWithMe.BL
 
         public CGroup() { }
 
-      public CGroup(Guid id) { Id = id;  }
+        public CGroup(Guid id) { Id = id;  }
 
-        public CGroup(Guid id, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+        public CGroup(Guid id, string name, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
         {
             Id = id;
+            Name = name;
             Description = description;
             GroupType = grouptype;
             OwnerUserId = owneruserid;
@@ -39,7 +40,18 @@ namespace WorkWithMe.BL
             CanPostDefault = canpostdefault;
             CanInviteDefault = caninvitedefault;
             CanDeleteDefault = candeletedefault; 
-           
+        }
+
+        public CGroup(string name, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+        {
+            Name = name;
+            Description = description;
+            GroupType = grouptype;
+            OwnerUserId = owneruserid;
+            OwnerGroupId = ownergroupid;
+            CanPostDefault = canpostdefault;
+            CanInviteDefault = caninvitedefault;
+            CanDeleteDefault = candeletedefault;
         }
 
         public void Create()
@@ -75,6 +87,7 @@ namespace WorkWithMe.BL
                  tblGroup group = (from g in oDC.tblGroups where g.Id == Id select g).FirstOrDefault();
 
                  group.Id = Id;
+                 group.Name = Name;
                  group.Description = Description;
                  group.GroupType = GroupType;
                  group.OwnerGroupId = OwnerGroupId;

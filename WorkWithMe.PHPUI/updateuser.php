@@ -153,7 +153,6 @@ else
 
             <label for="chkAddressPrivate">Keep Address Private:</label>
             <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="<?=$_SESSION["IsAddressPrivate"] ? "true" : "false"?>"><br/>
-            <?php echo $_SESSION["IsAddressPrivate"];?>
         </fieldset>
 
         <fieldset>

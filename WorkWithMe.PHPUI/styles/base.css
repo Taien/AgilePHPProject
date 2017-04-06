@@ -168,7 +168,6 @@ main input{
     width: 40%;
 }
 
-
 footer{
     width: 100%;
     float: left;
@@ -292,3 +291,8 @@ textarea { /*  used with the message posting in index */
     vertical-align: bottom;
 }
 
+#btnAddContact{
+    display: inline;
+    width: 100px;
+    !important
+}

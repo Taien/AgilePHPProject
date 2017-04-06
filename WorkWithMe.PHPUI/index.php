@@ -67,11 +67,11 @@ session_start();
         <?php
             if (isset($_SESSION["UserId"]))
             {
-                echo '<form method="post" id="postForm">';
-                echo '<input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>';
-                echo '<textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>';
-                echo '<input type="submit" name="btnPost" id="btnPost" value="Post Message">';
-                echo '</form>';
+                echo '<form method="post" id="postForm">
+                      <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>
+                      <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
+                      <input type="submit" name="btnPost" id="btnPost" value="Post Message">
+                      </form>';
 
                 try {
                     $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
@@ -106,11 +106,11 @@ session_start();
                         $ownerFullName = $resultArray[$i]->OwnerFullName;
                     }
 
-                    echo '<form action="reply.php" method="post"></form><table id="message" width="99%">';
-                    echo '<tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>';
-                    echo '<tr><td width="85%">'. $content . '</td>';
-                    echo '<td width="15%"><input type="submit" value="Reply" id="btnReply" name="btnReply"/></td></tr>';
-                    echo '</table></form>';
+                    echo '<form action="reply.php" method="post"></form><table id="message" width="99%">
+                          <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>
+                          <tr><td width="85%">'. $content . '</td>
+                          <td width="15%"><input type="submit" value="Reply" id="btnReply" name="btnReply"/></td></tr>
+                          </table></form>';
                 }
             }
             else
