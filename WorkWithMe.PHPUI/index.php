@@ -117,16 +117,43 @@ session_start();
             {
                 echo "<h2>Welcome to Work With Me</h2><br />";
                 echo "<div id=\"introText\">Interact with colleagues and friends for project management, corporate events, lunch plans and more.</div><br />";
-                echo "<ul>";
-                $i = 0;
-                while ($i < 20)
-                {
-                    echo "<li>Feature number $i</li>";
-                    $i++;
+
+                echo "
+                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+                <link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">
+                <body>
+
+                <h2 class=\"w3-center\">What Can Work With Me Do For You?</h2>
+
+                <div class=\"w3-content w3-display-container\">
+                <img class=\"mySlides\" src=\"images\img1.jpg\" style=\"width:100%\">
+                <img class=\"mySlides\" src=\"images\img2.jpg\" style=\"width:100%\">
+                <img class=\"mySlides\" src=\"images\img3.jpg\" style=\"width:100%\">
+                <img class=\"mySlides\" src=\"images\img4.jpg\" style=\"width:100%\">
+
+                <button class=\"w3-button w3-black w3-display-left\" onclick=\"plusDivs(-1)\">&#10094;</button>
+                <button class=\"w3-button w3-black w3-display-right\" onclick=\"plusDivs(1)\">&#10095;</button>
+                </div>
+
+                <script>
+                var slideIndex = 0;
+                carousel();
+
+                function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName(\"mySlides\");
+                    for (i = 0; i < x.length; i++) {
+                    x[i].style.display = \"none\"; 
+                    }
+                    slideIndex++;
+                    if (slideIndex > x.length) {slideIndex = 1} 
+                    x[slideIndex-1].style.display = \"block\"; 
+                    setTimeout(carousel, 2000); // Change image every 2 seconds
                 }
-                echo "</ul><br />";
-                echo "<img src=\"images/cat.jpg\" alt=\"placeholder\" /><br />";
-                echo "<h2>I can be placeholder for cool javascript image slideshow?</h2>";
+                </script>
+                </body>";
+
+                echo "<h2>Networking, Team Building, Event Management, Connecting</h2>";
             }
         ?>
     </p>
