@@ -157,5 +157,12 @@ namespace WorkWithMe.SL
             state.Delete(); 
         }
         
+
+        public CUserList SearchUser(string searchString)
+        {
+            CUserList results = new CUserList();
+            results.SearchForUser(searchString);
+            return results;
+        }
     }
 }

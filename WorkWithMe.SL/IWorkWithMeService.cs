@@ -81,5 +81,8 @@ namespace WorkWithMe.SL
         [OperationContract]
         void DeleteState(string id);
 
+
+        [OperationContract]
+        CUserList SearchUser(string searchString);
     }
 }
