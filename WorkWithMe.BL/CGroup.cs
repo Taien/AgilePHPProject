@@ -7,7 +7,7 @@ using WorkWithMe.PL;
 
 
 
-//this class has a couple of errors that will show if you remove the comments, i think they have to do with int to guids 
+
 
 
 namespace WorkWithMe.BL
@@ -26,6 +26,8 @@ namespace WorkWithMe.BL
         public bool CanDeleteDefault { get; set; }
 
         public CGroup() { }
+
+      public CGroup(Guid id) { Id = id;  }
 
         public CGroup(Guid id, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
         {

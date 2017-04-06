@@ -39,5 +39,47 @@ namespace WorkWithMe.SL
 
         [OperationContract]
         void DeleteCity(string id);
+
+      
+        /////////////////////where maggie started some mayhem 
+        [OperationContract]
+        void CreateGroup(string name, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault);
+        
+        [OperationContract]
+        void UpdateGroup(string id, string name, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault);
+
+        [OperationContract]
+        void DeleteGroup(string id);
+
+        [OperationContract]
+        void CreateGroupType(string description);
+
+        [OperationContract]
+        void UpdateGroupType(string id, string description);
+
+        [OperationContract]
+        void DeleteGroupType(string id);
+
+        [OperationContract]
+        void CreateInviteStatus(string description);
+
+        [OperationContract]
+        void UpdateInviteStatus(string id, string description);
+
+        [OperationContract]
+        void DeleteInviteStatus(string id);
+
+        [OperationContract]
+        void DeletePost(string posterid, string targetgroupid);
+
+        [OperationContract]
+        void CreateState(string id, string statename);
+
+        [OperationContract]
+        void UpdateState(string statename);
+
+        [OperationContract]
+        void DeleteState(string id);
+
     }
 }

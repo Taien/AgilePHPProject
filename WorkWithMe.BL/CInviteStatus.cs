@@ -20,6 +20,15 @@ namespace WorkWithMe.BL
             Description = description;
         }
 
+        public CInviteStatus(string description)
+        {
+            Description = description; 
+        }
+
+        public CInviteStatus(int id)
+        {
+            Id = id; 
+        }
         public void Create()
         {
             try

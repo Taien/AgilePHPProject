@@ -44,6 +44,7 @@ namespace WorkWithMe.SL
             return false;
         }
 
+       
         public CPostList GetPostsForUser(string userId)
         {
             CPostList list = new CPostList();
@@ -75,5 +76,86 @@ namespace WorkWithMe.SL
             CCity city = new CCity(Guid.Parse(id));
             city.Delete();
         }
+
+        /////////////maggie started here
+
+       public void CreateGroup(string name, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+        {
+            CGroup group = new CGroup(Guid.Parse(name), description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
+            group.Create(); 
+        }
+
+       public void UpdateGroup(string id, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+        {
+            CGroup group = new CGroup(Guid.Parse(id), description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
+            group.Update(); 
+        }
+
+        public void DeleteGroup(string id)
+        {
+            CGroup group = new CGroup(Guid.Parse(id));
+            group.Delete(); 
+        }
+
+        public void CreateGroupType( string description)
+        {
+            CGroupType grouptype = new CGroupType(description);
+            grouptype.Create(); 
+        }
+        
+        public void UpdateGroupType(int id, string description)
+        {
+            CGroupType grouptype = new CGroupType(id, description);
+            grouptype.Update(); 
+        }
+
+        public void DeleteGroupType(int id)
+        {
+            CGroupType grouptype = new CGroupType(id);
+            grouptype.Delete();
+        }
+
+        public void CreateInviteStatus(string description)
+        {
+            CInviteStatus invitestatus = new CInviteStatus(description);
+            invitestatus.Create(); 
+        }
+
+        public void UpdateInviteStatus(int id, string description)
+        {
+            CInviteStatus invitestatus = new CInviteStatus(id, description);
+            invitestatus.Update(); 
+        }
+
+        public void DeleteInviteStatus(int id)
+        {
+            CInviteStatus invitestatus = new CInviteStatus(id);
+            invitestatus.Delete(); 
+        }
+
+        public void DeletePost(string id)
+        {
+            CPost post = new CPost(Guid.Parse(id));
+            post.Delete();
+        }
+
+        public void CreateState(string statename)
+        {
+            CState state = new CState(statename);
+            state.Create(); 
+        }
+
+        public void UpdateState(string id, string statename)
+        {
+            CState state = new CState(Guid.Parse(id), statename);
+            state.Update();
+        }
+
+        public void DeleteState(string id)
+        {
+            CState state = new CState(Guid.Parse(id));
+            state.Delete(); 
+        }
+        
     }
 }

@@ -20,6 +20,15 @@ namespace WorkWithMe.BL
             StateName = stateName; 
         }
 
+        public CState(string stateName)
+        {
+            StateName = stateName; 
+        }
+
+        public CState(Guid id)
+        {
+            Id = id; 
+        }
 
         public void Create()
         {

@@ -20,6 +20,15 @@ namespace WorkWithMe.BL
             Description = description;
         }
 
+        public CGroupType(string description)
+        {
+            Description = description; 
+        }
+
+        public CGroupType(int id)
+        {
+            Id = id; 
+        }
         public void Create()
         {
             try

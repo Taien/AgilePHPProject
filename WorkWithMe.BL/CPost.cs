@@ -48,6 +48,10 @@ namespace WorkWithMe.BL
             EventTimeStamp = eventTimestamp; 
         }
 
+        public CPost(Guid id)
+        {
+            Id = id; 
+        }
         public int Create()
         {
             try
