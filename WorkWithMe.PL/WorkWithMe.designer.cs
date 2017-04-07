@@ -57,12 +57,12 @@ namespace WorkWithMe.PL
     partial void InserttblGroupInvite(tblGroupInvite instance);
     partial void UpdatetblGroupInvite(tblGroupInvite instance);
     partial void DeletetblGroupInvite(tblGroupInvite instance);
-    partial void InserttblUserContact(tblUserContact instance);
-    partial void UpdatetblUserContact(tblUserContact instance);
-    partial void DeletetblUserContact(tblUserContact instance);
     partial void InserttblUser(tblUser instance);
     partial void UpdatetblUser(tblUser instance);
     partial void DeletetblUser(tblUser instance);
+    partial void InserttblUserContact(tblUserContact instance);
+    partial void UpdatetblUserContact(tblUserContact instance);
+    partial void DeletetblUserContact(tblUserContact instance);
     #endregion
 		
 		public WorkWithMeDataContext() : 
@@ -167,19 +167,19 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		public System.Data.Linq.Table<tblUserContact> tblUserContacts
-		{
-			get
-			{
-				return this.GetTable<tblUserContact>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblUser> tblUsers
 		{
 			get
 			{
 				return this.GetTable<tblUser>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblUserContact> tblUserContacts
+		{
+			get
+			{
+				return this.GetTable<tblUserContact>();
 			}
 		}
 		
@@ -221,9 +221,9 @@ namespace WorkWithMe.PL
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spSearchUser")]
-		public ISingleResult<spSearchUserResult> spSearchUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SearchString", DbType="NVarChar(255)")] string searchString)
+		public ISingleResult<spSearchUserResult> spSearchUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SearchString", DbType="NVarChar(255)")] string searchString, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OriginUserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> originUserId)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), searchString);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), searchString, originUserId);
 			return ((ISingleResult<spSearchUserResult>)(result.ReturnValue));
 		}
 	}
@@ -1578,140 +1578,6 @@ namespace WorkWithMe.PL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUserContact")]
-	public partial class tblUserContact : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Guid _OwnerUserId;
-		
-		private System.Guid _TargetUserId;
-		
-		private int _InviteStatusId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnOwnerUserIdChanging(System.Guid value);
-    partial void OnOwnerUserIdChanged();
-    partial void OnTargetUserIdChanging(System.Guid value);
-    partial void OnTargetUserIdChanged();
-    partial void OnInviteStatusIdChanging(int value);
-    partial void OnInviteStatusIdChanged();
-    #endregion
-		
-		public tblUserContact()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OwnerUserId
-		{
-			get
-			{
-				return this._OwnerUserId;
-			}
-			set
-			{
-				if ((this._OwnerUserId != value))
-				{
-					this.OnOwnerUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerUserId = value;
-					this.SendPropertyChanged("OwnerUserId");
-					this.OnOwnerUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetUserId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid TargetUserId
-		{
-			get
-			{
-				return this._TargetUserId;
-			}
-			set
-			{
-				if ((this._TargetUserId != value))
-				{
-					this.OnTargetUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._TargetUserId = value;
-					this.SendPropertyChanged("TargetUserId");
-					this.OnTargetUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InviteStatusId", DbType="Int NOT NULL")]
-		public int InviteStatusId
-		{
-			get
-			{
-				return this._InviteStatusId;
-			}
-			set
-			{
-				if ((this._InviteStatusId != value))
-				{
-					this.OnInviteStatusIdChanging(value);
-					this.SendPropertyChanging();
-					this._InviteStatusId = value;
-					this.SendPropertyChanged("InviteStatusId");
-					this.OnInviteStatusIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUser")]
 	public partial class tblUser : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2013,6 +1879,140 @@ namespace WorkWithMe.PL
 					this._EmailAddress = value;
 					this.SendPropertyChanged("EmailAddress");
 					this.OnEmailAddressChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUserContact")]
+	public partial class tblUserContact : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Guid _TargetUserId;
+		
+		private int _InviteStatusId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnOwnerUserIdChanging(System.Guid value);
+    partial void OnOwnerUserIdChanged();
+    partial void OnTargetUserIdChanging(System.Guid value);
+    partial void OnTargetUserIdChanged();
+    partial void OnInviteStatusIdChanging(int value);
+    partial void OnInviteStatusIdChanged();
+    #endregion
+		
+		public tblUserContact()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this.OnOwnerUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerUserId = value;
+					this.SendPropertyChanged("OwnerUserId");
+					this.OnOwnerUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TargetUserId
+		{
+			get
+			{
+				return this._TargetUserId;
+			}
+			set
+			{
+				if ((this._TargetUserId != value))
+				{
+					this.OnTargetUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._TargetUserId = value;
+					this.SendPropertyChanged("TargetUserId");
+					this.OnTargetUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InviteStatusId", DbType="Int NOT NULL")]
+		public int InviteStatusId
+		{
+			get
+			{
+				return this._InviteStatusId;
+			}
+			set
+			{
+				if ((this._InviteStatusId != value))
+				{
+					this.OnInviteStatusIdChanging(value);
+					this.SendPropertyChanging();
+					this._InviteStatusId = value;
+					this.SendPropertyChanged("InviteStatusId");
+					this.OnInviteStatusIdChanged();
 				}
 			}
 		}

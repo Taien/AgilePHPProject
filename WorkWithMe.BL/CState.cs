@@ -32,20 +32,14 @@ namespace WorkWithMe.BL
 
         public void Create()
         {
-            try
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
-                WorkWithMeDataContext oDC = new WorkWithMeDataContext();
                 tblState s = new tblState();
                 s.Id = Guid.NewGuid();
                 s.StateName = StateName;
 
                 oDC.tblStates.InsertOnSubmit(s);
-                oDC.SubmitChanges(); 
-
-            }
-            catch(Exception ex)
-            {
-                throw ex; 
+                oDC.SubmitChanges();
             }
         }
 

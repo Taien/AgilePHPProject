@@ -55,34 +55,50 @@ namespace WorkWithMe.SL
         void CreateGroupType(string description);
 
         [OperationContract]
-        void UpdateGroupType(string id, string description);
+        void UpdateGroupType(int id, string description);
 
         [OperationContract]
-        void DeleteGroupType(string id);
+        void DeleteGroupType(int id);
 
         [OperationContract]
         void CreateInviteStatus(string description);
 
         [OperationContract]
-        void UpdateInviteStatus(string id, string description);
+        void UpdateInviteStatus(int id, string description);
 
         [OperationContract]
-        void DeleteInviteStatus(string id);
+        void DeleteInviteStatus(int id);
 
         [OperationContract]
-        void DeletePost(string posterid, string targetgroupid);
+        void DeletePost(string id);
 
         [OperationContract]
-        void CreateState(string id, string statename);
+        void CreateState(string stateName);
 
         [OperationContract]
-        void UpdateState(string statename);
+        void UpdateState(string id, string stateName);
 
         [OperationContract]
         void DeleteState(string id);
 
+        [OperationContract]
+        void CreateUserContact(string originUserId, string targetUserId, int inviteStatusId);
 
         [OperationContract]
-        CUserList SearchUser(string searchString);
+        void UpdateUserContact(string id, string originUserId, string targetUserId, int inviteStatusId);
+
+        [OperationContract]
+        void DeleteUserContact(string id);
+
+        [OperationContract]
+        CUserList SearchForUser(string searchString, string originUserId);
+
+        [OperationContract]
+        CUserContactList LoadContactsForUser(string id);
+
+        [OperationContract]
+        CUserContactList LoadInvitesForUser(string id);
+
+
     }
 }

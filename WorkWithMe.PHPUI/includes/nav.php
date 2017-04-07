@@ -11,9 +11,14 @@ else
 
 if (isset($_SESSION["UserId"]))
 {
-    echo '<ul><li><a href="updateuser.php">Update Profile</a></li>';
-    echo '<li><a href="addcontact.php">Add Contacts</a></li>';
-    echo '<li><a href="creategroup.php">Create a Group</a></li></ul><br/>';
+    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+    $retval = $client->LoadInvitesForUser(array('id'=>$_SESSION["UserId"]));
+    $resultArray = $retval->LoadInvitesForUserResult->CUserContact;
+    echo '<ul>';
+    if (count($resultArray) > 0) echo '<li><b><a href="contactinvite.php">Accept Invites (' . count($resultArray) . ')</a></b></li>';
+    echo '<li><a href="updateuser.php">Update Profile</a></li>
+          <li><a href="addcontact.php">Add Contacts</a></li>
+          <li><a href="creategroup.php">Create a Group</a></li></ul><br/>';
 }
 ?>
 <ul>

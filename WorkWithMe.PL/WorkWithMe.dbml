@@ -78,14 +78,6 @@
       <Column Name="InviteStatusId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.tblUserContact" Member="tblUserContacts">
-    <Type Name="tblUserContact">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="OwnerUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="TargetUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="InviteStatusId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblUser" Member="tblUsers">
     <Type Name="tblUser">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -100,6 +92,14 @@
       <Column Name="IsAddressPrivate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="UserImg" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUserContact" Member="tblUserContacts">
+    <Type Name="tblUserContact">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OwnerUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TargetUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="InviteStatusId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.spDoLogin" Method="spDoLogin">
@@ -166,6 +166,7 @@
   </Function>
   <Function Name="dbo.spSearchUser" Method="spSearchUser">
     <Parameter Name="SearchString" Parameter="searchString" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="OriginUserId" Parameter="originUserId" Type="System.Guid" DbType="UniqueIdentifier" />
     <ElementType Name="spSearchUserResult">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />

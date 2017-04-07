@@ -53,6 +53,7 @@
     <Compile Include="CPost.cs" />
     <Compile Include="CState.cs" />
     <Compile Include="CUser.cs" />
+    <Compile Include="CUserContact.cs" />
     <Compile Include="CZip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

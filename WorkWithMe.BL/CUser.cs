@@ -149,12 +149,12 @@ namespace WorkWithMe.BL
             }
         }
 
-        public void SearchForUser(string searchString)
+        public void SearchForUser(string searchString, Guid originUserId)
         {
             Clear();
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
-                List<spSearchUserResult> results = oDC.spSearchUser(searchString).ToList();
+                List<spSearchUserResult> results = oDC.spSearchUser(searchString, originUserId).ToList();
                 foreach (spSearchUserResult r in results) Add(new CUser(r.Id, r.Username, r.FirstName, r.MiddleInitial, r.LastName, r.EmailAddress));
             }    
         }

@@ -81,13 +81,13 @@ namespace WorkWithMe.SL
 
        public void CreateGroup(string name, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
         {
-            CGroup group = new CGroup(Guid.Parse(name), description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
+            CGroup group = new CGroup(name, description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
             group.Create(); 
         }
 
-       public void UpdateGroup(string id, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+       public void UpdateGroup(string id, string name, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
         {
-            CGroup group = new CGroup(Guid.Parse(id), description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
+            CGroup group = new CGroup(Guid.Parse(id), name, description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
             group.Update(); 
         }
 
@@ -97,7 +97,7 @@ namespace WorkWithMe.SL
             group.Delete(); 
         }
 
-        public void CreateGroupType( string description)
+        public void CreateGroupType(string description)
         {
             CGroupType grouptype = new CGroupType(description);
             grouptype.Create(); 
@@ -139,15 +139,15 @@ namespace WorkWithMe.SL
             post.Delete();
         }
 
-        public void CreateState(string statename)
+        public void CreateState(string stateName)
         {
-            CState state = new CState(statename);
+            CState state = new CState(stateName);
             state.Create(); 
         }
 
-        public void UpdateState(string id, string statename)
+        public void UpdateState(string id, string stateName)
         {
-            CState state = new CState(Guid.Parse(id), statename);
+            CState state = new CState(Guid.Parse(id), stateName);
             state.Update();
         }
 
@@ -156,12 +156,43 @@ namespace WorkWithMe.SL
             CState state = new CState(Guid.Parse(id));
             state.Delete(); 
         }
-        
 
-        public CUserList SearchUser(string searchString)
+        public void CreateUserContact(string originUserId, string targetUserId, int inviteStatusId)
+        {
+            CUserContact contact = new CUserContact(Guid.Parse(originUserId), Guid.Parse(targetUserId), inviteStatusId);
+            contact.Create();
+        }
+
+        public void UpdateUserContact(string id, string originUserId, string targetUserId, int inviteStatusId)
+        {
+            CUserContact contact = new CUserContact(Guid.Parse(id), Guid.Parse(originUserId), Guid.Parse(targetUserId), inviteStatusId);
+            contact.Update();
+        }
+
+        public void DeleteUserContact(string id)
+        {
+            CUserContact contact = new CUserContact(Guid.Parse(id));
+            contact.Delete();
+        }
+
+        public CUserList SearchForUser(string searchString, string originUserId)
         {
             CUserList results = new CUserList();
-            results.SearchForUser(searchString);
+            results.SearchForUser(searchString, Guid.Parse(originUserId));
+            return results;
+        }
+
+        public CUserContactList LoadContactsForUser(string id)
+        {
+            CUserContactList results = new CUserContactList();
+            results.LoadContactsForUser(Guid.Parse(id));
+            return results;
+        }
+
+        public CUserContactList LoadInvitesForUser(string id)
+        {
+            CUserContactList results = new CUserContactList();
+            results.LoadInvitesForUser(Guid.Parse(id));
             return results;
         }
     }

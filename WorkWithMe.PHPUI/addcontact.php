@@ -12,9 +12,15 @@ if (isset($_POST["btnSearch"]))
     else
     {
         $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-        $retval = $client->SearchUser(array('searchString'=>$_POST["txtUser"]));
-        $resultArray = $retval->SearchUserResult->CUser;
+        $retval = $client->SearchForUser(array('searchString'=>$_POST["txtUser"],'originUserId'=>$_SESSION["UserId"]));
+        $resultArray = $retval->SearchForUserResult->CUser;
     }
+}
+else if (isset($_POST["btnAddContact"]))
+{
+    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+    $retval = $client->CreateUserContact(array('originUserId'=>$_SESSION["UserId"],'targetUserId'=>$_POST["txtId"],'inviteStatusId'=>0));
+    $_SESSION["Error"] = "You have invited " . $_POST["txtName"] . " to be your contact.";
 }
 ?>
 <!doctype html>
@@ -35,9 +41,8 @@ if (isset($_POST["btnSearch"]))
             {
                 $numOfResults = count($resultArray);
 
-                echo '<form method="post">
-                             <fieldset>
-                             <legend>Select User</legend><br />';
+                echo '<fieldset>
+                             <legend>Select User</legend>';
 
                 for ($i = 0; $i < $numOfResults; $i++)
                 {
@@ -60,12 +65,13 @@ if (isset($_POST["btnSearch"]))
                         $email = $resultArray[$i]->Email;
                     }
 
-                    echo '<input type="hidden" id="txtId" name="txtId" value="' . $id . '">' .
-                         $firstName . ' ' . $lastName . ' (' . $email . ') '
-                         . '<input type="submit" id="btnAddContact" name="btnAddContact" value="Add Contact"><br/>';
+                    echo '<form method="post"><input type="hidden" id="txtId" name="txtId" value="' . $id . '">
+                          <input type="hidden" id="txtName" name="txtName" value="' . $firstName . ' ' . $lastName . '">' .
+                          $firstName . ' ' . $lastName . ' (' . $email . ') '
+                          . '<input type="submit" id="btnAddContact" name="btnAddContact" value="Add Contact">
+                          </form><br/>';
                 }
-                echo '</fieldset>
-                          </form>';
+                echo '</fieldset>';
             }
             else
             {

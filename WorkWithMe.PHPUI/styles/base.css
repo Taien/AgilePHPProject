@@ -2,9 +2,21 @@
 header{
     width: 100%;
     float: left;
+    display: block;
     font-family: Georgia;
     text-align: center;
     background-color: lightsteelblue;
+    padding: 0px;
+}
+
+#errorpane{
+    width: 100%;
+    display: block;
+    float: left;
+    font-family: Georgia;
+    text-align: center;
+    background-color: red;
+    color: white;
     padding: 0px;
 }
 
