@@ -36,7 +36,6 @@ else if (isset($_POST["btnAddContact"]))
         <nav><?php include './includes/nav.php' ?></nav>
         <main>
             <?php
-
             if (isset($_POST["btnSearch"]))
             {
                 $numOfResults = count($resultArray);

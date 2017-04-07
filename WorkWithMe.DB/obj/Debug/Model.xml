@@ -1007,8 +1007,12 @@ ORDER BY TimeStamp desc]]></Value>
 	select Id, Username, FirstName, MiddleInitial, LastName, EmailAddress
 	from tblUser
 	where (Username like '%' + @SearchString + '%' 
-	or EmailAddress like '%' + @SearchString + '%')
-	and Id != @OriginUserId]]></Value>
+	or EmailAddress like '%' + @SearchString + '%') --this line needs another OR for the full name, which I'll have to compute
+	and Id != @OriginUserId
+	and Id not in --this checks if this person A) is already a contact, B) is already invited, or C) blocked the user requesting contact 
+		(select TargetUserId from [dbo].[tblUserContact] where OwnerUserId = @OriginUserId and InviteStatusId != 1 --invite status of 1 means declined, which allows them to request again
+		 union
+		 select OwnerUserId from [dbo].[tblUserContact] where TargetUserId = @OriginUserId and InviteStatusId != 1)]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
@@ -1038,6 +1042,18 @@ ORDER BY TimeStamp desc]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[spSearchUser].[@OriginUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[TargetUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[InviteStatusId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -1079,7 +1095,7 @@ ORDER BY TimeStamp desc]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="318" />
+				<Property Name="Length" Value="832" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spSearchUser]&#xD;&#xA;&#x9;@SearchString nvarchar(255),&#xD;&#xA;&#x9;@OriginUserId uniqueidentifier&#xD;&#xA;AS" />

@@ -13,9 +13,9 @@ if (isset($_SESSION["UserId"]))
 {
     $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
     $retval = $client->LoadInvitesForUser(array('id'=>$_SESSION["UserId"]));
-    $resultArray = $retval->LoadInvitesForUserResult->CUserContact;
+    $inviteResultArray = $retval->LoadInvitesForUserResult->CUserContact;
     echo '<ul>';
-    if (count($resultArray) > 0) echo '<li><b><a href="contactinvite.php">Accept Invites (' . count($resultArray) . ')</a></b></li>';
+    if (count($inviteResultArray) > 0) echo '<li><b><a href="contactinvite.php">Accept Invites (' . count($inviteResultArray) . ')</a></b></li>';
     echo '<li><a href="updateuser.php">Update Profile</a></li>
           <li><a href="addcontact.php">Add Contacts</a></li>
           <li><a href="creategroup.php">Create a Group</a></li></ul><br/>';

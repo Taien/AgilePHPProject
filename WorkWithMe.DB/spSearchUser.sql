@@ -5,6 +5,10 @@ AS
 	select Id, Username, FirstName, MiddleInitial, LastName, EmailAddress
 	from tblUser
 	where (Username like '%' + @SearchString + '%' 
-	or EmailAddress like '%' + @SearchString + '%')
+	or EmailAddress like '%' + @SearchString + '%') --this line needs another OR for the full name, which I'll have to compute
 	and Id != @OriginUserId
+	and Id not in --this checks if this person A) is already a contact, B) is already invited, or C) blocked the user requesting contact 
+		(select TargetUserId from [dbo].[tblUserContact] where OwnerUserId = @OriginUserId and InviteStatusId != 1 --invite status of 1 means declined, which allows them to request again
+		 union
+		 select OwnerUserId from [dbo].[tblUserContact] where TargetUserId = @OriginUserId and InviteStatusId != 1)
 
