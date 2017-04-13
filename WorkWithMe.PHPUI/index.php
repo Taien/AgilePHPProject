@@ -56,7 +56,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title><?=isset($_SESSION["UserId"]) ? 'WorkWithMe - My Messages' : 'WorkWithMe'?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 <header><?php include './includes/header.php' ?></header>
@@ -115,45 +117,7 @@ session_start();
             }
             else
             {
-                echo "<h2>Welcome to Work With Me</h2><br />";
-                echo "<div id=\"introText\">Interact with colleagues and friends for project management, corporate events, lunch plans and more.</div><br />";
-
-                echo "
-                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-                <link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">
-                <body>
-
-                <h2 class=\"w3-center\">What Can Work With Me Do For You?</h2>
-
-                <div class=\"w3-content w3-display-container\">
-                <img class=\"mySlides\" src=\"images\img1.jpg\" style=\"width:100%\">
-                <img class=\"mySlides\" src=\"images\img2.jpg\" style=\"width:100%\">
-                <img class=\"mySlides\" src=\"images\img3.jpg\" style=\"width:100%\">
-                <img class=\"mySlides\" src=\"images\img4.jpg\" style=\"width:100%\">
-
-                <button class=\"w3-button w3-black w3-display-left\" onclick=\"plusDivs(-1)\">&#10094;</button>
-                <button class=\"w3-button w3-black w3-display-right\" onclick=\"plusDivs(1)\">&#10095;</button>
-                </div>
-
-                <script>
-                var slideIndex = 0;
-                carousel();
-
-                function carousel() {
-                    var i;
-                    var x = document.getElementsByClassName(\"mySlides\");
-                    for (i = 0; i < x.length; i++) {
-                    x[i].style.display = \"none\"; 
-                    }
-                    slideIndex++;
-                    if (slideIndex > x.length) {slideIndex = 1} 
-                    x[slideIndex-1].style.display = \"block\"; 
-                    setTimeout(carousel, 2000); // Change image every 2 seconds
-                }
-                </script>
-                </body>";
-
-                echo "<h2>Networking, Team Building, Event Management, Connecting</h2>";
+                include './includes/home.php';
             }
         ?>
     </p>
