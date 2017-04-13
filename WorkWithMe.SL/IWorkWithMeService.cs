@@ -40,6 +40,8 @@ namespace WorkWithMe.SL
         [OperationContract]
         void DeleteCity(string id);
 
+        [OperationContract]
+        CUser GetUser(string id);
       
         /////////////////////where maggie started some mayhem 
         [OperationContract]
