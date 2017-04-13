@@ -52,6 +52,13 @@ namespace WorkWithMe.SL
             return list;
         }
         
+        public CUser GetUser(string id)
+        {
+            CUser user = new CUser(Guid.Parse(id));
+            user.Load();
+            return user;
+        }
+
         public CCityStateInfo GetCityStateInfo(int zip)
         {
             CCityStateInfo info = new CCityStateInfo(zip);
