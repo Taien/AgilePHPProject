@@ -1,0 +1,393 @@
+* {             /* CSS reset */
+	margin: 0;
+	padding: 0;
+}
+
+article, aside, figure, footer, header, nav, section {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+            /* Header - Title and horizontal link bar */
+header{
+    width: 100%;
+    height: 120px;
+    font-family: Georgia;
+    background-color: lightsteelblue;
+}
+
+#errorpane{
+    width: 100%;
+    display: block;
+    float: left;
+    font-family: Georgia;
+    text-align: center;
+    background-color: red;
+    color: white;
+}
+
+header img{
+    float: left;
+    width: 13%;
+    height: 100%;
+}
+
+header h1{
+    margin-left: 10px;
+    margin-top: 25px;
+    float: left;
+    color: white;
+    width: 25%;
+}
+
+header ul {
+	list-style-type: none;
+}
+
+#log {
+    width: 50%;
+    height: 120px;
+    display: block;
+    float: right;
+}
+
+header li{
+    display: inline;
+    margin: 5px;
+    width: 45%;
+    height: 40%;
+    text-align: center;
+}
+
+header li a{
+    text-decoration: none;
+    display: block;
+    width: 45%;
+    height: 40%;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 4px;
+    background-color: darkcyan;
+    margin: 5px;
+    float: left;
+}
+
+header li input{
+    border: 1px solid lightgray;
+    width: 45%;
+}
+          
+#btnLogin, #btnLogout {         /* login and logout buttons (header) */
+    text-align: center;
+}
+
+#btnLogout {
+    margin: 35px auto;
+}
+
+header li input:focus{
+    background-color: #DDDDFF;
+}
+
+header li input:hover{
+    background-color: #DDDDFF;
+}
+
+#login name {        
+    position: absolute;
+    top: 130px;
+    left: 5px;
+}
+
+#errorText {        
+    color: #FF0000;
+    text-align: right;
+    position: absolute;
+    top: 130px;
+    right: 5px;
+}
+
+::-webkit-input-placeholder {   /* Make placeholder text italic */
+    font-style: italic;
+}
+:-moz-placeholder {
+    font-style: italic;
+}
+::-moz-placeholder {
+    font-style: italic;
+}
+:-ms-input-placeholder {
+    font-style: italic;
+}
+        
+nav {               /* NAV BAR - Left Side Vertical Links */
+    width: 18%;
+    float: left;
+    margin: 10px 0 0 10px;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    background-color: #EEEEEE;
+    border: 2px solid #555555;
+}
+
+nav li{
+    text-align: left;
+    padding: 4px 4px;
+    border-bottom: 2px solid #D3D3D3;
+}
+
+nav ul a{
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+
+nav li:last-child{
+    border-bottom: 0;
+}
+
+nav li a:hover {
+    background-color: black;
+    color: #88DDFF;
+}
+            
+#rightNav {          /* Right side NAV panel (not used yet) */
+    width: 18%;
+    float: right;
+    margin: 10px 10px 0 0;
+}
+
+#rightNav ul {
+    list-style-type: none;
+    width: 95%;
+    float: right;
+    background-color: #DDDDDD;
+    border: 2px solid #555555;
+}
+
+#rightNav ul a {
+    display: block;
+    color: #000000;
+    padding: 8px 0 8px 0;
+}
+
+#rightNav li{
+    padding: 4px 4px;
+}
+
+#eventText{
+    color: #444444;
+    font-style: italic;
+}
+
+#safetyWarningText {        /* Signup page italic text */
+    text-align: center;
+    font-style: italic;
+    font-size: 12px;
+}
+
+main {                       /* MAIN */
+    width: 60%;
+    float: left;
+    font-size: large;
+    text-align: center;
+    background-color: #C0D4EE;
+}
+
+main ul {
+    list-style: none;
+    float: left;
+}
+
+main img {    /* needed? */
+    max-width: 50%;
+}
+
+main p {
+    margin: 0px 20px;
+}
+
+main form {
+    width: 60%;
+    margin: 0 auto;
+    font-family: Verdana, sans-serif;
+    text-align: left;
+}
+
+main label {
+    width: 40%;
+    display: block;
+    float: left;
+    text-align: right;
+    padding-right: 20px;
+}
+
+main input {
+    width: 40%;
+}
+
+hr {
+    padding: 0;
+    margin: 0;
+}
+
+#introText{     /* index page intro text */
+    text-align: left;
+    font-style: italic;
+    font-size: 24px;
+}
+            
+#buttons ul {       /* Signup page submit buttons */
+    width: 93%;
+    padding: 0 20px;
+    text-align: center;
+ }
+
+#buttons li{
+    display: inline;
+    width: 25%;
+    padding: 0px 5px;
+}
+
+#chkAddressPrivate {
+    width: auto;
+}
+
+#postForm {
+    width: 95%;
+}
+
+#btnPost {
+    width: 18%;
+    float: right;
+    margin: 27px 0;
+    height: 40px;
+}
+
+textarea { /*  used with the message posting in index */
+    resize: none;
+    width: 80%;
+    float: left;
+    margin: 10px 0;
+}
+
+#message {
+    text-align: left;
+    border: 1px dashed;
+    margin: 5px;
+    font-family: "Calibri";
+}
+
+#message h3 {
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+
+#timestampInfo {
+    font-size: 12px;
+    padding: 0;
+}
+
+#btnReply {
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+    vertical-align: bottom;
+}
+
+#btnAddContact{
+    display: inline;
+    width: 100px;
+    !important
+}
+
+footer {              /* footer */
+    width: 100%;
+    height: 4em;
+    clear: both;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+    background-color: lightsteelblue;
+}
+
+footer h5 {
+    margin: 0 auto;
+    color: black;
+}
+
+div #caro {     /* carousel stuff */
+    margin: 0 auto;
+    max-width: 550px;
+    width: 55%;
+}
+
+.slide {
+   width: 100%;
+}
+
+.caption {
+    margin-left: .5em;
+    padding-top: 1em;
+}
+                                /* MEDIA QUERIES    MEDIA QUERIES */
+
+@media only screen and (max-width: 767px) {      /*smartphone*/
+    
+header img {        /* header stuff */
+    width: 30%;
+}
+
+header h1 {
+    display: none;    
+}
+    
+#log {
+    width: 68%;
+}    
+
+header li input, header li a {
+    width: 100%;
+}
+     
+main {      /* main sections */
+	width: 98%;
+    clear: both;
+}
+
+nav, #rightNav {
+    width: 48%;
+}
+
+footer h5 {
+      width: auto;  
+}    
+    
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {      /*tablet*/
+
+header h1{    
+    width: 20%;
+}
+
+header li input, header li a {
+    width: 90%;
+    margin: 0 auto;
+}
+    
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {     /*laptop*/
+	
+	
+}
