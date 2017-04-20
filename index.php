@@ -72,9 +72,9 @@ session_start();
             if (isset($_SESSION["UserId"]))
             {
                 echo '<form method="post" id="postForm">
-                      <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>
+                      <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br /><br />
                       <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
-                      <input type="submit" name="btnPost" id="btnPost" value="Post Message">
+                      <input type="submit" name="btnPost" id="btnPost" value="Done">
                       </form>';
 
                 try {
