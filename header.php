@@ -5,9 +5,9 @@
 if (isset($_SESSION["UserId"]))
 {
     echo '<form method="post" action="./index.php"><div id="log"><ul>
-              <li id="login name">Logged in as ' . $_SESSION["FirstName"] . ' ' . $_SESSION["MiddleInitial"] . '. ' . $_SESSION["LastName"] . '</li>
               <li><input type="submit" id="btnLogout" name="btnLogout" value="Logout"></li>
-              </ul></div></form>';
+              </ul></div></form>
+              <div id="name">Logged in as ' . $_SESSION["FirstName"] . ' ' . $_SESSION["MiddleInitial"] . '. ' . $_SESSION["LastName"] . '</div>';
 }
 else
 {
