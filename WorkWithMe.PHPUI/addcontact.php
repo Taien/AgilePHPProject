@@ -40,37 +40,44 @@ else if (isset($_POST["btnAddContact"]))
             {
                 $numOfResults = count($resultArray);
 
-                echo '<fieldset>
+                if ($numOfResults == 0)
+                {
+                    echo "Sorry - your search returned no results that aren't already invited or on your list.";
+                }
+                else
+                {
+                    echo '<fieldset>
                              <legend>Select User</legend>';
 
-                for ($i = 0; $i < $numOfResults; $i++)
-                {
-                    if ($numOfResults == 1)
+                    for ($i = 0; $i < $numOfResults; $i++)
                     {
-                        $id = $resultArray->Id;
-                        $username = $resultArray->Username;
-                        $firstName = $resultArray->FirstName;
-                        $middleInitial = $resultArray->MiddleInitial;
-                        $lastName = $resultArray->LastName;
-                        $email = $resultArray->Email;
-                    }
-                    else
-                    {
-                        $id = $resultArray[$i]->Id;
-                        $username = $resultArray[$i]->Username;
-                        $firstName = $resultArray[$i]->FirstName;
-                        $middleInitial = $resultArray[$i]->MiddleInitial;
-                        $lastName = $resultArray[$i]->LastName;
-                        $email = $resultArray[$i]->Email;
-                    }
+                        if ($numOfResults == 1)
+                        {
+                            $id = $resultArray->Id;
+                            $username = $resultArray->Username;
+                            $firstName = $resultArray->FirstName;
+                            $middleInitial = $resultArray->MiddleInitial;
+                            $lastName = $resultArray->LastName;
+                            $email = $resultArray->Email;
+                        }
+                        else
+                        {
+                            $id = $resultArray[$i]->Id;
+                            $username = $resultArray[$i]->Username;
+                            $firstName = $resultArray[$i]->FirstName;
+                            $middleInitial = $resultArray[$i]->MiddleInitial;
+                            $lastName = $resultArray[$i]->LastName;
+                            $email = $resultArray[$i]->Email;
+                        }
 
-                    echo '<form method="post"><input type="hidden" id="txtId" name="txtId" value="' . $id . '">
+                        echo '<form method="post"><input type="hidden" id="txtId" name="txtId" value="' . $id . '">
                           <input type="hidden" id="txtName" name="txtName" value="' . $firstName . ' ' . $lastName . '">' .
-                          $firstName . ' ' . $lastName . ' (' . $email . ') '
-                          . '<input type="submit" id="btnAddContact" name="btnAddContact" value="Add Contact">
+                            $firstName . ' ' . $lastName . ' (' . $email . ') '
+                            . '<input type="submit" id="btnAddContact" name="btnAddContact" value="Add Contact">
                           </form><br/>';
+                    }
+                    echo '</fieldset>';
                 }
-                echo '</fieldset>';
             }
             else
             {
