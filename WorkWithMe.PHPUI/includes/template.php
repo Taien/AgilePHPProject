@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="./styles/base.css">
     </head>
     <body>
-        <header><?php include './includes/header.php' ?></header>
+        <?php include './includes/header.php' ?>
         <hr/>
         <nav><?php include './includes/nav.php' ?></nav>
         <main>

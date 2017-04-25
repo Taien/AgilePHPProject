@@ -1,31 +1,60 @@
 <?php
 session_start();
 
-//send user back to index if not logged in
-if (!isset($_SESSION["UserId"])) header("Location:index.php");
+if (!isset($_SESSION["UserId"])) //send user back to index if not logged in
+{
+    $_SESSION["Status"] = "You must be logged in to view that page.";
+    $_SESSION["isRedirecting"] = true;
+    header("Location:index.php");
+}
 
+//process button presses
 if (isset($_POST["btnAccept"]))
 {
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->UpdateUserContact(array('id'=>$_POST["txtInviteId"],'originUserId'=>$_POST["txtOwnerId"],'targetUserId'=>$_POST["txtTargetId"],'inviteStatusId'=>2));
-    $_SESSION["Error"] = "You have successfully added " . $_POST["txtOwnerFullName"] . " to your contact list.";
+    try
+    {
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->UpdateUserContact(array('id'=>$_POST["txtInviteId"],'originUserId'=>$_POST["txtOwnerId"],'targetUserId'=>$_POST["txtTargetId"],'inviteStatusId'=>2));
+        $_SESSION["Status"] = "You have successfully added " . $_POST["txtOwnerFullName"] . " to your contact list.";
+        $_SESSION["GoodStatus"] = true;
+    } catch (SoapFault $exception)
+    {
+        $_SESSION["Status"] = "Failed to add user to contacts - " . $exception->getMessage();
+    }
 }
 else if (isset($_POST["btnDecline"]))
 {
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->UpdateUserContact(array('id'=>$_POST["txtInviteId"],'originUserId'=>$_POST["txtOwnerId"],'targetUserId'=>$_POST["txtTargetId"],'inviteStatusId'=>1));
-    $_SESSION["Error"] = "You have declined to add " . $_POST["txtOwnerFullName"] . " to your contact list.";
+    try {
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->UpdateUserContact(array('id' => $_POST["txtInviteId"], 'originUserId' => $_POST["txtOwnerId"], 'targetUserId' => $_POST["txtTargetId"], 'inviteStatusId' => 1));
+        $_SESSION["Status"] = "You have declined to add " . $_POST["txtOwnerFullName"] . " to your contact list.";
+    } catch (SoapFault $exception)
+    {
+        $_SESSION["Status"] = "Failed to decline invite - " . $exception->getMessage();
+    }
 }
 else if (isset($_POST["btnBlock"]))
 {
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->UpdateUserContact(array('id'=>$_POST["txtInviteId"],'originUserId'=>$_POST["txtOwnerId"],'targetUserId'=>$_POST["txtTargetId"],'inviteStatusId'=>3));
-    $_SESSION["Error"] = "You have BLOCKED " . $_POST["txtOwnerFullName"] . ".";
+    try {
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->UpdateUserContact(array('id' => $_POST["txtInviteId"], 'originUserId' => $_POST["txtOwnerId"], 'targetUserId' => $_POST["txtTargetId"], 'inviteStatusId' => 3));
+        $_SESSION["Status"] = "You have BLOCKED " . $_POST["txtOwnerFullName"] . ".";
+    } catch (SoapFault $exception)
+    {
+        $_SESSION["Status"] = "Failed to block user - " . $exception->getMessage();
+    }
 }
 
-$client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-$retval = $client->LoadInvitesForUser(array('id'=>$_SESSION["UserId"]));
-$inviteResultArray = $retval->LoadInvitesForUserResult->CUserContact;
+try //retrieve user invites
+{
+    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+    $retval = $client->LoadInvitesForUser(array('id'=>$_SESSION["UserId"]));
+    $inviteResultArray = $retval->LoadInvitesForUserResult->CUserContact;
+} catch (SoapFault $exception)
+{
+    $_SESSION["Status"] = "Failed to load user invites - " . $exception->getMessage();
+}
+
 ?>
 
 <!doctype html>
@@ -36,7 +65,7 @@ $inviteResultArray = $retval->LoadInvitesForUserResult->CUserContact;
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
 </head>
 <body>
-<header><?php include './includes/header.php' ?></header>
+<?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
 <main>

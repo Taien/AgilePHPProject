@@ -1,26 +1,40 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["UserId"])) header("Location:index.php");
+if (!isset($_SESSION["UserId"]))
+{
+    $_SESSION["Status"] = "You must be logged in to view that page.";
+    $_SESSION["isRedirecting"] = true;
+    header("Location:index.php");
+}
 
 if (isset($_POST["btnSearch"]))
 {
     if (!isset($_POST["txtUser"]) || empty($_POST["txtUser"]))
     {
-        $_SESSION["Error"] = "You must provide a username.";
+        $_SESSION["Status"] = "You must provide a username.";
     }
-    else
-    {
-        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-        $retval = $client->SearchForUser(array('searchString'=>$_POST["txtUser"],'originUserId'=>$_SESSION["UserId"]));
-        $resultArray = $retval->SearchForUserResult->CUser;
+    else {
+        try {
+            $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+            $retval = $client->SearchForUser(array('searchString' => $_POST["txtUser"], 'originUserId' => $_SESSION["UserId"]));
+            $resultArray = $retval->SearchForUserResult->CUser;
+        } catch (SoapFault $exception)
+        {
+            $_SESSION["Status"] = "Failed to search for user - " . $exception->getMessage();
+        }
     }
 }
-else if (isset($_POST["btnAddContact"]))
-{
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->CreateUserContact(array('originUserId'=>$_SESSION["UserId"],'targetUserId'=>$_POST["txtId"],'inviteStatusId'=>0));
-    $_SESSION["Error"] = "You have invited " . $_POST["txtName"] . " to be your contact.";
+else if (isset($_POST["btnAddContact"])) {
+    try {
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->CreateUserContact(array('originUserId' => $_SESSION["UserId"], 'targetUserId' => $_POST["txtId"], 'inviteStatusId' => 0));
+        $_SESSION["Status"] = "You have invited " . $_POST["txtName"] . " to be your contact.";
+        $_SESSION["GoodStatus"] = true;
+    } catch (SoapFault $exception)
+    {
+        $_SESSION["Status"] = "Failed to invite contact - " . $exception->getMessage();
+    }
 }
 ?>
 <!doctype html>
@@ -31,7 +45,7 @@ else if (isset($_POST["btnAddContact"]))
         <link rel="stylesheet" type="text/css" href="./styles/base.css">
     </head>
     <body>
-        <header><?php include './includes/header.php' ?></header>
+        <?php include './includes/header.php' ?>
         <hr/>
         <nav><?php include './includes/nav.php' ?></nav>
         <main>

@@ -1,6 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION["UserId"])) header("Location:index.php");
+if (!isset($_SESSION["UserId"]))
+{
+    $_SESSION["Status"] = "You must be logged in to view that page.";
+    $_SESSION["isRedirecting"] = true;
+    header("Location:index.php");
+}
 
 ?>
 <!doctype html>
@@ -11,7 +16,7 @@ if (!isset($_SESSION["UserId"])) header("Location:index.php");
         <link rel="stylesheet" type="text/css" href="./styles/base.css">
     </head>
     <body>
-        <header><?php include './includes/header.php' ?></header>
+        <?php include './includes/header.php' ?>
         <hr/>
         <nav><?php include './includes/nav.php' ?></nav>
         <main>

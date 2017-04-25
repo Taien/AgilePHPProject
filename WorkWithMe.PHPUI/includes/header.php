@@ -1,4 +1,4 @@
-<a href="./index.php"><img src="./images/wwm_logo_v2.png"></a><h1>WorkWithMe.com</h1>
+<header><a href="./index.php"><img src="./images/wwm_logo_v2.png"></a><h1>WorkWithMe.com</h1>
 
 <?php
 
@@ -19,10 +19,19 @@ else
           </ul></div></form>';
 }
 
-if (isset($_SESSION["Error"]))
+echo "</header>";
+if (isset($_SESSION["isRedirecting"])) $_SESSION["isRedirecting"] = null;
+else
 {
-    echo '<div id="errorText">' . $_SESSION["Error"] . '</div>';
-    $_SESSION["Error"] = null;
+    if (isset($_SESSION["Status"])) {
+        if (isset($_SESSION["GoodStatus"])) {
+            echo '<hr/><div id="statusText">' . $_SESSION["Status"] . '</div>';
+            $_SESSION["Status"] = null;
+            $_SESSION["GoodStatus"] = null;
+        } else {
+            echo '<hr/><div id="errorText">' . $_SESSION["Status"] . '</div>';
+            $_SESSION["Status"] = null;
+        }
+    }
 }
-
 ?>

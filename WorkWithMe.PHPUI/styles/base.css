@@ -237,9 +237,28 @@ main input{
     padding: 0px 5px;
 }
 
-#errorText {
+#errorText{
     color: #FF0000;
-    text-align: right;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    font-style: oblique;
+    width: 100%;
+    background-color: #FFDDDD;
+    border: 1px solid;
+    display: block;
+}
+
+#statusText{
+    color: #008800;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    font-style: oblique;
+    width: 100%;
+    background-color: #DDFFDD;
+    border: 1px solid;
+    display: block;
 }
 
 #chkAddressPrivate {
@@ -362,16 +381,16 @@ nav, #rightNav {
     width: 25%;
     float: left;
 }
-    
+
 }
 
 /*tablet*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-	
+
 }
 
 /*laptop*/
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	
-	
+
+
 }

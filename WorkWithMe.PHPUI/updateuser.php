@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["UserId"])) header("Location:index.php");
-
 if (isset($_POST["btnUpdate"]))
 {
     try {
@@ -26,12 +24,14 @@ if (isset($_POST["btnUpdate"]))
             $_SESSION["IsAddressPrivate"] = isset($_POST["chkAddressPrivate"]);
             $_SESSION["State"] = $_POST["lstState"];
             $_SESSION["City"] = $_POST["txtCity"];
+            $_SESSION["Status"] = "Successfully updated user info.";
+            $_SESSION["GoodStatus"] = true;
         }
 
     } catch (SoapFault $exception)
     {
         //DoLogin returns null when the login fails
-        $_SESSION["Error"] = $exception->getMessage();
+        $_SESSION["Status"] = "Error updating your info - " . $exception->getMessage();
     }
 }
 else
@@ -46,8 +46,15 @@ else
     } catch (SoapFault $exception)
     {
         //DoLogin returns null when the login fails
-        $_SESSION["Error"] = $exception->getMessage();
+        $_SESSION["Status"] = "Error getting city/state info - " . $exception->getMessage();
     }
+}
+
+if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override the city/state info error above - exit() messes with the session
+{
+    $_SESSION["Status"] = "You must be logged in to view that page.";
+    $_SESSION["isRedirecting"] = true;
+    header("Location:index.php");
 }
 ?>
 
@@ -59,7 +66,7 @@ else
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
 </head>
 <body>
-<header><?php include './includes/header.php' ?></header>
+<?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
 <main>

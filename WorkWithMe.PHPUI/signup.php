@@ -5,33 +5,39 @@ session_start();
 if (isset($_POST["btnRegister"]))
 {
     try {
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->CreateUser(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
-                                        'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
-                                        'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
-                                        'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
-                                        'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
-                                        'email'=>$_POST["txtEmail"]));
-    if ($retval->CreateUserResult)
-    {
-        $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
-        $_SESSION["UserId"] = $retval->DoLoginResult->Id;
-        $_SESSION["Username"] = $retval->DoLoginResult->Username;
-        $_SESSION["FirstName"] = $retval->DoLoginResult->FirstName;
-        $_SESSION["MiddleInitial"] = $retval->DoLoginResult->MiddleInitial;
-        $_SESSION["LastName"] = $retval->DoLoginResult->LastName;
-        $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
-        $_SESSION["Address"] = $retval->DoLoginResult->Address;
-        $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
-        $_SESSION["Email"] = $retval->DoLoginResult->Email;
-        $_SESSION["FirstLogin"] = true;
-        header("Location:index.php");
-    }
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->CreateUser(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
+                                            'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
+                                            'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
+                                            'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
+                                            'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
+                                            'email'=>$_POST["txtEmail"]));
 
+        if ($retval->CreateUserResult)
+        {
+            $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
+            $_SESSION["UserId"] = $retval->DoLoginResult->Id;
+            $_SESSION["Username"] = $retval->DoLoginResult->Username;
+            $_SESSION["FirstName"] = $retval->DoLoginResult->FirstName;
+            $_SESSION["MiddleInitial"] = $retval->DoLoginResult->MiddleInitial;
+            $_SESSION["LastName"] = $retval->DoLoginResult->LastName;
+            $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
+            $_SESSION["Address"] = $retval->DoLoginResult->Address;
+            $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
+            $_SESSION["Email"] = $retval->DoLoginResult->Email;
+            $_SESSION["isRedirecting"] = true;
+            $_SESSION["Status"] = "Successfully created user!";
+            $_SESSION["GoodStatus"] = true;
+            header("Location:index.php");
+        }
+        else
+        {
+            $_SESSION["Status"] = "Failed to create user - " . $retval->response;
+        }
     } catch (SoapFault $exception)
     {
         //DoLogin returns null when the login fails
-        $_SESSION["Error"] = $exception->getMessage();
+        $_SESSION["Status"] = "Error creating user - " . $exception->getMessage();
     }
 }
 ?>
@@ -44,7 +50,7 @@ if (isset($_POST["btnRegister"]))
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
 </head>
 <body>
-<header><?php include './includes/header.php' ?></header>
+<?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
 <main>

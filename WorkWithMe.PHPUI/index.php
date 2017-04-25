@@ -18,11 +18,12 @@ session_start();
             $_SESSION["Address"] = $retval->DoLoginResult->Address;
             $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
             $_SESSION["Email"] = $retval->DoLoginResult->Email;
-            $_SESSION["Error"] = "You have successfully logged in.";
+            $_SESSION["Status"] = "You have successfully logged in.";
+            $_SESSION["GoodStatus"] = true;
         } catch (SoapFault $exception)
         {
             //DoLogin returns null when the login fails
-            $_SESSION["Error"] = "Login failed, username/password combination is invalid.";
+            $_SESSION["Status"] = "Login failed, username/password combination is invalid.";
         }
 
     }
@@ -37,17 +38,20 @@ session_start();
         $_SESSION["Address"] = null;
         $_SESSION["IsAddressPrivate"] = null;
         $_SESSION["Email"] = null;
-        $_SESSION["Error"] = "You have been logged out.";
+        $_SESSION["Status"] = "You have been logged out.";
+        $_SESSION["GoodStatus"] = true;
     }
     elseif (isset($_POST["btnPost"]))
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
             $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
+            $_SESSION["Status"] = "Successfully posted message!";
+            $_SESSION["GoodStatus"] = true;
         } catch (SoapFault $exception)
         {
             //DoLogin returns null when the login fails
-            $_SESSION["Error"] = "Message failed to post for some reason: " . $exception->getMessage();
+            $_SESSION["Status"] = "Message failed to post - " . $exception->getMessage();
         }
     }
     ?>
@@ -58,10 +62,9 @@ session_start();
     <title><?=isset($_SESSION["UserId"]) ? 'WorkWithMe - My Messages' : 'WorkWithMe'?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-<header><?php include './includes/header.php' ?></header>
+<?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
 <main>
@@ -82,7 +85,7 @@ session_start();
                 } catch (SoapFault $exception)
                 {
                     //DoLogin returns null when the login fails
-                    $_SESSION["Error"] = "Failed to retrieve posts for user. Details: " . $exception->getMessage();
+                    $_SESSION["Status"] = "Failed to retrieve posts for user - " . $exception->getMessage();
                 }
 
                 $numOfResults = count($resultArray);
