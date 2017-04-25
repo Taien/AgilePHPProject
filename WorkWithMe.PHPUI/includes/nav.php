@@ -11,9 +11,15 @@ else
 
 if (isset($_SESSION["UserId"]))
 {
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->LoadInvitesForUser(array('id'=>$_SESSION["UserId"]));
-    $inviteResultArray = $retval->LoadInvitesForUserResult->CUserContact;
+    try {
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->LoadInvitesForUser(array('id' => $_SESSION["UserId"]));
+        $inviteResultArray = $retval->LoadInvitesForUserResult->CUserContact;
+    } catch (SoapFault $exception)
+    {
+        $_SESSION["Status"] = "Failed to load invites for user - " . $exception->getMessage();
+    }
+
     echo '<ul>';
     if (count($inviteResultArray) > 0) echo '<li><b><a href="contactinvite.php">Accept Invites (' . count($inviteResultArray) . ')</a></b></li>';
     echo '<li><a href="updateuser.php">Update Profile</a></li>
