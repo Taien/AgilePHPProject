@@ -113,8 +113,14 @@ session_start();
                         $ownerFullName = $resultArray[$i]->OwnerFullName;
                     }
 
+                    $month = mb_substr($timestamp, 5, 2);
+                    $day = mb_substr($timestamp, 8, 2);
+                    $year = mb_substr($timestamp, 0, 4);
+                    $time = mb_substr($timestamp, 11, 5);
+                    $timeString = $month . '/' . $day . '/' . $year . ' At ' . $time;
+
                     echo '<form action="reply.php" method="post"><table id="message" width="99%">
-                        <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>
+                        <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' On ' . $timeString . '</div><hr/></td></tr>
                         <tr><td width="85%">'. $content . '</td>
                         <td width="15%">
                             <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
