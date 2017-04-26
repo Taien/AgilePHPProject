@@ -45,7 +45,7 @@ session_start();
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'targetGroupId'=>null,'replyPostId'=>null,'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
             $_SESSION["Status"] = "Successfully posted message!";
             $_SESSION["GoodStatus"] = true;
         } catch (SoapFault $exception)
@@ -94,6 +94,7 @@ session_start();
                 {
                     if ($numOfResults == 1)
                     {
+                        $postId = $resultArray->Id;
                         $title = $resultArray->Title;
                         $content = $resultArray->Content;
                         $ownerUserId = $resultArray->OwnerUserId; //get the username from this later
@@ -103,6 +104,7 @@ session_start();
                     }
                     else
                     {
+                        $postId = $resultArray[$i]->Id;
                         $title = $resultArray[$i]->Title;
                         $content = $resultArray[$i]->Content;
                         $ownerUserId = $resultArray[$i]->OwnerUserId; //get the username from this later
@@ -115,6 +117,7 @@ session_start();
                         <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>
                         <tr><td width="85%">'. $content . '</td>
                         <td width="15%">
+                            <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
                             <input type="hidden" value="' . $title . '" id="incomingTitle" name="incomingTitle"/>
                             <input type="hidden" value="' . $content . '" id="incomingContent" name="incomingContent"/>
                             <input type="hidden" value="' . $ownerUserId . '" id="incomingOwnerId" name="incomingOwnerId"/>

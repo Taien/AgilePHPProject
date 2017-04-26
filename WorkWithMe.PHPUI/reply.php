@@ -7,7 +7,7 @@ session_start();
         header("Location:index.php");
     }
 
-    if (!isset($_POST["btnReply"]))
+    if (!isset($_POST["btnReply"]) && !isset($_POST["btnPost"]))
     {
         $_SESSION["Status"] = "You can only access this page from the reply button.";
         $_SESSION["isRedirecting"] = true;
@@ -15,6 +15,7 @@ session_start();
     }
     else
     {
+        $postId = $_POST["incomingPostId"];
         $title = $_POST["incomingTitle"];
         $content = $_POST["incomingContent"];
         $ownerUserId = $_POST["incomingOwnerId"];
@@ -27,9 +28,11 @@ session_start();
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'replyPostId'=>$_POST["postId"],'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
             $_SESSION["Status"] = "Successfully replied to message!";
             $_SESSION["GoodStatus"] = true;
+            $_SESSION["isRedirecting"] = true;
+            header("Location:index.php");
         } catch (SoapFault $exception)
         {
             //DoLogin returns null when the login fails
@@ -37,7 +40,7 @@ session_start();
         }
     }
 
-    ?>
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -61,7 +64,8 @@ session_start();
             echo '<form method="post" id="postForm">
             <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>
             <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
-            <input type="submit" name="btnPost" id="btnPost" value="Post Message">
+            <input type="hidden" name="postId" id="postId" value="' . $postId . '">
+            <input type="submit" name="btnPost" id="btnPost" value="Post Reply">
             </form>';
         ?>
     </p>

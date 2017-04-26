@@ -12,6 +12,7 @@ namespace WorkWithMe.BL
         public Guid Id { get; set; }
         public Guid OwnerUserId { get; set; }
         public Guid? TargetGroupId { get; set; }
+        public Guid? ReplyPostId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string OwnerFullName { get; set; }
@@ -22,10 +23,11 @@ namespace WorkWithMe.BL
 
         public CPost() { } //hello
 
-        public CPost(Guid ownerUserId, Guid? targetGroupId, string title, string content, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
+        public CPost(Guid ownerUserId, Guid? targetGroupId, Guid? replyPostId, string title, string content, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
         {
             OwnerUserId = ownerUserId;
-            TargetGroupId = targetGroupId;
+            TargetGroupId = targetGroupId == Guid.Empty ? null : targetGroupId;
+            ReplyPostId = replyPostId == Guid.Empty ? null : replyPostId;
             Title = title;
             Content = content;
             IsSticky = isSticky;
@@ -34,11 +36,12 @@ namespace WorkWithMe.BL
             EventTimeStamp = eventTimestamp;
         }
 
-        public CPost(Guid id, Guid ownerUserId, Guid? targetGroupId, string title, string content, string ownerFullName, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
+        public CPost(Guid id, Guid ownerUserId, Guid? targetGroupId, Guid? replyPostId, string title, string content, string ownerFullName, bool isSticky, bool isDeleted, DateTime timestamp, DateTime? eventTimestamp)
         {
             Id = id;
             OwnerUserId = ownerUserId;
-            TargetGroupId = targetGroupId;
+            TargetGroupId = targetGroupId == Guid.Empty ? null : targetGroupId;
+            ReplyPostId = replyPostId == Guid.Empty ? null : replyPostId;
             Title = title;
             Content = content;
             OwnerFullName = ownerFullName;
@@ -57,7 +60,7 @@ namespace WorkWithMe.BL
             try
             {
                 WorkWithMeDataContext oDC = new WorkWithMeDataContext();
-                return oDC.spCreatePost(OwnerUserId, TargetGroupId, Title, Content, IsSticky, EventTimeStamp);
+                return oDC.spCreatePost(OwnerUserId, TargetGroupId, ReplyPostId, Title, Content, IsSticky, EventTimeStamp);
             }
             catch(Exception ex)
             {
@@ -73,6 +76,7 @@ namespace WorkWithMe.BL
             post.Id = Id;
             post.OwnerUserId = OwnerUserId;
             post.TargetGroupId = TargetGroupId;
+            post.ReplyPostId = ReplyPostId;
             post.Title = Title;
             post.Content = Content;
             post.IsSticky = IsSticky;
@@ -105,7 +109,7 @@ namespace WorkWithMe.BL
                 List<spGetPostsForUserResult> list = oDC.spGetPostsForUser(userId).ToList();
                 foreach (spGetPostsForUserResult item in list)
                 {
-                    CPost post = new CPost(item.Id, item.OwnerUserId, item.TargetGroupId, item.Title, item.Content, item.OwnerFullName, item.IsSticky, item.IsDeleted, item.TimeStamp, item.EventTimeStamp);
+                    CPost post = new CPost(item.Id, item.OwnerUserId, item.TargetGroupId, item.ReplyPostId, item.Title, item.Content, item.OwnerFullName, item.IsSticky, item.IsDeleted, item.TimeStamp, item.EventTimeStamp);
                     Add(post);
                 }
             }

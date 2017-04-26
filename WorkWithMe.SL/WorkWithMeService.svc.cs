@@ -37,9 +37,9 @@ namespace WorkWithMe.SL
             else return null;
         }
 
-        public bool CreatePost(string posterId, string targetGroupId, string title, string content, bool isSticky, DateTime? eventTimeStamp)
+        public bool CreatePost(string posterId, string targetGroupId, string replyPostId, string title, string content, bool isSticky, DateTime? eventTimeStamp)
         {
-            CPost post = new CPost(Guid.Parse(posterId), (targetGroupId == null) ? Guid.Empty : Guid.Parse(targetGroupId), title, content, isSticky, false, DateTime.Now, eventTimeStamp);
+            CPost post = new CPost(Guid.Parse(posterId), targetGroupId == null ? Guid.Empty : Guid.Parse(targetGroupId), replyPostId == null ? Guid.Empty : Guid.Parse(replyPostId), title, content, isSticky, false, DateTime.Now, eventTimeStamp);
             if (post.Create() > 0) return true;
             return false;
         }

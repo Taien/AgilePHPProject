@@ -14,7 +14,7 @@ namespace WorkWithMe.SL
     public interface IWorkWithMeService
     {
         [OperationContract]
-        bool CreatePost(string posterId, string targetGroupId, string title, string content, bool isSticky, DateTime? eventTimeStamp);
+        bool CreatePost(string posterId, string targetGroupId, string replyPostId, string title, string content, bool isSticky, DateTime? eventTimeStamp);
 
         [OperationContract]
         CUser DoLogin(string username, string password);

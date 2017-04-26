@@ -39,9 +39,6 @@ namespace WorkWithMe.PL
     partial void InserttblGroup(tblGroup instance);
     partial void UpdatetblGroup(tblGroup instance);
     partial void DeletetblGroup(tblGroup instance);
-    partial void InserttblPost(tblPost instance);
-    partial void UpdatetblPost(tblPost instance);
-    partial void DeletetblPost(tblPost instance);
     partial void InserttblState(tblState instance);
     partial void UpdatetblState(tblState instance);
     partial void DeletetblState(tblState instance);
@@ -63,6 +60,9 @@ namespace WorkWithMe.PL
     partial void InserttblUserContact(tblUserContact instance);
     partial void UpdatetblUserContact(tblUserContact instance);
     partial void DeletetblUserContact(tblUserContact instance);
+    partial void InserttblPost(tblPost instance);
+    partial void UpdatetblPost(tblPost instance);
+    partial void DeletetblPost(tblPost instance);
     #endregion
 		
 		public WorkWithMeDataContext() : 
@@ -116,14 +116,6 @@ namespace WorkWithMe.PL
 			get
 			{
 				return this.GetTable<tblGroup>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblPost> tblPosts
-		{
-			get
-			{
-				return this.GetTable<tblPost>();
 			}
 		}
 		
@@ -183,18 +175,19 @@ namespace WorkWithMe.PL
 			}
 		}
 		
+		public System.Data.Linq.Table<tblPost> tblPosts
+		{
+			get
+			{
+				return this.GetTable<tblPost>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spDoLogin")]
 		public ISingleResult<spDoLoginResult> spDoLogin([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Username", DbType="NVarChar(50)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(24)")] string password)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password);
 			return ((ISingleResult<spDoLoginResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreatePost")]
-		public int spCreatePost([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PosterId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> posterId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TargetGroupId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> targetGroupId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Content", DbType="NVarChar(MAX)")] string content, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsSticky", DbType="Bit")] System.Nullable<bool> isSticky, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EventTimeStamp", DbType="DateTime")] System.Nullable<System.DateTime> eventTimeStamp)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), posterId, targetGroupId, title, content, isSticky, eventTimeStamp);
-			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreateUser")]
@@ -220,11 +213,25 @@ namespace WorkWithMe.PL
 			return ((ISingleResult<spSearchUserResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreatePost")]
+		public int spCreatePost([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PosterId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> posterId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TargetGroupId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> targetGroupId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ReplyPostId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> replyPostId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Content", DbType="NVarChar(MAX)")] string content, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsSticky", DbType="Bit")] System.Nullable<bool> isSticky, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EventTimeStamp", DbType="DateTime")] System.Nullable<System.DateTime> eventTimeStamp)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), posterId, targetGroupId, replyPostId, title, content, isSticky, eventTimeStamp);
+			return ((int)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spGetPostsForUser")]
 		public ISingleResult<spGetPostsForUserResult> spGetPostsForUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
 			return ((ISingleResult<spGetPostsForUserResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spGetOffsetPostsForUser")]
+		public ISingleResult<spGetOffsetPostsForUserResult> spGetOffsetPostsForUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Offset", DbType="Int")] System.Nullable<int> offset)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, offset);
+			return ((ISingleResult<spGetOffsetPostsForUserResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -697,7 +704,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary GroupImg
 		{
 			get
@@ -773,260 +780,6 @@ namespace WorkWithMe.PL
 					this._CanDeleteDefault = value;
 					this.SendPropertyChanged("CanDeleteDefault");
 					this.OnCanDeleteDefaultChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblPost")]
-	public partial class tblPost : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _Id;
-		
-		private System.Guid _OwnerUserId;
-		
-		private System.Nullable<System.Guid> _TargetGroupId;
-		
-		private string _Title;
-		
-		private string _Content;
-		
-		private bool _IsSticky;
-		
-		private bool _IsDeleted;
-		
-		private System.DateTime _TimeStamp;
-		
-		private System.Nullable<System.DateTime> _EventTimeStamp;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(System.Guid value);
-    partial void OnIdChanged();
-    partial void OnOwnerUserIdChanging(System.Guid value);
-    partial void OnOwnerUserIdChanged();
-    partial void OnTargetGroupIdChanging(System.Nullable<System.Guid> value);
-    partial void OnTargetGroupIdChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnContentChanging(string value);
-    partial void OnContentChanged();
-    partial void OnIsStickyChanging(bool value);
-    partial void OnIsStickyChanged();
-    partial void OnIsDeletedChanging(bool value);
-    partial void OnIsDeletedChanged();
-    partial void OnTimeStampChanging(System.DateTime value);
-    partial void OnTimeStampChanged();
-    partial void OnEventTimeStampChanging(System.Nullable<System.DateTime> value);
-    partial void OnEventTimeStampChanged();
-    #endregion
-		
-		public tblPost()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OwnerUserId
-		{
-			get
-			{
-				return this._OwnerUserId;
-			}
-			set
-			{
-				if ((this._OwnerUserId != value))
-				{
-					this.OnOwnerUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerUserId = value;
-					this.SendPropertyChanged("OwnerUserId");
-					this.OnOwnerUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetGroupId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> TargetGroupId
-		{
-			get
-			{
-				return this._TargetGroupId;
-			}
-			set
-			{
-				if ((this._TargetGroupId != value))
-				{
-					this.OnTargetGroupIdChanging(value);
-					this.SendPropertyChanging();
-					this._TargetGroupId = value;
-					this.SendPropertyChanged("TargetGroupId");
-					this.OnTargetGroupIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Content
-		{
-			get
-			{
-				return this._Content;
-			}
-			set
-			{
-				if ((this._Content != value))
-				{
-					this.OnContentChanging(value);
-					this.SendPropertyChanging();
-					this._Content = value;
-					this.SendPropertyChanged("Content");
-					this.OnContentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSticky", DbType="Bit NOT NULL")]
-		public bool IsSticky
-		{
-			get
-			{
-				return this._IsSticky;
-			}
-			set
-			{
-				if ((this._IsSticky != value))
-				{
-					this.OnIsStickyChanging(value);
-					this.SendPropertyChanging();
-					this._IsSticky = value;
-					this.SendPropertyChanged("IsSticky");
-					this.OnIsStickyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
-		public bool IsDeleted
-		{
-			get
-			{
-				return this._IsDeleted;
-			}
-			set
-			{
-				if ((this._IsDeleted != value))
-				{
-					this.OnIsDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._IsDeleted = value;
-					this.SendPropertyChanged("IsDeleted");
-					this.OnIsDeletedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="DateTime NOT NULL")]
-		public System.DateTime TimeStamp
-		{
-			get
-			{
-				return this._TimeStamp;
-			}
-			set
-			{
-				if ((this._TimeStamp != value))
-				{
-					this.OnTimeStampChanging(value);
-					this.SendPropertyChanging();
-					this._TimeStamp = value;
-					this.SendPropertyChanged("TimeStamp");
-					this.OnTimeStampChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventTimeStamp", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EventTimeStamp
-		{
-			get
-			{
-				return this._EventTimeStamp;
-			}
-			set
-			{
-				if ((this._EventTimeStamp != value))
-				{
-					this.OnEventTimeStampChanging(value);
-					this.SendPropertyChanging();
-					this._EventTimeStamp = value;
-					this.SendPropertyChanged("EventTimeStamp");
-					this.OnEventTimeStampChanged();
 				}
 			}
 		}
@@ -1843,7 +1596,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary UserImg
 		{
 			get
@@ -2038,6 +1791,284 @@ namespace WorkWithMe.PL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblPost")]
+	public partial class tblPost : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Nullable<System.Guid> _TargetGroupId;
+		
+		private System.Nullable<System.Guid> _ReplyPostId;
+		
+		private string _Title;
+		
+		private string _Content;
+		
+		private bool _IsSticky;
+		
+		private bool _IsDeleted;
+		
+		private System.DateTime _TimeStamp;
+		
+		private System.Nullable<System.DateTime> _EventTimeStamp;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnOwnerUserIdChanging(System.Guid value);
+    partial void OnOwnerUserIdChanged();
+    partial void OnTargetGroupIdChanging(System.Nullable<System.Guid> value);
+    partial void OnTargetGroupIdChanged();
+    partial void OnReplyPostIdChanging(System.Nullable<System.Guid> value);
+    partial void OnReplyPostIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnIsStickyChanging(bool value);
+    partial void OnIsStickyChanged();
+    partial void OnIsDeletedChanging(bool value);
+    partial void OnIsDeletedChanged();
+    partial void OnTimeStampChanging(System.DateTime value);
+    partial void OnTimeStampChanged();
+    partial void OnEventTimeStampChanging(System.Nullable<System.DateTime> value);
+    partial void OnEventTimeStampChanged();
+    #endregion
+		
+		public tblPost()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this.OnOwnerUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerUserId = value;
+					this.SendPropertyChanged("OwnerUserId");
+					this.OnOwnerUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetGroupId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> TargetGroupId
+		{
+			get
+			{
+				return this._TargetGroupId;
+			}
+			set
+			{
+				if ((this._TargetGroupId != value))
+				{
+					this.OnTargetGroupIdChanging(value);
+					this.SendPropertyChanging();
+					this._TargetGroupId = value;
+					this.SendPropertyChanged("TargetGroupId");
+					this.OnTargetGroupIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReplyPostId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ReplyPostId
+		{
+			get
+			{
+				return this._ReplyPostId;
+			}
+			set
+			{
+				if ((this._ReplyPostId != value))
+				{
+					this.OnReplyPostIdChanging(value);
+					this.SendPropertyChanging();
+					this._ReplyPostId = value;
+					this.SendPropertyChanged("ReplyPostId");
+					this.OnReplyPostIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this.OnContentChanging(value);
+					this.SendPropertyChanging();
+					this._Content = value;
+					this.SendPropertyChanged("Content");
+					this.OnContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSticky", DbType="Bit NOT NULL")]
+		public bool IsSticky
+		{
+			get
+			{
+				return this._IsSticky;
+			}
+			set
+			{
+				if ((this._IsSticky != value))
+				{
+					this.OnIsStickyChanging(value);
+					this.SendPropertyChanging();
+					this._IsSticky = value;
+					this.SendPropertyChanged("IsSticky");
+					this.OnIsStickyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
+		public bool IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="DateTime NOT NULL")]
+		public System.DateTime TimeStamp
+		{
+			get
+			{
+				return this._TimeStamp;
+			}
+			set
+			{
+				if ((this._TimeStamp != value))
+				{
+					this.OnTimeStampChanging(value);
+					this.SendPropertyChanging();
+					this._TimeStamp = value;
+					this.SendPropertyChanged("TimeStamp");
+					this.OnTimeStampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventTimeStamp", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EventTimeStamp
+		{
+			get
+			{
+				return this._EventTimeStamp;
+			}
+			set
+			{
+				if ((this._EventTimeStamp != value))
+				{
+					this.OnEventTimeStampChanging(value);
+					this.SendPropertyChanging();
+					this._EventTimeStamp = value;
+					this.SendPropertyChanged("EventTimeStamp");
+					this.OnEventTimeStampChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	public partial class spDoLoginResult
 	{
 		
@@ -2189,6 +2220,8 @@ namespace WorkWithMe.PL
 		
 		private System.Nullable<System.Guid> _TargetGroupId;
 		
+		private System.Nullable<System.Guid> _ReplyPostId;
+		
 		private string _Title;
 		
 		private string _Content;
@@ -2251,6 +2284,228 @@ namespace WorkWithMe.PL
 				if ((this._TargetGroupId != value))
 				{
 					this._TargetGroupId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReplyPostId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ReplyPostId
+		{
+			get
+			{
+				return this._ReplyPostId;
+			}
+			set
+			{
+				if ((this._ReplyPostId != value))
+				{
+					this._ReplyPostId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this._Content = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSticky", DbType="Bit NOT NULL")]
+		public bool IsSticky
+		{
+			get
+			{
+				return this._IsSticky;
+			}
+			set
+			{
+				if ((this._IsSticky != value))
+				{
+					this._IsSticky = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
+		public bool IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this._IsDeleted = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="DateTime NOT NULL")]
+		public System.DateTime TimeStamp
+		{
+			get
+			{
+				return this._TimeStamp;
+			}
+			set
+			{
+				if ((this._TimeStamp != value))
+				{
+					this._TimeStamp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventTimeStamp", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EventTimeStamp
+		{
+			get
+			{
+				return this._EventTimeStamp;
+			}
+			set
+			{
+				if ((this._EventTimeStamp != value))
+				{
+					this._EventTimeStamp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerFullName", DbType="NVarChar(105)")]
+		public string OwnerFullName
+		{
+			get
+			{
+				return this._OwnerFullName;
+			}
+			set
+			{
+				if ((this._OwnerFullName != value))
+				{
+					this._OwnerFullName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spGetOffsetPostsForUserResult
+	{
+		
+		private System.Guid _Id;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Nullable<System.Guid> _TargetGroupId;
+		
+		private System.Nullable<System.Guid> _ReplyPostId;
+		
+		private string _Title;
+		
+		private string _Content;
+		
+		private bool _IsSticky;
+		
+		private bool _IsDeleted;
+		
+		private System.DateTime _TimeStamp;
+		
+		private System.Nullable<System.DateTime> _EventTimeStamp;
+		
+		private string _OwnerFullName;
+		
+		public spGetOffsetPostsForUserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this._OwnerUserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetGroupId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> TargetGroupId
+		{
+			get
+			{
+				return this._TargetGroupId;
+			}
+			set
+			{
+				if ((this._TargetGroupId != value))
+				{
+					this._TargetGroupId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReplyPostId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ReplyPostId
+		{
+			get
+			{
+				return this._ReplyPostId;
+			}
+			set
+			{
+				if ((this._ReplyPostId != value))
+				{
+					this._ReplyPostId = value;
 				}
 			}
 		}
