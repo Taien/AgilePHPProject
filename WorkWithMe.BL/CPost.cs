@@ -114,6 +114,20 @@ namespace WorkWithMe.BL
                 }
             }
         }
+
+        public void LoadRepliesForPost(Guid postId)
+        {
+            Clear();
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                List<spGetRepliesForPostResult> list = oDC.spGetRepliesForPost(postId).ToList();
+                foreach (spGetRepliesForPostResult item in list)
+                {
+                    CPost post = new CPost(item.Id, item.OwnerUserId, item.TargetGroupId, item.ReplyPostId, item.Title, item.Content, item.OwnerFullName, item.IsSticky, item.IsDeleted, item.TimeStamp, item.EventTimeStamp);
+                    Add(post);
+                }
+            }
+        }
     }
 
 }

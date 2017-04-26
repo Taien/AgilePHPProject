@@ -51,7 +51,14 @@ namespace WorkWithMe.SL
             list.LoadPostsForUser(Guid.Parse(userId));
             return list;
         }
-        
+
+        public CPostList GetRepliesForPost(string postId)
+        {
+            CPostList list = new CPostList();
+            list.LoadRepliesForPost(Guid.Parse(postId));
+            return list;
+        }
+
         public CUser GetUser(string id)
         {
             CUser user = new CUser(Guid.Parse(id));

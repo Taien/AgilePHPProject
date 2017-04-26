@@ -29,6 +29,9 @@ namespace WorkWithMe.SL
         CPostList GetPostsForUser(string userId);
 
         [OperationContract]
+        CPostList GetRepliesForPost(string postId);
+
+        [OperationContract]
         CCityStateInfo GetCityStateInfo(int zip);
 
         [OperationContract]

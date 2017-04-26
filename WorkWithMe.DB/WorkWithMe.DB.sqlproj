@@ -81,6 +81,7 @@
     <Build Include="spUpdateUser.sql" />
     <Build Include="spSearchUser.sql" />
     <Build Include="spGetOffsetPostsForUser.sql" />
+    <Build Include="spGetRepliesForPost.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WorkWithMe.DB.refactorlog" />

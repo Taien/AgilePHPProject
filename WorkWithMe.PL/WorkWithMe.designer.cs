@@ -233,6 +233,13 @@ namespace WorkWithMe.PL
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, offset);
 			return ((ISingleResult<spGetOffsetPostsForUserResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spGetRepliesForPost")]
+		public ISingleResult<spGetRepliesForPostResult> spGetRepliesForPost([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PostId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> postId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), postId);
+			return ((ISingleResult<spGetRepliesForPostResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGroupUser")]
@@ -2443,6 +2450,212 @@ namespace WorkWithMe.PL
 		private string _OwnerFullName;
 		
 		public spGetOffsetPostsForUserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OwnerUserId
+		{
+			get
+			{
+				return this._OwnerUserId;
+			}
+			set
+			{
+				if ((this._OwnerUserId != value))
+				{
+					this._OwnerUserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetGroupId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> TargetGroupId
+		{
+			get
+			{
+				return this._TargetGroupId;
+			}
+			set
+			{
+				if ((this._TargetGroupId != value))
+				{
+					this._TargetGroupId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReplyPostId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ReplyPostId
+		{
+			get
+			{
+				return this._ReplyPostId;
+			}
+			set
+			{
+				if ((this._ReplyPostId != value))
+				{
+					this._ReplyPostId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this._Content = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSticky", DbType="Bit NOT NULL")]
+		public bool IsSticky
+		{
+			get
+			{
+				return this._IsSticky;
+			}
+			set
+			{
+				if ((this._IsSticky != value))
+				{
+					this._IsSticky = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
+		public bool IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this._IsDeleted = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="DateTime NOT NULL")]
+		public System.DateTime TimeStamp
+		{
+			get
+			{
+				return this._TimeStamp;
+			}
+			set
+			{
+				if ((this._TimeStamp != value))
+				{
+					this._TimeStamp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventTimeStamp", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EventTimeStamp
+		{
+			get
+			{
+				return this._EventTimeStamp;
+			}
+			set
+			{
+				if ((this._EventTimeStamp != value))
+				{
+					this._EventTimeStamp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerFullName", DbType="NVarChar(105)")]
+		public string OwnerFullName
+		{
+			get
+			{
+				return this._OwnerFullName;
+			}
+			set
+			{
+				if ((this._OwnerFullName != value))
+				{
+					this._OwnerFullName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spGetRepliesForPostResult
+	{
+		
+		private System.Guid _Id;
+		
+		private System.Guid _OwnerUserId;
+		
+		private System.Nullable<System.Guid> _TargetGroupId;
+		
+		private System.Nullable<System.Guid> _ReplyPostId;
+		
+		private string _Title;
+		
+		private string _Content;
+		
+		private bool _IsSticky;
+		
+		private bool _IsDeleted;
+		
+		private System.DateTime _TimeStamp;
+		
+		private System.Nullable<System.DateTime> _EventTimeStamp;
+		
+		private string _OwnerFullName;
+		
+		public spGetRepliesForPostResult()
 		{
 		}
 		
