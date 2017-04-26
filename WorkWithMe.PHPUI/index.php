@@ -111,11 +111,19 @@ session_start();
                         $ownerFullName = $resultArray[$i]->OwnerFullName;
                     }
 
-                    echo '<form action="reply.php" method="post"></form><table id="message" width="99%">
-                          <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>
-                          <tr><td width="85%">'. $content . '</td>
-                          <td width="15%"><input type="submit" value="Reply" id="btnReply" name="btnReply"/></td></tr>
-                          </table></form>';
+                    echo '<form action="reply.php" method="post"><table id="message" width="99%">
+                        <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>
+                        <tr><td width="85%">'. $content . '</td>
+                        <td width="15%">
+                            <input type="hidden" value="' . $title . '" id="incomingTitle" name="incomingTitle"/>
+                            <input type="hidden" value="' . $content . '" id="incomingContent" name="incomingContent"/>
+                            <input type="hidden" value="' . $ownerUserId . '" id="incomingOwnerId" name="incomingOwnerId"/>
+                            <input type="hidden" value="' . $targetGroupId . '" id="incomingTargetGroupId" name="incomingTargetGroupId"/>
+                            <input type="hidden" value="' . $timestamp . '" id="incomingTimestamp" name="incomingTimestamp"/>
+                            <input type="hidden" value="' . $ownerFullName . '" id="incomingOwnerFullName" name="incomingOwnerFullName"/>
+                            <input type="submit" value="Reply" id="btnReply" name="btnReply"/>
+                        </td></tr>
+                        </table></form>';
                 }
             }
             else
