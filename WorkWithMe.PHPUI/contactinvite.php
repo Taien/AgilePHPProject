@@ -96,7 +96,7 @@ try //retrieve user invites
         }
 
         echo '<form method="post"><table id="message" width="99%">
-              <tr><td width="80%">You have a contact invite from ' . $ownerUserFullName . '.</td></tr>
+              <tr><td width="80%">You have an invite from ' . $ownerUserFullName . '.</td></tr>
               <tr><td width="20%">
               <input type="hidden" value="' . $inviteId . '" id="txtInviteId" name="txtInviteId">
               <input type="hidden" value="' . $ownerUserId . '" id="txtOwnerId" name="txtOwnerId">

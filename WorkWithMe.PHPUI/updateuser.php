@@ -180,8 +180,9 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
 
             <div id="buttons">
                 <ul>
-                    <li><input type="submit" class="button" id="btnUpdate" name="btnUpdate" value="Update"></li>
-                    <li><input type="reset" class="button" id="btnClear" name="btnClear" value="Clear"></li>
+                    <li><input type="submit" class="button" id="btnUpdate" name="btnUpdate" value="Save My Updates"></li>
+                    <li><input type="reset" class="button" id="btnClear" name="btnClear" value="Clear Form"></li>
+                    <li><input type="submit" class="button" id="btnDelete" name="btnDelete" value="Delete My Account"></li>
                 </ul>
             </div>
         </fieldset>
