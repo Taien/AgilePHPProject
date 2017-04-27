@@ -28,6 +28,6 @@ UNION
 		SELECT OwnerUserId 
 		from [dbo].[tblUserContact] where TargetUserId = @UserId and InviteStatusId = 2 -- 2 = accepted 
 	) and ReplyPostId is null
-ORDER BY TimeStamp desc
+ORDER BY p.TimeStamp desc
 OFFSET @Offset ROWS /*Skip first @Offset rows*/
 FETCH NEXT 10 ROWS ONLY

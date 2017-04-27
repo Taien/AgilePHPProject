@@ -61,8 +61,51 @@ session_start();
             <tr><td width="100%">'. $content . '</td></tr>
             </table></form>';
 
+            if (isset($postId))
+            {
+                try {
+                    $replyRetval = $client->GetRepliesForPost(array('postId'=>$postId));
+                    $replyResultArray = $replyRetval->GetRepliesForPostResult->CPost;
+                } catch (SoapFault $exception)
+                {
+                    $_SESSION["Status"] = "Failed to retrieve replies for post - " . $exception->getMessage();
+                }
+
+                $numOfReplies = count($replyResultArray);
+                if ($numOfReplies > 0)
+                {
+                    echo '<table id="replyMessage" width="96%">
+                                  <tr><td width="50" id="replyBar"></td>
+                                  <td id="replyContent">';
+                    for ($j = 0; $j < $numOfReplies; $j++)
+                    {
+                        if ($numOfReplies == 1)
+                        {
+                            $replyContent = $replyResultArray->Content;
+                            $timestamp = $replyResultArray->TimeStamp;
+                            $replyOwnerFullName = $replyResultArray->OwnerFullName;
+                        }
+                        else
+                        {
+                            $replyContent = $replyResultArray[$j]->Content;
+                            $timestamp = $replyResultArray[$j]->TimeStamp;
+                            $replyOwnerFullName = $replyResultArray[$j]->OwnerFullName;
+                        }
+
+                        include './includes/timestring.php';
+
+                        echo '<table width="100%">
+                                <tr><td width="100%"><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '</div></td></tr>
+                                <tr><td width="100%">'. $replyContent . '</td></tr>
+                                </table>';
+                    }
+
+                    echo '</td></tr></table>';
+                }
+            }
+
             echo '<form method="post" id="postForm">
-            Test<textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
+            <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
             <input type="hidden" name="postId" id="postId" value="' . $postId . '">
             <input type="submit" name="btnPost" id="btnPost" value="Post Reply">
             </form>';

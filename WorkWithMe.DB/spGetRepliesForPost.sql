@@ -7,3 +7,4 @@ AS
 	from [dbo].[tblPost] p
 	join [dbo].[tblUser] u on p.OwnerUserId = u.Id
 	where p.ReplyPostId = @PostId
+	order by p.TimeStamp asc

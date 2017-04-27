@@ -26,3 +26,7 @@ C:\dev\AgilePHPProject\WorkWithMe.DB\obj\Debug\postdeploy.sql
 C:\dev\AgilePHPProject\WorkWithMe.DB\obj\Debug\predeploy.sql
 C:\dev\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.dll
 C:\dev\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.pdb
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\Model.xml
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\refactor.xml
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\postdeploy.sql
+C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\predeploy.sql

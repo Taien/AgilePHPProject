@@ -163,8 +163,7 @@ session_start();
                         $replyResultArray = $replyRetval->GetRepliesForPostResult->CPost;
                     } catch (SoapFault $exception)
                     {
-
-                        $_SESSION["Status"] = "Failed to retrieve posts for user - " . $exception->getMessage();
+                        $_SESSION["Status"] = "Failed to retrieve replies for post - " . $exception->getMessage();
                     }
 
                     $numOfReplies = count($replyResultArray);
