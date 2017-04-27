@@ -69,6 +69,7 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
 <?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
+<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <main>
     <form method="post">
 
@@ -188,7 +189,6 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
 
     </form>
 </main>
-<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <footer><?php include './includes/footer.php' ?></footer>
 </body>
 </html>

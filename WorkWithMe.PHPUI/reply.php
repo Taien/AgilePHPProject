@@ -28,7 +28,7 @@ session_start();
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'replyPostId'=>$_POST["postId"],'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'replyPostId'=>$_POST["postId"],'title'=>"",'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
             $_SESSION["Status"] = "Successfully replied to message!";
             $_SESSION["GoodStatus"] = true;
             $_SESSION["isRedirecting"] = true;
@@ -52,6 +52,7 @@ session_start();
 <?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
+<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <main>
     <p>
         <?php
@@ -61,15 +62,13 @@ session_start();
             </table></form>';
 
             echo '<form method="post" id="postForm">
-            <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>
-            <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
+            Test<textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
             <input type="hidden" name="postId" id="postId" value="' . $postId . '">
             <input type="submit" name="btnPost" id="btnPost" value="Post Reply">
             </form>';
         ?>
     </p>
 </main>
-<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <footer><?php include './includes/footer.php' ?></footer>
 </body>
 </html>

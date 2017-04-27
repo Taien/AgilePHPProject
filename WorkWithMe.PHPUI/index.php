@@ -54,6 +54,24 @@ session_start();
             $_SESSION["Status"] = "Message failed to post - " . $exception->getMessage();
         }
     }
+
+    if (!isset($currentOffset))
+    {
+        $currentOffset = 0;
+    }
+
+    if (isset($_POST["btnPrev"]))
+    {
+        $currentOffset = $_POST["txtOffset"];
+        if ($currentOffset > 0)
+            $currentOffset -= 10;
+        if ($currentOffset < 0) $currentOffset = 0;
+    }
+    else if (isset($_POST["btnNext"]))
+    {
+        $currentOffset = $_POST["txtOffset"];
+        $currentOffset += 10;
+    }
     ?>
 <!doctype html>
 <html lang="en">
@@ -67,6 +85,7 @@ session_start();
 <?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
+<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <main>
     <p>
         <?php
@@ -80,8 +99,17 @@ session_start();
 
                 try {
                     $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-                    $retval = $client->GetPostsForUser(array('userId'=>$_SESSION["UserId"]));
-                    $resultArray = $retval->GetPostsForUserResult->CPost;
+
+                    if ($currentOffset > 0)
+                    {
+                        $retval = $client->GetOffsetPostsForUser(array('userId'=>$_SESSION["UserId"],'offset'=>$currentOffset));
+                        $resultArray = $retval->GetOffsetPostsForUserResult->CPost;
+                    }
+                    else
+                    {
+                        $retval = $client->GetPostsForUser(array('userId'=>$_SESSION["UserId"]));
+                        $resultArray = $retval->GetPostsForUserResult->CPost;
+                    }
                 } catch (SoapFault $exception)
                 {
                     $_SESSION["Status"] = "Failed to retrieve posts for user - " . $exception->getMessage();
@@ -138,6 +166,7 @@ session_start();
 
                         $_SESSION["Status"] = "Failed to retrieve posts for user - " . $exception->getMessage();
                     }
+
                     $numOfReplies = count($replyResultArray);
                     if ($numOfReplies > 0)
                     {
@@ -146,12 +175,34 @@ session_start();
                               <td id="replyContent">';
                         for ($j = 0; $j < $numOfReplies; $j++)
                         {
+                            if ($numOfReplies == 1)
+                            {
+                                $replyContent = $replyResultArray->Content;
+                                $timestamp = $replyResultArray->TimeStamp;
+                                $replyOwnerFullName = $replyResultArray->OwnerFullName;
+                            }
+                            else
+                            {
+                                $replyContent = $replyResultArray[$j]->Content;
+                                $timestamp = $replyResultArray[$j]->TimeStamp;
+                                $replyOwnerFullName = $replyResultArray[$j]->OwnerFullName;
+                            }
 
+                            include './includes/timestring.php';
+
+                            echo '<table width="100%">
+                            <tr><td width="100%"><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '</div></td></tr>
+                            <tr><td width="100%">'. $replyContent . '</td></tr>
+                            </table>';
                         }
 
                         echo '</td></tr></table>';
                     }
                 }
+
+                echo '<form method="post"><input type="submit" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
+                      <input type="submit" name="btnNext" id="btnNext" value="Next 10">
+                      <input type="hidden" name="txtOffset" id="txtOffset" value="' . $currentOffset . '"></form>';
             }
             else
             {
@@ -160,7 +211,6 @@ session_start();
         ?>
     </p>
 </main>
-<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <footer><?php include './includes/footer.php' ?></footer>
 </body>
 </html>

@@ -9,10 +9,10 @@
         <?php include './includes/header.php' ?>
         <hr/>
         <nav><?php include './includes/nav.php' ?></nav>
+        <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <main>
             Content Here
         </main>
-        <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <footer><?php include './includes/footer.php' ?></footer>
     </body>
 </html>

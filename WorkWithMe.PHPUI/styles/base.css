@@ -144,6 +144,7 @@ nav li a:hover{
 main{
     width: 60%;
     float: left;
+    margin-top: 10px;
     font-size: large;
     text-align: center;
     background-color: #C0D4EE;
@@ -351,13 +352,15 @@ footer h3 {
 }
 
 /* carousel stuff */
-div #caro {
-    margin: 0 auto;
-    max-width: 550px;
+#caro {
+    width: 100%;
+    margin: 10px auto;
 }
 
 .slide {
-   width: 100%;
+    height: 50%;
+    
+    margin: 0 auto;
 }
 
 .caption {

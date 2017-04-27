@@ -29,6 +29,9 @@ namespace WorkWithMe.SL
         CPostList GetPostsForUser(string userId);
 
         [OperationContract]
+        CPostList GetOffsetPostsForUser(string userId, int offset);
+
+        [OperationContract]
         CPostList GetRepliesForPost(string postId);
 
         [OperationContract]

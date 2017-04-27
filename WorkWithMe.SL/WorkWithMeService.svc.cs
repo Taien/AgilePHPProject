@@ -52,6 +52,13 @@ namespace WorkWithMe.SL
             return list;
         }
 
+        public CPostList GetOffsetPostsForUser(string userId, int offset)
+        {
+            CPostList list = new CPostList();
+            list.LoadOffsetPostsForUser(Guid.Parse(userId),offset);
+            return list;
+        }
+
         public CPostList GetRepliesForPost(string postId)
         {
             CPostList list = new CPostList();

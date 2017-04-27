@@ -48,6 +48,7 @@ else if (isset($_POST["btnAddContact"])) {
         <?php include './includes/header.php' ?>
         <hr/>
         <nav><?php include './includes/nav.php' ?></nav>
+        <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <main>
             <?php
             if (isset($_POST["btnSearch"]))
@@ -108,7 +109,6 @@ else if (isset($_POST["btnAddContact"])) {
             ?>
 
         </main>
-        <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <footer><?php include './includes/footer.php' ?></footer>
     </body>
 </html>

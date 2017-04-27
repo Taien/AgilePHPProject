@@ -53,6 +53,7 @@ if (isset($_POST["btnRegister"]))
 <?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
+<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <main>
     <form action="signup.php" method="post">
 
@@ -174,7 +175,6 @@ if (isset($_POST["btnRegister"]))
 
     </form>
 </main>
-<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <footer><?php include './includes/footer.php' ?></footer>
 </body>
 </html>

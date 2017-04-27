@@ -68,6 +68,7 @@ try //retrieve user invites
 <?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
+<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <main>
     <?php
     $numOfResults = count($inviteResultArray);
@@ -112,7 +113,6 @@ try //retrieve user invites
 
     ?>
 </main>
-<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <footer><?php include './includes/footer.php' ?></footer>
 </body>
 </html>

@@ -115,6 +115,20 @@ namespace WorkWithMe.BL
             }
         }
 
+        public void LoadOffsetPostsForUser(Guid userId, int offset)
+        {
+            Clear();
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                List<spGetOffsetPostsForUserResult> list = oDC.spGetOffsetPostsForUser(userId,offset).ToList();
+                foreach (spGetOffsetPostsForUserResult item in list)
+                {
+                    CPost post = new CPost(item.Id, item.OwnerUserId, item.TargetGroupId, item.ReplyPostId, item.Title, item.Content, item.OwnerFullName, item.IsSticky, item.IsDeleted, item.TimeStamp, item.EventTimeStamp);
+                    Add(post);
+                }
+            }
+        }
+
         public void LoadRepliesForPost(Guid postId)
         {
             Clear();
