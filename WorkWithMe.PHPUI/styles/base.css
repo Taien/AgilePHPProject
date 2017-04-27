@@ -349,9 +349,9 @@ footer h3 {
 }
 
 /* carousel stuff */
-#caro {
-    width: 100%;
-    margin: 10px auto;
+div #caro {
+    margin: 0 auto;
+    max-width: 550px;
 }
 
 .slide {
