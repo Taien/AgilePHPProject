@@ -35,7 +35,6 @@ session_start();
             header("Location:index.php");
         } catch (SoapFault $exception)
         {
-            //DoLogin returns null when the login fails
             $_SESSION["Status"] = "Message failed to post - " . $exception->getMessage();
         }
     }

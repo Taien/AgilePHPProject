@@ -84,7 +84,6 @@ session_start();
                     $resultArray = $retval->GetPostsForUserResult->CPost;
                 } catch (SoapFault $exception)
                 {
-                    //DoLogin returns null when the login fails
                     $_SESSION["Status"] = "Failed to retrieve posts for user - " . $exception->getMessage();
                 }
 
@@ -113,11 +112,7 @@ session_start();
                         $ownerFullName = $resultArray[$i]->OwnerFullName;
                     }
 
-                    $month = mb_substr($timestamp, 5, 2);
-                    $day = mb_substr($timestamp, 8, 2);
-                    $year = mb_substr($timestamp, 0, 4);
-                    $time = mb_substr($timestamp, 11, 5);
-                    $timeString = $month . '/' . $day . '/' . $year . ' At ' . $time;
+                    include './includes/timestring.php'; //sets $timeString, which decodes the timestamp
 
                     echo '<form action="reply.php" method="post"><table id="message" width="99%">
                         <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' On ' . $timeString . '</div><hr/></td></tr>
@@ -133,6 +128,29 @@ session_start();
                             <input type="submit" value="Reply" id="btnReply" name="btnReply"/>
                         </td></tr>
                         </table></form>';
+
+                    //display replies under post
+                    try {
+                        $replyRetval = $client->GetRepliesForPost(array('postId'=>$postId));
+                        $replyResultArray = $replyRetval->GetRepliesForPostResult->CPost;
+                    } catch (SoapFault $exception)
+                    {
+
+                        $_SESSION["Status"] = "Failed to retrieve posts for user - " . $exception->getMessage();
+                    }
+                    $numOfReplies = count($replyResultArray);
+                    if ($numOfReplies > 0)
+                    {
+                        echo '<table id="replyMessage" width="96%">
+                              <tr><td width="50" id="replyBar"></td>
+                              <td id="replyContent">';
+                        for ($j = 0; $j < $numOfReplies; $j++)
+                        {
+
+                        }
+
+                        echo '</td></tr></table>';
+                    }
                 }
             }
             else
