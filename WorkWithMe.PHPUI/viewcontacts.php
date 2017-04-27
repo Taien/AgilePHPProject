@@ -48,7 +48,6 @@ else if (isset($_POST["btnAddContact"])) {
         <?php include './includes/header.php' ?>
         <hr/>
         <nav><?php include './includes/nav.php' ?></nav>
-        <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <main>
             <?php
             if (isset($_POST["btnSearch"]))
@@ -98,17 +97,18 @@ else if (isset($_POST["btnAddContact"])) {
             {
                 echo '<form method="post">
                          <fieldset>
-                             <legend>Add User To Contacts</legend><br />
+                             <legend>Search My Contacts</legend><br />
                              <label for="memberList">Member ID/Email:</label>
                              <input type="text" id="txtUser" name="txtUser" placeholder="member\'s user ID or email address" required><br /><br />
 
-                             <input type="submit" id="btnSearch" name="btnSearch" value="Search for Users"> <! -- adds user to database -->
+                             <input type="submit" id="btnSearch" name="btnSearch" value="Search My Contacts"> <! -- adds user to database -->
                          </fieldset><br />
                       </form>';
             }
             ?>
 
         </main>
+        <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <footer><?php include './includes/footer.php' ?></footer>
     </body>
 </html>

@@ -155,12 +155,9 @@ main ul{
     float: left;
 }
 
-main img{    /* needed? */
-    max-width: 50%;
-}
 
 main p{
-    margin: 0px 20px;
+    margin: 0 20px;
 }
 
 main form {
@@ -225,7 +222,7 @@ main input{
     font-size: 24px;
 }
 
-/* Signup page submit buttons */
+/* Sign-up page submit buttons */
 #buttons ul{
     width: 93%;
     padding: 0 20px;
@@ -235,7 +232,7 @@ main input{
 #buttons li{
     display: inline;
     width: 25%;
-    padding: 0px 5px;
+    padding: 0 5px;
 }
 
 #errorText{

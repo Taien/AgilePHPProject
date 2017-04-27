@@ -23,8 +23,10 @@ if (isset($_SESSION["UserId"]))
     echo '<ul>';
     if (count($inviteResultArray) > 0) echo '<li><b><a href="contactinvite.php">Accept Invites (' . count($inviteResultArray) . ')</a></b></li>';
     echo '<li><a href="updateuser.php">Update Profile</a></li>
-          <li><a href="addcontact.php">Add Contacts</a></li>
-          <li><a href="creategroup.php">Create a Group</a></li></ul><br/>';
+          <li><a href="viewcontacts.php">View Contacts</a></li>
+          <li><a href="addcontact.php">Invite Contacts</a></li>
+          <li><a href="creategroup.php">Create a Group</a></li>
+          </ul><br/>';
 }
 ?>
 <ul>
