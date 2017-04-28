@@ -332,6 +332,22 @@ textarea { /*  used with the message posting in index */
     border: 1px dotted;
 }
 
+#prevNextForm{
+    display: block;
+    text-align: center;
+}
+
+#prevNextForm form{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#prevNextForm input{
+    width: 49%;
+    height: 30px;
+}
+
 footer{              /* footer */
     width: 100%;
     height: 4em;

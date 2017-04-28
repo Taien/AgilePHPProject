@@ -27,10 +27,17 @@ if (isset($_SESSION["UserId"]))
           <li><a href="addcontact.php">Invite Contacts</a></li>
           <li><a href="creategroup.php">Create a Group</a></li>
           </ul><br/>';
+
+    echo '<ul>
+              <li><a href="index.php">Me ' . $name . '</a></li>
+              <li>&#8600 My Workplace 1</li>
+              <li>&#8600 &#8600 Workplace Subgroup</li>
+          </ul>';
+}
+else
+{
+    echo '<ul>
+              <li>When you are logged in, many helpful links to WorkWithMe features such as contacts, groups, profiles, and more can be found here.</li>
+          </ul>';
 }
 ?>
-<ul>
-    <li><a href="index.php">Me <?=$name?></a></li>
-    <li>&#8600 My Workplace 1</li>
-    <li>&#8600 &#8600 Workplace Subgroup</li>
-</ul>

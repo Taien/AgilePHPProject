@@ -117,6 +117,10 @@ session_start();
 
                 $numOfResults = count($resultArray);
 
+                echo '<form method="post" id="prevNextForm"><input type="submit" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
+                      <input type="submit" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
+                      <input type="hidden" name="txtOffset" id="txtOffset" value="' . $currentOffset . '"></form>';
+
                 for ($i = 0; $i < $numOfResults; $i++)
                 {
                     if ($numOfResults == 1)
@@ -199,8 +203,8 @@ session_start();
                     }
                 }
 
-                echo '<form method="post"><input type="submit" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
-                      <input type="submit" name="btnNext" id="btnNext" value="Next 10">
+                echo '<form method="post" id="prevNextForm"><input type="submit" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
+                      <input type="submit" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
                       <input type="hidden" name="txtOffset" id="txtOffset" value="' . $currentOffset . '"></form>';
             }
             else
