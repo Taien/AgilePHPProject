@@ -4,56 +4,66 @@ session_start();
 if (isset($_POST["btnUpdate"]))
 {
     try {
+
         $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-        $retval = $client->UpdateUser(array('id'=>$_SESSION["UserId"],'username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
-            'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
-            'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
-            'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
-            'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
-            'email'=>$_POST["txtEmail"]));
-        if ($retval->UpdateUserResult) //true if update succeeded
+        if ($_FILES['inputImage']['size'] != 0)
         {
-            $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
-            $_SESSION["Username"] = $_POST["txtUsername"];
-            $_SESSION["FirstName"] = $_POST["txtFName"];
-            $_SESSION["MiddleInitial"] = $_POST["txtMI"];
-            $_SESSION["LastName"] = $_POST["txtLName"];
-            $_SESSION["Zip"] = $_POST["txtZip"];
-            $_SESSION["Address"] = $_POST["txtAddress"];
-            $_SESSION["Email"] = $_POST["txtEmail"];
-            $_SESSION["IsAddressPrivate"] = isset($_POST["chkAddressPrivate"]);
-            $_SESSION["State"] = $_POST["lstState"];
-            $_SESSION["City"] = $_POST["txtCity"];
-            $_SESSION["Status"] = "Successfully updated user info.";
-            $_SESSION["GoodStatus"] = true;
-            if ($_FILES['inputImage']['size'] != 0)
+            $fileName = $_FILES['inputImage']['name'];
+            $tmpName  = $_FILES['inputImage']['tmp_name'];
+            $fileSize = $_FILES['inputImage']['size'];
+            $fileType = $_FILES['inputImage']['type'];
+
+            $fp      = fopen($tmpName, 'r');
+            $content = fread($fp, filesize($tmpName));
+            $content = addslashes($content);
+            fclose($fp);
+
+            if(!get_magic_quotes_gpc())
             {
-                $fileName = $_FILES['inputImage']['name'];
-                $tmpName  = $_FILES['inputImage']['tmp_name'];
-                $fileSize = $_FILES['inputImage']['size'];
-                $fileType = $_FILES['inputImage']['type'];
+                $fileName = addslashes($fileName);
+            }
 
-                $fp      = fopen($tmpName, 'r');
-                $content = fread($fp, filesize($tmpName));
-                $content = addslashes($content);
-                fclose($fp);
+            //run query
+            $retval = $client->UpdateUser(array('id'=>$_SESSION["UserId"],'username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
+                'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
+                'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
+                'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
+                'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
+                'email'=>$_POST["txtEmail"]),$fileName,$fileSize,$fileContent);
 
-                if(!get_magic_quotes_gpc())
-                {
-                    $fileName = addslashes($fileName);
-                }
+            //file uploaded
+            echo '<img src="' . $tmpName . '">';
+        }
+        else
+        {
+            $retval = $client->UpdateUser(array('id'=>$_SESSION["UserId"],'username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
+                'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
+                'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
+                'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
+                'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
+                'email'=>$_POST["txtEmail"]));
 
-                //need db connection stuff here
+            if ($retval->UpdateUserResult) //true if update succeeded
+            {
+                $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
+                $_SESSION["Username"] = $_POST["txtUsername"];
+                $_SESSION["FirstName"] = $_POST["txtFName"];
+                $_SESSION["MiddleInitial"] = $_POST["txtMI"];
+                $_SESSION["LastName"] = $_POST["txtLName"];
+                $_SESSION["Zip"] = $_POST["txtZip"];
+                $_SESSION["Address"] = $_POST["txtAddress"];
+                $_SESSION["Email"] = $_POST["txtEmail"];
+                $_SESSION["IsAddressPrivate"] = isset($_POST["chkAddressPrivate"]);
+                $_SESSION["State"] = $_POST["lstState"];
+                $_SESSION["City"] = $_POST["txtCity"];
+                $_SESSION["Status"] = "Successfully updated user info.";
+                $_SESSION["GoodStatus"] = true;
 
-                $query = "INSERT INTO tblUserImg (ImageName, ImageSize, ImageContent ) ".
-                    "VALUES ('$fileName', '$fileSize', '$content')";
-
-                //run query
-
-                //file uploaded
-                echo '<img src="' . $tmpName . '">';
             }
         }
+
+
+
 
     } catch (SoapFault $exception)
     {

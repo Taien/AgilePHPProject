@@ -9,6 +9,7 @@
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
       <user-name>overseer</user-name>
+      <introspection-schemas>WorkWithMe:dbo</introspection-schemas>
     </data-source>
   </component>
 </project>

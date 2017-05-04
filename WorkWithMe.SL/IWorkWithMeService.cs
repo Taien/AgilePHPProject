@@ -26,6 +26,9 @@ namespace WorkWithMe.SL
         bool UpdateUser(string id, string username, string password, string firstName, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, string email, ref string response);
 
         [OperationContract]
+        bool UpdateUserWithImage(string id, string username, string password, string firstName, string middleInitial, string lastName, int? zip, string address, string city, string state, bool isAddressPrivate, string email, string imageName, string imageSize, byte[] imageContent, ref string response);
+
+        [OperationContract]
         CPostList GetPostsForUser(string userId);
 
         [OperationContract]
@@ -106,7 +109,6 @@ namespace WorkWithMe.SL
 
         [OperationContract]
         CUserContactList LoadInvitesForUser(string id);
-
-
+        
     }
 }

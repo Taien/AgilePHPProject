@@ -23,7 +23,7 @@ session_start();
         } catch (SoapFault $exception)
         {
             //DoLogin returns null when the login fails
-            $_SESSION["Status"] = "Login failed, username/password combination is invalid.";
+            $_SESSION["Status"] = "Login failed, username/password combination is invalid. - " . $exception->getMessage();
         }
 
     }
