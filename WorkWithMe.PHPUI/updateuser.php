@@ -123,7 +123,7 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
             <input type="text" id="txtLName" name="txtLName" placeholder="last name" required value="<?=$_SESSION["LastName"]?>"><br />
 
             <label for="Email">E-mail:</label>
-            <input type="email" id="txtEmail" name="txtEmail" placeholder="e-mail" required value="<?=$_SESSION["Email"]?>"><br />
+            <input type="email" id="txtEmail" name="txtEmail" placeholder="e-mail" required value="<?=$_SESSION["Email"]?>"><br /><br />
 
             <label for="inputImage">Profile Image:</label>
             <input type="hidden" name="MAX_FILE_SIZE" value="102400">
@@ -200,7 +200,7 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
                    placeholder="5 digit zip code" required value="<?=$_SESSION["Zip"]?>"><br />
 
             <label for="chkAddressPrivate">Keep Address Private:</label>
-            <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="<?=$_SESSION["IsAddressPrivate"] ? "true" : "false"?>"><br/>
+            <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="<?=$_SESSION["IsAddressPrivate"] ? "true" : "false"?>"><br/><br />
         </fieldset>
 
         <fieldset>
@@ -213,7 +213,7 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
             <input type="password" name="txtPassword" id="txtPassword" placeholder="enter password" required minlength="6" maxlength="24"><br />
 
             <label for="txtPwdVerify">Password Verify:</label>
-            <input type="password" name="txtPwdVerify" id="txtPwdVerify" placeholder="re-enter password" required minlength="6" maxlength="24"><br />
+            <input type="password" name="txtPwdVerify" id="txtPwdVerify" placeholder="re-enter password" required minlength="6" maxlength="24"><br /><br />
         </fieldset>
 
         <fieldset>
@@ -226,7 +226,7 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
                     <li><input type="submit" class="button" id="btnDelete" name="btnDelete" value="Delete My Account"></li>
                 </ul>
             </div>
-        </fieldset>
+        </fieldset><br />
 
     </form>
 </main>

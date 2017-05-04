@@ -5,10 +5,10 @@
 <h2 class="w3-center">What Can Work With Me Do For You?</h2>
 
 <div class="w3-content w3-section" id="caro">
-    <img class="slide" src="images\img1.jpg">
-    <img class="slide" src="images\img2.jpg">
-    <img class="slide" src="images\img3.jpg">
-    <img class="slide" src="images\img4.jpg">
+    <img class="slide" src="images\caro1.jpg">
+    <img class="slide" src="images\caro2.jpg">
+    <img class="slide" src="images\caro3.jpg">
+    <img class="slide" src="images\caro4.jpg">
     <h3 class="caption">Networking</h3>
     <h3 class="caption">Team Building</h3>
     <h3 class="caption">Event Management</h3>
