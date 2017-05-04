@@ -1,0 +1,34 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[tblUser]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column UserImgId in table [dbo].[tblUser] is currently  IMAGE NULL but is being changed to  INT NULL. There
+         is no implicit or explicit conversion.
+
+** User actions
+     Rename
+       [dbo].[tblUser].[UserImgId] (Column)
+     Drop
+       unnamed constraint on [dbo].[tblUser] (Default Constraint)
+     Table rebuild
+       [dbo].[tblUser] (Table)
+     Create
+       [dbo].[tblUserImg] (Table)
+     Alter
+       [dbo].[spCreateUser] (Procedure)
+
+** Supporting actions
+     Refresh
+       [dbo].[spDoLogin] (Procedure)
+       [dbo].[spGetOffsetPostsForUser] (Procedure)
+       [dbo].[spGetPostsForUser] (Procedure)
+       [dbo].[spGetRepliesForPost] (Procedure)
+       [dbo].[spSearchUser] (Procedure)
+       [dbo].[spUpdateUser] (Procedure)
+
+The type for column UserImgId in table [dbo].[tblUser] is currently  IMAGE NULL but is being changed to  INT NULL. There is no implicit or explicit conversion.
+

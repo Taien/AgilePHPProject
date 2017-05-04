@@ -30,3 +30,7 @@ C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\Model.xml
 C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\refactor.xml
 C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\postdeploy.sql
 C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\predeploy.sql
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\Model.xml
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\refactor.xml
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\postdeploy.sql
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\predeploy.sql

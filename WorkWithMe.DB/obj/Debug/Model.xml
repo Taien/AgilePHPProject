@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="WorkWithMe.DB.dll" />
-			<Metadata Name="FileName" Value="C:\GIT PROJECTS\AGILEPHPPROJECT\WORKWITHME.DB\OBJ\DEBUG\WORKWITHME.DB.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\TYLER\SOURCE\WORKSPACES\WORKSPACE\AGILEPHPPROJECT\WORKWITHME.DB\OBJ\DEBUG\WORKWITHME.DB.DLL" />
 			<Metadata Name="AssemblyName" Value="WorkWithMe.DB" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Git Projects\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\obj\Debug\WorkWithMe.DB.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
@@ -296,6 +296,25 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
 		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[tblUserImg].[Id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[tblUserImg]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spCreatePost]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -506,7 +525,7 @@ BEGIN
 
     BEGIN TRY
 	
-        INSERT INTO [dbo].[tblUser] (Id, Username, PasswordHash, PasswordSalt, FirstName, MiddleInitial, LastName, EmailAddress, Zip, Address, IsAddressPrivate, UserImg)
+        INSERT INTO [dbo].[tblUser] (Id, Username, PasswordHash, PasswordSalt, FirstName, MiddleInitial, LastName, EmailAddress, Zip, Address, IsAddressPrivate, UserImgId)
         VALUES(NewId(), @Username, HASHBYTES('SHA2_512', @Password+CAST(@salt AS NVARCHAR(36))), @salt, @FirstName, @MiddleInitial, @LastName, @EmailAddress, @Zip, @Address, @IsAddressPrivate, null);
 		
 		IF NOT EXISTS(SELECT TOP 1 s.Id FROM tblState s WHERE s.StateName = @State)
@@ -617,7 +636,7 @@ END]]></Value>
 					<References Name="[dbo].[tblUser].[IsAddressPrivate]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[tblUser].[UserImg]" />
+					<References Name="[dbo].[tblUser].[UserImgId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[spCreateUser].[@Password]" />
@@ -874,7 +893,7 @@ END]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="52" />
-				<Property Name="Length" Value="2030" />
+				<Property Name="Length" Value="2032" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="--Creates user and adds random salt to password.&#xD;&#xA;&#xD;&#xA;CREATE PROCEDURE [dbo].[spCreateUser]&#xD;&#xA;&#x9;@Username nvarchar(40),&#xD;&#xA;&#x9;@Password nvarchar(24),&#xD;&#xA;&#x9;@FirstName nvarchar(50),&#xD;&#xA;&#x9;@MiddleInitial nvarchar(2),&#xD;&#xA;&#x9;@LastName nvarchar(50),&#xD;&#xA;&#x9;@Zip int,&#xD;&#xA;&#x9;@Address nvarchar(50),&#xD;&#xA;&#x9;@City nvarchar(50),&#xD;&#xA;&#x9;@State nvarchar(2),&#xD;&#xA;&#x9;@IsAddressPrivate bit,&#xD;&#xA;&#x9;@EmailAddress nvarchar(255),&#xD;&#xA;&#x9;@Response nvarchar(100) output&#xD;&#xA;AS" />
@@ -1793,6 +1812,530 @@ END]]></Value>
 				<Property Name="HeaderContents" Value="--Creates user and adds random salt to password.&#xD;&#xA;&#xD;&#xA;CREATE PROCEDURE [dbo].[spUpdateUser]&#xD;&#xA;&#x9;@Id uniqueidentifier,&#xD;&#xA;&#x9;@Username nvarchar(40),&#xD;&#xA;&#x9;@Password nvarchar(24),&#xD;&#xA;&#x9;@FirstName nvarchar(50),&#xD;&#xA;&#x9;@MiddleInitial nvarchar(2),&#xD;&#xA;&#x9;@LastName nvarchar(50),&#xD;&#xA;&#x9;@Zip int,&#xD;&#xA;&#x9;@Address nvarchar(50),&#xD;&#xA;&#x9;@City nvarchar(50),&#xD;&#xA;&#x9;@State nvarchar(2),&#xD;&#xA;&#x9;@IsAddressPrivate bit,&#xD;&#xA;&#x9;@EmailAddress nvarchar(255),&#xD;&#xA;&#x9;@Response nvarchar(100) output&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spUpdateUserWithImage]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON
+
+	IF EXISTS (SELECT * FROM [dbo].[tblUser] WHERE Username = @Username AND Id != @Id)
+	BEGIN
+		SET @Response='Username is taken.'
+	    RETURN 0
+	END
+	IF EXISTS (SELECT * from [dbo].[tblUser] WHERE EmailAddress = @EmailAddress AND Id != @Id)
+	BEGIN
+	    SET @Response='Email address already exists.  Only one user per email please.'
+	    RETURN 0
+	END
+
+    DECLARE @salt UNIQUEIDENTIFIER=NEWID()
+
+    BEGIN TRY
+		UPDATE [dbo].[tblUser] 
+		SET Username = @Username,
+			PasswordHash = HASHBYTES('SHA2_512', @Password+CAST(@salt AS NVARCHAR(36))),
+			PasswordSalt = @salt,
+			FirstName = @FirstName,
+			MiddleInitial = @MiddleInitial,
+			LastName = @LastName,
+			EmailAddress = @EmailAddress,
+			Zip = @Zip,
+			Address = @Address,
+			IsAddressPrivate = @IsAddressPrivate
+		WHERE Id = @Id;
+
+		IF NOT EXISTS(SELECT TOP 1 s.Id FROM tblState s WHERE s.StateName = @State)
+		    INSERT INTO [dbo].[tblState] (Id, StateName) VALUES (NewId(), @State)
+	
+		IF NOT EXISTS(SELECT TOP 1 c.Id FROM tblCity c WHERE c.Cityname = @City)
+		    INSERT INTO [dbo].[tblCity] (Id, CityName) VALUES (NewId(), @City)
+		
+		DECLARE @cityId UNIQUEIDENTIFIER = (SELECT c.Id FROM tblCity c WHERE c.CityName = @City);
+		DECLARE @stateId UNIQUEIDENTIFIER = (SELECT s.Id FROM tblState s WHERE s.StateName = @State);
+
+		IF NOT EXISTS (SELECT TOP 1 z.Id FROM tblZip z WHERE z.Id = @Zip)
+		    INSERT INTO [dbo].[tblZip] (Id, CityId, StateId) VALUES (@Zip, @cityId, @stateId)
+		
+		--Handle Image Changes
+		IF (SELECT UserImgId from tblUser where Id = @Id) IS NULL
+			BEGIN
+				INSERT INTO [dbo].[tblUserImg] (ImageName, ImageSize, ImageContent)
+				VALUES (@ImageName, @ImageSize, @ImageContent);
+				
+				UPDATE [dbo].[tblUser] SET UserImgId = SCOPE_IDENTITY() WHERE Id = @Id
+			END
+		ELSE
+			BEGIN
+				--first drop old image from database, then update data
+				DELETE FROM [dbo].[tblUserImg] WHERE Id = (SELECT UserImgId from tblUser where Id = @Id);
+
+				INSERT INTO [dbo].[tblUserImg] (ImageName, ImageSize, ImageContent)
+				VALUES (@ImageName, @ImageSize, @ImageContent);
+				
+				UPDATE [dbo].[tblUser] SET UserImgId = SCOPE_IDENTITY() WHERE Id = @Id
+			END
+        SET @Response='Successfully updated user!'
+		RETURN 1
+    END TRY
+    BEGIN CATCH
+        SET @Response=ERROR_MESSAGE() 
+		RETURN 0
+    END CATCH
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblCity]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblCity].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblCity].[CityName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@City]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblState]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblState].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblState].[StateName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@State]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@Response]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[EmailAddress]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@EmailAddress]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[PasswordHash]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@Password]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[PasswordSalt]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[MiddleInitial]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@MiddleInitial]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[EmailAddress]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Zip]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@Zip]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Address]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@Address]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[IsAddressPrivate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@IsAddressPrivate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblState].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblState].[StateName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblCity].[CityName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblCity].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblCity].[CityName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblZip]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblZip].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblZip].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblZip].[CityId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblZip].[StateId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[UserImgId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserImg]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserImg].[ImageName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserImg].[ImageSize]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserImg].[ImageContent]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@ImageName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@ImageSize]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateUserWithImage].[@ImageContent]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[UserImgId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserImg].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[UserImgId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@Id]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@Username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@Password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="24" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@FirstName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@MiddleInitial]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@LastName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@Zip]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@Address]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@City]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@State]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@IsAddressPrivate]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@EmailAddress]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@ImageName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@ImageSize]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="6" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@ImageContent]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varbinary]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateUserWithImage].[@Response]">
+						<Property Name="IsOutput" Value="True" />
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="52" />
+				<Property Name="Length" Value="2891" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="--Creates user and adds random salt to password.&#xD;&#xA;&#xD;&#xA;CREATE PROCEDURE [dbo].[spUpdateUserWithImage]&#xD;&#xA;&#x9;@Id uniqueidentifier,&#xD;&#xA;&#x9;@Username nvarchar(40),&#xD;&#xA;&#x9;@Password nvarchar(24),&#xD;&#xA;&#x9;@FirstName nvarchar(50),&#xD;&#xA;&#x9;@MiddleInitial nvarchar(2),&#xD;&#xA;&#x9;@LastName nvarchar(50),&#xD;&#xA;&#x9;@Zip int,&#xD;&#xA;&#x9;@Address nvarchar(50),&#xD;&#xA;&#x9;@City nvarchar(50),&#xD;&#xA;&#x9;@State nvarchar(2),&#xD;&#xA;&#x9;@IsAddressPrivate bit,&#xD;&#xA;&#x9;@EmailAddress nvarchar(255),&#xD;&#xA;&#x9;@ImageName nvarchar(255),&#xD;&#xA;&#x9;@ImageSize nvarchar(6),&#xD;&#xA;&#x9;@ImageContent varbinary(MAX),&#xD;&#xA;&#x9;@Response nvarchar(100) output&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[tblCity]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -2695,13 +3238,13 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblUser].[UserImg]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblUser].[UserImgId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[image]" />
+											<References ExternalSource="BuiltIns" Name="[int]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2795,6 +3338,86 @@ END]]></Value>
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[tblUserImg]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblUserImg].[Id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Property Name="IdentitySeed" Value="0" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="17" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblUserImg].[ImageName]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblUserImg].[ImageSize]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="6" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblUserImg].[ImageContent]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varbinary]" />
 										</Entry>
 									</Relationship>
 								</Element>

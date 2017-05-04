@@ -65,22 +65,6 @@
       <Column Name="InviteStatusId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.tblUser" Member="tblUsers">
-    <Type Name="tblUser">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="PasswordHash" Type="System.Data.Linq.Binary" DbType="Binary(64) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="PasswordSalt" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="MiddleInitial" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="IsAddressPrivate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="UserImg" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblUserContact" Member="tblUserContacts">
     <Type Name="tblUserContact">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -103,27 +87,36 @@
       <Column Name="EventTimeStamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblUser" Member="tblUsers">
+    <Type Name="tblUser">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.Data.Linq.Binary" DbType="Binary(64) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="PasswordSalt" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleInitial" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsAddressPrivate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserImgId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUserImg" Member="tblUserImgs">
+    <Type Name="tblUserImg">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ImageName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageSize" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageContent" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
   <Function Name="dbo.spDoLogin" Method="spDoLogin">
     <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(50)" />
     <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(24)" />
     <ElementType Name="spDoLoginResult">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.spCreateUser" Method="spCreateUser">
-    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(40)" />
-    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(24)" />
-    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="MiddleInitial" Parameter="middleInitial" Type="System.String" DbType="NVarChar(2)" />
-    <Parameter Name="Lastname" Parameter="lastname" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Zip" Parameter="zip" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="City" Parameter="city" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="State" Parameter="state" Type="System.String" DbType="NVarChar(2)" />
-    <Parameter Name="IsAddressPrivate" Parameter="isAddressPrivate" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="EmailAddress" Parameter="emailAddress" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="Response" Parameter="response" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
-    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.spUpdateUser" Method="spUpdateUser">
     <Parameter Name="Id" Parameter="id" Type="System.Guid" DbType="UniqueIdentifier" />
@@ -211,5 +204,39 @@
       <Column Name="EventTimeStamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="OwnerFullName" Type="System.String" DbType="NVarChar(105)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.spCreateUser" Method="spCreateUser">
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(40)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(24)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MiddleInitial" Parameter="middleInitial" Type="System.String" DbType="NVarChar(2)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Zip" Parameter="zip" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="City" Parameter="city" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="State" Parameter="state" Type="System.String" DbType="NVarChar(2)" />
+    <Parameter Name="IsAddressPrivate" Parameter="isAddressPrivate" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="EmailAddress" Parameter="emailAddress" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Response" Parameter="response" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spUpdateUserWithImage" Method="spUpdateUserWithImage">
+    <Parameter Name="Id" Parameter="id" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(40)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(24)" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MiddleInitial" Parameter="middleInitial" Type="System.String" DbType="NVarChar(2)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Zip" Parameter="zip" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="City" Parameter="city" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="State" Parameter="state" Type="System.String" DbType="NVarChar(2)" />
+    <Parameter Name="IsAddressPrivate" Parameter="isAddressPrivate" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="EmailAddress" Parameter="emailAddress" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ImageName" Parameter="imageName" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ImageSize" Parameter="imageSize" Type="System.String" DbType="NVarChar(6)" />
+    <Parameter Name="ImageContent" Parameter="imageContent" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" />
+    <Parameter Name="Response" Parameter="response" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

@@ -28,4 +28,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="InviteStatusId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="fed7cd80-d1fb-4264-b5fa-724e52bf9560" ChangeDateTime="05/04/2017 09:33:26" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[tblUser].[UserImg]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblUser]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserImgId" />
+  </Operation>
 </Operations>

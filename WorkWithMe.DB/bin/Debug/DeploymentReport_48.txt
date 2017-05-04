@@ -1,0 +1,28 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[tblUser]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[tblUser] (Default Constraint)
+     Table rebuild
+       [dbo].[tblUser] (Table)
+     Create
+       [dbo].[tblUserImg] (Table)
+     Alter
+       [dbo].[spCreateUser] (Procedure)
+
+** Supporting actions
+     Refresh
+       [dbo].[spDoLogin] (Procedure)
+       [dbo].[spGetOffsetPostsForUser] (Procedure)
+       [dbo].[spGetPostsForUser] (Procedure)
+       [dbo].[spGetRepliesForPost] (Procedure)
+       [dbo].[spSearchUser] (Procedure)
+       [dbo].[spUpdateUser] (Procedure)

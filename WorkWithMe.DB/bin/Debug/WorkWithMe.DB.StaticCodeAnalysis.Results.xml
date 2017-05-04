@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Problems>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0001</Rule>
+    <ProblemDescription>The shape of the result set produced by a SELECT * statement will change if the underlying table or view structure changes.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetRepliesForPost.sql</SourceFile>
+    <Line>4</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0007</Rule>
+    <ProblemDescription>Nullable columns can cause final results to be evaluated as NULL for the predicate.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetRepliesForPost.sql</SourceFile>
+    <Line>9</Line>
+    <Column>8</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0001</Rule>
+    <ProblemDescription>The shape of the result set produced by a SELECT * statement will change if the underlying table or view structure changes.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetOffsetPostsForUser.sql</SourceFile>
+    <Line>5</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0001</Rule>
+    <ProblemDescription>The shape of the result set produced by a SELECT * statement will change if the underlying table or view structure changes.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetOffsetPostsForUser.sql</SourceFile>
+    <Line>12</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0001</Rule>
+    <ProblemDescription>The shape of the result set produced by a SELECT * statement will change if the underlying table or view structure changes.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetOffsetPostsForUser.sql</SourceFile>
+    <Line>22</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0004</Rule>
+    <ProblemDescription>A column without an index that is used as an IN predicate test expression might degrade performance.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetOffsetPostsForUser.sql</SourceFile>
+    <Line>17</Line>
+    <Column>8</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0004</Rule>
+    <ProblemDescription>A column without an index that is used as an IN predicate test expression might degrade performance.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetOffsetPostsForUser.sql</SourceFile>
+    <Line>27</Line>
+    <Column>8</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0009</Rule>
+    <ProblemDescription>Avoid NVARCHAR of only 2 elements.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spUpdateUser.sql</SourceFile>
+    <Line>8</Line>
+    <Column>17</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0009</Rule>
+    <ProblemDescription>Avoid NVARCHAR of only 2 elements.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spUpdateUser.sql</SourceFile>
+    <Line>13</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0001</Rule>
+    <ProblemDescription>The shape of the result set produced by a SELECT * statement will change if the underlying table or view structure changes.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetPostsForUser.sql</SourceFile>
+    <Line>4</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0001</Rule>
+    <ProblemDescription>The shape of the result set produced by a SELECT * statement will change if the underlying table or view structure changes.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetPostsForUser.sql</SourceFile>
+    <Line>11</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0001</Rule>
+    <ProblemDescription>The shape of the result set produced by a SELECT * statement will change if the underlying table or view structure changes.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetPostsForUser.sql</SourceFile>
+    <Line>21</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0004</Rule>
+    <ProblemDescription>A column without an index that is used as an IN predicate test expression might degrade performance.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetPostsForUser.sql</SourceFile>
+    <Line>16</Line>
+    <Column>8</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0004</Rule>
+    <ProblemDescription>A column without an index that is used as an IN predicate test expression might degrade performance.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spGetPostsForUser.sql</SourceFile>
+    <Line>26</Line>
+    <Column>8</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0009</Rule>
+    <ProblemDescription>Avoid NVARCHAR of only 2 elements.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spCreateUser.sql</SourceFile>
+    <Line>7</Line>
+    <Column>17</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0009</Rule>
+    <ProblemDescription>Avoid NVARCHAR of only 2 elements.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\spCreateUser.sql</SourceFile>
+    <Line>12</Line>
+    <Column>9</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0009</Rule>
+    <ProblemDescription>Avoid NVARCHAR of only 2 elements.</ProblemDescription>
+    <SourceFile>C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.DB\tblUser.sql</SourceFile>
+    <Line>8</Line>
+    <Column>21</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+</Problems>

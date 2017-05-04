@@ -33,7 +33,7 @@ BEGIN
 
     BEGIN TRY
 	
-        INSERT INTO [dbo].[tblUser] (Id, Username, PasswordHash, PasswordSalt, FirstName, MiddleInitial, LastName, EmailAddress, Zip, Address, IsAddressPrivate, UserImg)
+        INSERT INTO [dbo].[tblUser] (Id, Username, PasswordHash, PasswordSalt, FirstName, MiddleInitial, LastName, EmailAddress, Zip, Address, IsAddressPrivate, UserImgId)
         VALUES(NewId(), @Username, HASHBYTES('SHA2_512', @Password+CAST(@salt AS NVARCHAR(36))), @salt, @FirstName, @MiddleInitial, @LastName, @EmailAddress, @Zip, @Address, @IsAddressPrivate, null);
 		
 		IF NOT EXISTS(SELECT TOP 1 s.Id FROM tblState s WHERE s.StateName = @State)
