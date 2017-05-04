@@ -4,7 +4,6 @@ session_start();
 if (isset($_POST["btnUpdate"]))
 {
     try {
-
         $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
         if ($_FILES['inputImage']['size'] != 0)
         {
@@ -13,10 +12,7 @@ if (isset($_POST["btnUpdate"]))
             $fileSize = $_FILES['inputImage']['size'];
             $fileType = $_FILES['inputImage']['type'];
 
-            $fp      = fopen($tmpName, 'r');
-            $content = fread($fp, filesize($tmpName));
-            $content = addslashes($content);
-            fclose($fp);
+            $fileContent = file_get_contents($_FILES['inputImage']['tmp_name']);
 
             if(!get_magic_quotes_gpc())
             {
@@ -24,15 +20,30 @@ if (isset($_POST["btnUpdate"]))
             }
 
             //run query
-            $retval = $client->UpdateUser(array('id'=>$_SESSION["UserId"],'username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
+            $retval = $client->UpdateUserWithImage(array('id'=>$_SESSION["UserId"],'username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"],
                 'firstName'=>$_POST["txtFName"],'middleInitial'=>$_POST["txtMI"],
                 'lastName'=>$_POST["txtLName"],'zip'=>$_POST["txtZip"],
                 'address'=>$_POST["txtAddress"],'city'=>$_POST["txtCity"],
                 'state'=>$_POST["lstState"],'isAddressPrivate'=>isset($_POST["chkAddressPrivate"]),
-                'email'=>$_POST["txtEmail"]),$fileName,$fileSize,$fileContent);
+                'email'=>$_POST["txtEmail"],'imageName'=>$fileName,'imageSize'=>$fileSize,'imageContent'=>$fileContent));
 
-            //file uploaded
-            echo '<img src="' . $tmpName . '">';
+            if ($retval->UpdateUserWithImageResult) //true if update succeeded
+            {
+                $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
+                $_SESSION["Username"] = $_POST["txtUsername"];
+                $_SESSION["FirstName"] = $_POST["txtFName"];
+                $_SESSION["MiddleInitial"] = $_POST["txtMI"];
+                $_SESSION["LastName"] = $_POST["txtLName"];
+                $_SESSION["Zip"] = $_POST["txtZip"];
+                $_SESSION["Address"] = $_POST["txtAddress"];
+                $_SESSION["Email"] = $_POST["txtEmail"];
+                $_SESSION["IsAddressPrivate"] = isset($_POST["chkAddressPrivate"]);
+                $_SESSION["State"] = $_POST["lstState"];
+                $_SESSION["City"] = $_POST["txtCity"];
+                //probably should store image id in session too
+                $_SESSION["Status"] = "Successfully updated user info.";
+                $_SESSION["GoodStatus"] = true;
+            }
         }
         else
         {
@@ -58,13 +69,8 @@ if (isset($_POST["btnUpdate"]))
                 $_SESSION["City"] = $_POST["txtCity"];
                 $_SESSION["Status"] = "Successfully updated user info.";
                 $_SESSION["GoodStatus"] = true;
-
             }
         }
-
-
-
-
     } catch (SoapFault $exception)
     {
         //DoLogin returns null when the login fails

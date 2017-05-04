@@ -25,11 +25,19 @@ namespace WorkWithMe.SL
         public bool UpdateUser(string id, string username, string password, string firstName, string middleInitial, string lastName,
                                int? zip, string address, string city, string state, bool isAddressPrivate, string email, ref string response)
         {
-            CUser user = new CUser(Guid.Parse(id), username, firstName, middleInitial, lastName, zip, address, isAddressPrivate, email);
+            CUser user = new CUser(Guid.Parse(id), username, firstName, middleInitial, lastName, zip, address, isAddressPrivate, email, null);
 
             return user.Update(password, city, state, ref response);
         }
         
+        public bool UpdateUserWithImage(string id, string username, string password, string firstName, string middleInitial, string lastName,
+                               int? zip, string address, string city, string state, bool isAddressPrivate, string email, string imageName, string imageSize, byte[] imageContent, ref string response)
+        {
+            CUser user = new CUser(Guid.Parse(id), username, firstName, middleInitial, lastName, zip, address, isAddressPrivate, email, null);
+
+            return user.Update(password, city, state, ref response, imageName, imageSize, imageContent);
+        }
+
         public CUser DoLogin(string username, string password)
         {
             CUser user = new CUser();

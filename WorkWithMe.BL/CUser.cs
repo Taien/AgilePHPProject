@@ -18,6 +18,7 @@ namespace WorkWithMe.BL
         public string Address { get; set; }
         public bool IsAddressPrivate { get; set; }
         public string Email { get; set; }
+        public int? UserImgId { get; set; }
 
         // public SomeKindOfImage Image { get; set; }
 
@@ -32,7 +33,7 @@ namespace WorkWithMe.BL
         }
 
         public CUser(Guid id, string username, string firstName, string middleInitial, string lastName,
-                     int? zip, string address, bool isAddressPrivate, string email/*, SomeKindOfImage image*/)
+                     int? zip, string address, bool isAddressPrivate, string email, int? userImgId)
         {
             Id = id;
             Username = username;
@@ -43,10 +44,11 @@ namespace WorkWithMe.BL
             Address = address;
             IsAddressPrivate = isAddressPrivate;
             Email = email;
+            UserImgId = userImgId;
         }
 
         public CUser(string username, string firstName, string middleInitial, string lastName,
-                     int? zip, string address, bool isAddressPrivate, string email/*, SomeKindOfImage image*/)
+                     int? zip, string address, bool isAddressPrivate, string email)
         {
             Username = username;
             FirstName = firstName;
@@ -94,6 +96,7 @@ namespace WorkWithMe.BL
                     Address = user.Address;
                     IsAddressPrivate = user.IsAddressPrivate;
                     Email = user.EmailAddress;
+                    UserImgId = user.UserImgId;
                     return true;
                 }
                 else return false;
@@ -106,6 +109,20 @@ namespace WorkWithMe.BL
             {
                 if (oDC.spUpdateUser(Id, Username, password, FirstName, MiddleInitial, LastName, Zip, Address, city, state, IsAddressPrivate, Email, ref response) == 0) return false;
                 else return true;
+            }
+        }
+
+        public bool Update(string password, string city, string state, ref string response, string imageName, string imageSize, byte[] imageContent)
+        {
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                if (oDC.spUpdateUserWithImage(Id, Username, password, FirstName, MiddleInitial, LastName, Zip, Address, city, state, IsAddressPrivate, Email, imageName, imageSize, imageContent, ref response) == 0) return false;
+                else
+                {
+                    tblUser user = (from u in oDC.tblUsers where u.Id == Id select u).FirstOrDefault();
+                    UserImgId = user.UserImgId;
+                    return true;
+                }
             }
         }
 
@@ -132,6 +149,7 @@ namespace WorkWithMe.BL
                 Zip = user.Zip;
                 Address = user.Address;
                 IsAddressPrivate = user.IsAddressPrivate;
+                UserImgId = user.UserImgId;
             }
         }
         
@@ -145,7 +163,7 @@ namespace WorkWithMe.BL
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
                 List<tblUser> users = (from u in oDC.tblUsers select u).ToList();
-                foreach (tblUser user in users) Add(new CUser(user.Id, user.Username, user.FirstName, user.MiddleInitial, user.LastName, user.Zip, user.Address, user.IsAddressPrivate, user.EmailAddress));
+                foreach (tblUser user in users) Add(new CUser(user.Id, user.Username, user.FirstName, user.MiddleInitial, user.LastName, user.Zip, user.Address, user.IsAddressPrivate, user.EmailAddress, user.UserImgId));
             }
         }
 
