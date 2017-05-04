@@ -26,6 +26,33 @@ if (isset($_POST["btnUpdate"]))
             $_SESSION["City"] = $_POST["txtCity"];
             $_SESSION["Status"] = "Successfully updated user info.";
             $_SESSION["GoodStatus"] = true;
+            if ($_FILES['inputImage']['size'] != 0)
+            {
+                $fileName = $_FILES['inputImage']['name'];
+                $tmpName  = $_FILES['inputImage']['tmp_name'];
+                $fileSize = $_FILES['inputImage']['size'];
+                $fileType = $_FILES['inputImage']['type'];
+
+                $fp      = fopen($tmpName, 'r');
+                $content = fread($fp, filesize($tmpName));
+                $content = addslashes($content);
+                fclose($fp);
+
+                if(!get_magic_quotes_gpc())
+                {
+                    $fileName = addslashes($fileName);
+                }
+
+                //need db connection stuff here
+
+                $query = "INSERT INTO tblUserImg (ImageName, ImageSize, ImageContent ) ".
+                    "VALUES ('$fileName', '$fileSize', '$content')";
+
+                //run query
+
+                //file uploaded
+                echo '<img src="' . $tmpName . '">';
+            }
         }
 
     } catch (SoapFault $exception)
@@ -71,7 +98,7 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
 <nav><?php include './includes/nav.php' ?></nav>
 <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <main>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data" >
 
         <fieldset>
             <legend>Update Your Information</legend><br />
@@ -88,6 +115,9 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
             <label for="Email">E-mail:</label>
             <input type="email" id="txtEmail" name="txtEmail" placeholder="e-mail" required value="<?=$_SESSION["Email"]?>"><br />
 
+            <label for="inputImage">Profile Image:</label>
+            <input type="hidden" name="MAX_FILE_SIZE" value="102400">
+            <input type="file" name="inputImage" id="inputImage" accept=".jpg">
         </fieldset>
 
         <fieldset>
