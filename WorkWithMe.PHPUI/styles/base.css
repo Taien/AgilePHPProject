@@ -1,4 +1,4 @@
-* { /* CSS reset */
+* {             /* CSS reset */
 	margin: 0;
 	padding: 0;
 }
@@ -9,12 +9,12 @@ article, aside, figure, footer, header, nav, section {
 	padding: 0;
 }
 
-/* Header - Title and horizontal link bar */
-header{
+header{     /* Header - Title and horizontal link bar */
     width: 100%;
     height: 120px;
     font-family: Georgia;
     background-color: lightsteelblue;
+    position: relative;
 }
 
 #errorpane{
@@ -27,13 +27,13 @@ header{
     color: white;
 }
 
-header img{
+header img {
     float: left;
     width: 13%;
     height: 100%;
 }
 
-header h1{
+header h1 {
     margin-left: 10px;
     margin-top: 25px;
     float: left;
@@ -46,52 +46,78 @@ header ul {
 }
 
 #log {
-    width: 50%;
+    width: 48%;
     height: 120px;
+    margin-right: 10px;
     display: block;
     float: right;
 }
 
-header li{
+header li {
     display: inline;
-    margin: 5px;
-    width: 45%;
-    height: 30px;
+    width: 40%;
+    height: 40%;
     text-align: center;
 }
 
-header li a{
+header li a {
     text-decoration: none;
     display: block;
-    width: 45%;
+    width: 18%;
+    height: 25%;
     color: black;
+    padding: 3.8px;
+    background-color: darkcyan;
+    float: right;
+    font-weight: bold;
+    position: absolute;
+    top: 80px;
+    left: 300px;
+    max-width: 150px;
+}
+
+header li input {
+    width: 45%;
+    font-weight: bold;
+    margin: 15px 10px 5px 0;
+}
+          
+#btnLogin, #btnLogout {         /* login and logout buttons (header) */
+    text-align: center;
     font-weight: bold;
     letter-spacing: 2px;
-    padding: 4px;
-    background-color: darkcyan;
-    margin: 5px;
 }
 
-header li input{
-    border: 1px solid lightgray;
-    width: 45%;
+#btnLogout {
+    margin: 35px 10px 35px 0px;
+    float: right;
+    width: 35%;
+    min-width: 80px;
 }
 
-/* login and logout buttons (header) */
-#btnLogin, #btnLogout {
-    text-align: center;
-}
-
-header li input:focus{
+header li input:focus {
     background-color: #DDDDFF;
 }
 
-header li input:hover{
+header li input:hover {
     background-color: #DDDDFF;
 }
 
-/* Make placeholder text italic */
-::-webkit-input-placeholder {
+#name {         /* the 2 messages at the top */ 
+    position: absolute;
+    top: 120px;
+    left: 5px;
+}
+
+#errorText {        
+    color: #FF0000;
+    text-align: right;
+    position: absolute;
+    top: 120px;
+    right: 5px;
+}
+
+::-webkit-input-placeholder {   /* Make placeholder text italic */
     font-style: italic;
 }
 :-moz-placeholder {
@@ -103,15 +129,14 @@ header li input:hover{
 :-ms-input-placeholder {
     font-style: italic;
 }
-
-/* Nav Bar - Left Side Vertical Links */
-nav {
+        
+nav {               /* NAV BAR - Left Side Vertical Links */
     width: 18%;
     float: left;
     margin: 10px 0 0 10px;
 }
 
-nav ul{
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -120,73 +145,34 @@ nav ul{
     border: 2px solid #555555;
 }
 
-nav li{
+nav li {
     text-align: left;
     padding: 4px 4px;
     border-bottom: 2px solid #D3D3D3;
 }
 
-nav ul a{
+nav ul a {
     display: block;
     color: black;
     text-decoration: none;
 }
 
-nav li:last-child{
+nav li:last-child {
     border-bottom: 0;
 }
 
-nav li a:hover{
+nav li a:hover {
     background-color: black;
     color: #88DDFF;
 }
-
-main{
-    width: 60%;
-    float: left;
-    margin-top: 10px;
-    font-size: large;
-    text-align: center;
-    background-color: #C0D4EE;
-}
-
-main ul{
-    list-style: none;
-    float: left;
-}
-
-
-main p{
-    margin: 0 20px;
-}
-
-main form {
-    width: 96%;
-    margin: 0 auto;
-    font-family: Verdana, sans-serif;
-    text-align: left;
-}
-
-main label{
-    width: 40%;
-    display: block;
-    float: left;
-    text-align: right;
-    padding-right: 20px;
-}
-
-main input{
-    width: 40%;
-}
-
-/* Right side nav panel (not used yet) */
-#rightNav{
+            
+#rightNav {          /* Right side NAV panel (not used yet) */
     width: 18%;
     float: right;
     margin: 10px 10px 0 0;
 }
 
-#rightNav ul{
+#rightNav ul {
     list-style-type: none;
     width: 95%;
     float: right;
@@ -194,7 +180,7 @@ main input{
     border: 2px solid #555555;
 }
 
-#rightNav ul a{
+#rightNav ul a {
     display: block;
     color: #000000;
     padding: 8px 0 8px 0;
@@ -208,43 +194,77 @@ main input{
     color: #444444;
     font-style: italic;
 }
-/* Signup page italic text */
-#safetyWarningText{
+
+#safetyWarningText {        /* Signup page italic text */
     text-align: center;
     font-style: italic;
     font-size: 12px;
 }
 
-/* index page intro text */
-#introText{
+main {                       /* MAIN */
+    width: 60%;
+    float: left;
+    font-size: large;
+    text-align: center;
+    background-color: #C0D4EE;
+    margin: 15px auto;
+    padding: 5px;
+}
+
+main ul {
+    list-style: none;
+    float: left;
+}
+
+main p {
+    margin: 0px 20px;
+}
+
+main form {
+    width: 60%;
+    margin: 0 auto;
+    font-family: Verdana, sans-serif;
     text-align: left;
-    text-style: italic;
+}
+
+main label {
+    width: 40%;
+    display: block;
+    float: left;
+    text-align: right;
+    padding-right: 20px;
+}
+
+main input {
+    width: 40%;
+}
+
+hr {
+    padding: 0;
+    margin: 0;
+}
+
+#introText{     /* index page intro text */
+    text-align: left;
+    font-style: italic;
     font-size: 24px;
 }
 
-/* Sign-up page submit buttons */
-#buttons ul{
+#buttons ul {       /* Signup page submit buttons */
     width: 93%;
     padding: 0 20px;
     text-align: center;
+    margin-bottom: 5px;
  }
 
 #buttons li{
     display: inline;
     width: 25%;
-    padding: 0 5px;
+    padding: 0px 5px;
 }
 
-#errorText{
-    color: #FF0000;
-    float: right;
-    text-align: center;
-    font-size: 16px;
-    font-style: oblique;
-    width: 100%;
-    background-color: #FFDDDD;
-    border: 1px solid;
-    display: block;
+#chkAddressPrivate {
+    width: auto;
 }
 
 #statusText{
@@ -259,18 +279,15 @@ main input{
     display: block;
 }
 
-#chkAddressPrivate {
-    width: auto;
-}
-
 #postForm {
     width: 95%;
+    margin: 10px auto;
 }
 
 #btnPost {
-    width: 18%;
+    width: 19%;
     float: right;
-    margin: 27px 0;
+    margin: 27px 3px 27px 3px;
     height: 40px;
 }
 
@@ -288,7 +305,7 @@ textarea { /*  used with the message posting in index */
     font-family: "Calibri";
 }
 
-#message h3{
+#message h3 {
     padding: 0;
     margin: 0;
     display: inline;
@@ -299,7 +316,7 @@ textarea { /*  used with the message posting in index */
     margin: 0;
 }
 
-#timestampInfo{
+#timestampInfo {
     font-size: 12px;
     padding: 0;
 }
@@ -348,9 +365,9 @@ textarea { /*  used with the message posting in index */
     height: 30px;
 }
 
-footer{              /* footer */
+footer {              /* footer */
     width: 100%;
-    height: 4em;
+    height: auto;
     clear: both;
     font-size: small;
     font-weight: bold;
@@ -359,69 +376,111 @@ footer{              /* footer */
     background-color: lightsteelblue;
 }
 
-footer h3 {
+footer h5 {
     margin: 0 auto;
     color: black;
 }
 
-/* carousel stuff */
-div #caro {
+#caro {     /* carousel stuff */
     margin: 0 auto;
     max-width: 550px;
+    width: 55%;
 }
 
 .slide {
-    height: 50%;
-    
-    margin: 0 auto;
+   width: 100%;
 }
 
 .caption {
     margin-left: .5em;
     padding-top: 1em;
 }
-                                /* MEDIA QUERIES */
-/*smartphone*/
-@media only screen and (max-width: 767px) {
-/* header stuff */
-header img {
-    width: 30%;
-}
+                                /* MEDIA QUERIES    MEDIA QUERIES */
 
-header h1 {
-    display: none;    
-}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {     /*laptop*/
+
     
-#log {
-    width: 68%;
-}    
-
-header li input, header li a {
-    width: 80%;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {      /*TABLET*/
+
+    header h1{    
+        width: 20%;
+    }
+
+    #log {
+        width: 50%;
+        height: 120px;
+    }
+
+    header li input, header li a {
+        width: 70%;
+        margin: 1px 15px 1px 0;
+        float: right;
+    }
+
+    header li a {
+        position: static;
+        max-width: none;
+    }
     
-   
+    nav, #rightNav {        /* NAV's */
+        width: 46%;
+        margin: 5px 2px;
+    }
+
+    main {      /* main sections */
+        width: 98%;
+        clear: both;
+        margin: 5px auto;
+    }
     
-/* main sections */
-main {
-	width: 98%;
-    clear: both;
 }
 
-nav, #rightNav {
-    width: 25%;
-    float: left;
-}
+@media only screen and (max-width: 767px) {      /*SMARTPHONE*/
+    
+    header img {        /* header stuff */
+        width: 27%;
+    }
 
-}
+    header h1 {
+        display: none;    
+    }
 
-/*tablet*/
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+    #log {
+        width: 68%;
+    }    
 
-}
+    header li input, header li a {
+        width: 98%;
+        height: 23%;
+        margin: 1px auto;
+    }
 
-/*laptop*/
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    header li a {
+        margin-right: 5px;
+        position: static;
+        max-width: none;
+    }
 
+    #errorText {
+        display: none;
+    }
 
+    main {      /* main sections */
+        width: 98%;
+        clear: both;
+        margin: 5px auto;
+    }
+
+    nav, #rightNav {        /* NAV's */
+        width: 47%;
+        margin: 5px 2px;
+    }
+
+    footer h5 {
+        width: 98%; 
+    }    
+    
 }

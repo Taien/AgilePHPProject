@@ -21,10 +21,11 @@ if (!isset($_SESSION["UserId"])) //send user back to index if not logged in
 <?php include './includes/header.php' ?>
 <hr/>
 <nav><?php include './includes/nav.php' ?></nav>
+<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
 <main>
 
 </main>
-<div id="rightNav"><?php include './includes/rightnav.php' ?></div>
+
 <footer><?php include './includes/footer.php' ?></footer>
 </body>
 </html>

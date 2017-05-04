@@ -17,7 +17,7 @@
                     <label for="memberList">Member ID/Email:</label>
                     <input type="text" id="addMember" name="addMember" placeholder="member's user ID or email address" required><br /><br />
 
-                    <input type="button" class="button" id="AddMember" name="AddMember" value="Add a Member"> <! -- adds user to database -->
+                    <input type="button" class="button" id="AddMember" name="AddMember" value="Add a Member"> <!-- adds user to database -->
                 </fieldset><br />
             </form>
         </main>

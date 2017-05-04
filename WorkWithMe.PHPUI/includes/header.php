@@ -5,7 +5,7 @@
 if (isset($_SESSION["UserId"]))
 {
     echo '<form method="post" action="./index.php"><div id="log"><ul>
-              <li>Logged in as ' . $_SESSION["FirstName"] . ' ' . $_SESSION["MiddleInitial"] . '. ' . $_SESSION["LastName"] . '</li>
+              <li id="name">Logged in as ' . $_SESSION["FirstName"] . ' ' . $_SESSION["MiddleInitial"] . '. ' . $_SESSION["LastName"] . '</li>
               <li><input type="submit" id="btnLogout" name="btnLogout" value="Logout"></li>
               </ul></div></form>';
 }
