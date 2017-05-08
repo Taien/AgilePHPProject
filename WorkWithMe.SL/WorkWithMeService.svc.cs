@@ -45,6 +45,12 @@ namespace WorkWithMe.SL
             else return null;
         }
 
+        public bool DeleteUser(string username, string password)
+        {
+            CUser user = new CUser();
+            return (user.Delete(username, password));
+        }
+
         public bool CreatePost(string posterId, string targetGroupId, string replyPostId, string title, string content, bool isSticky, DateTime? eventTimeStamp)
         {
             CPost post = new CPost(Guid.Parse(posterId), targetGroupId == null ? Guid.Empty : Guid.Parse(targetGroupId), replyPostId == null ? Guid.Empty : Guid.Parse(replyPostId), title, content, isSticky, false, DateTime.Now, eventTimeStamp);

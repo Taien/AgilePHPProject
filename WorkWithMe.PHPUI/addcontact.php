@@ -99,7 +99,7 @@ else if (isset($_POST["btnAddContact"])) {
                 echo '<form method="post">
                          <fieldset>
                              <legend>Add User To Contacts</legend><br />
-                             <label for="memberList">Member ID/Email:</label>
+                             <label for="txtUser">Member ID/Email:</label>
                              <input type="text" id="txtUser" name="txtUser" placeholder="member\'s user ID or email address" required><br /><br />
 
                              <input type="submit" id="btnSearch" name="btnSearch" value="Search for Users"> <! -- adds user to database -->

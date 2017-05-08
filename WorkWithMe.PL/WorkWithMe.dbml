@@ -245,4 +245,9 @@
       <Column Name="ImageContent" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.spDeleteUser" Method="spDeleteUser">
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(24)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

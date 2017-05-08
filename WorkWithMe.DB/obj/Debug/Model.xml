@@ -899,6 +899,171 @@ END]]></Value>
 				<Property Name="HeaderContents" Value="--Creates user and adds random salt to password.&#xD;&#xA;&#xD;&#xA;CREATE PROCEDURE [dbo].[spCreateUser]&#xD;&#xA;&#x9;@Username nvarchar(40),&#xD;&#xA;&#x9;@Password nvarchar(24),&#xD;&#xA;&#x9;@FirstName nvarchar(50),&#xD;&#xA;&#x9;@MiddleInitial nvarchar(2),&#xD;&#xA;&#x9;@LastName nvarchar(50),&#xD;&#xA;&#x9;@Zip int,&#xD;&#xA;&#x9;@Address nvarchar(50),&#xD;&#xA;&#x9;@City nvarchar(50),&#xD;&#xA;&#x9;@State nvarchar(2),&#xD;&#xA;&#x9;@IsAddressPrivate bit,&#xD;&#xA;&#x9;@EmailAddress nvarchar(255),&#xD;&#xA;&#x9;@Response nvarchar(100) output&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spDeleteUser]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+     SET NOCOUNT ON;
+	 IF EXISTS (SELECT * from [dbo].[tblUser] WHERE Username=@Username AND PasswordHash=HASHBYTES('SHA2_512', @Password+CAST(PasswordSalt AS NVARCHAR(36))))
+	 BEGIN
+		  DECLARE @UserId uniqueidentifier;
+		  DECLARE @UserImgId int;
+
+		  SET @UserId = (SELECT Id from [dbo].[tblUser] WHERE Username=@Username AND PasswordHash=HASHBYTES('SHA2_512', @Password+CAST(PasswordSalt AS NVARCHAR(36))));
+		  SET @UserImgId = (SELECT UserImgId from [dbo].[tblUser] WHERE Id = @UserId);
+
+		  DELETE FROM [dbo].[tblUser] WHERE Id=@UserId;
+
+		  DELETE FROM [dbo].[tblPost] WHERE ReplyPostId IN (SELECT Id FROM [dbo].[tblPost] WHERE OwnerUserId = @UserId);
+
+		  DELETE FROM [dbo].[tblPost] WHERE OwnerUserId = @UserId;
+
+		  DELETE FROM [dbo].[tblUserContact] WHERE OwnerUserId = @UserId OR TargetUserId = @UserId;
+
+		  DELETE FROM [dbo].[tblGroupUser] WHERE UserId = @UserId;
+
+		  DELETE FROM [dbo].[tblGroupInvite] WHERE OwnerUserId = @UserId OR TargetUserId = @UserId;
+		  
+		  IF (@UserImgId IS NOT NULL) DELETE FROM [dbo].[tblUserImg] where Id = @UserImgId;
+
+		  RETURN 1;
+	 END
+	 RETURN 0;
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spDeleteUser].[@Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[PasswordHash]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spDeleteUser].[@Password]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[PasswordSalt]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[UserImgId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblPost]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblPost].[ReplyPostId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblPost].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblPost].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblPost].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[TargetUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroupUser]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroupUser].[UserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroupInvite]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroupInvite].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroupInvite].[TargetUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserImg]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserImg].[Id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spDeleteUser].[@Username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spDeleteUser].[@Password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="24" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="1228" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spDeleteUser]&#xD;&#xA;&#x9;@Username nvarchar(50),&#xD;&#xA;&#x9;@Password nvarchar(24)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spDoLogin]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[

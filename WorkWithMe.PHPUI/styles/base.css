@@ -263,6 +263,23 @@ hr {
     padding: 0px 5px;
 }
 
+#deleteButton ul {       /* Signup page submit buttons */
+    width: 93%;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#deleteButton li{
+    display: inline;
+    width: 25%;
+    padding: 0px 5px;
+}
+
+#deleteButton input{
+    background-color: #FFBBBB;
+}
+
 #chkAddressPrivate {
     width: auto;
 }

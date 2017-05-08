@@ -126,14 +126,13 @@ namespace WorkWithMe.BL
             }
         }
 
-        public void Delete()
+        public bool Delete(string username, string password)
         {
             using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
             {
-                tblUser user = (from u in oDC.tblUsers where u.Id == Id select u).FirstOrDefault();
-
-                oDC.tblUsers.DeleteOnSubmit(user);
-                oDC.SubmitChanges();
+                int result = oDC.spDeleteUser(username, password);
+                if (result == 0) return false;
+                else return true;
             }
         }
 

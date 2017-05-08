@@ -248,11 +248,20 @@ if (isset($_SESSION["UserImgId"]))
                 <ul>
                     <li><input type="submit" class="button" id="btnUpdate" name="btnUpdate" value="Save My Updates"></li>
                     <li><input type="reset" class="button" id="btnClear" name="btnClear" value="Clear Form"></li>
-                    <li><input type="submit" class="button" id="btnDelete" name="btnDelete" value="Delete My Account"></li>
                 </ul>
             </div>
         </fieldset><br />
 
+    </form>
+    <form action="deleteaccount.php" method="post">
+        <div id="deleteButton">
+            <ul>
+                <li>
+                    <input type="hidden" id="txtUserId" name="txtUserId" value="<?=$_SESSION["UserId"]?>">
+                    <input type="submit" class="button" id="btnDelete" name="btnDelete" value="Delete My Account">
+                </li>
+            </ul>
+        </div>
     </form>
 </main>
 <footer><?php include './includes/footer.php' ?></footer>
