@@ -306,6 +306,9 @@ hr {
     float: right;
     margin: 27px 3px 27px 3px;
     height: 40px;
+    background-size: 100%;
+    background-image: url(../images/button.png);
+    background-position: center center;
 }
 
 textarea { /*  used with the message posting in index */

@@ -5,50 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36f4f56a-697d-48bd-a2f7-06a8c891af14" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.BL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/bin/Release/WorkWithMe.PL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.csprojResolveAssemblyReference.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/obj/Release/WorkWithMe.BL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/WorkWithMe.DB.dbmdl" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/WorkWithMe.DB.dbmdl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dacpac" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dacpac" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/bin/Debug/WorkWithMe.DB.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/WorkWithMe.DB.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/bin/Release/WorkWithMe.PL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/TempPE/WorkWithMe.designer.cs.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Debug/TempPE/WorkWithMe.designer.cs.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/TempPE/WorkWithMe.designer.cs.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/TempPE/WorkWithMe.designer.cs.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/obj/Release/WorkWithMe.PL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.BL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.PL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/bin/WorkWithMe.SL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.BL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.BL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.PL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.PL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.SL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/Package/PackageTmp/bin/WorkWithMe.SL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.csprojResolveAssemblyReference.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.dll" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.pdb" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/obj/Release/WorkWithMe.SL.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.BL/CUser.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.BL/CUser.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/WorkWithMe.DB.sqlproj" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/WorkWithMe.DB.sqlproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/Model.xml" afterPath="$PROJECT_DIR$/../WorkWithMe.DB/obj/Debug/Model.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/button.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addcontact.php" afterPath="$PROJECT_DIR$/addcontact.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deleteaccount.php" afterPath="$PROJECT_DIR$/deleteaccount.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/base.css" afterPath="$PROJECT_DIR$/styles/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/updateuser.php" afterPath="$PROJECT_DIR$/updateuser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.dbml" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.dbml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.designer.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.PL/WorkWithMe.designer.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/IWorkWithMeService.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/IWorkWithMeService.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WorkWithMe.SL/WorkWithMeService.svc.cs" afterPath="$PROJECT_DIR$/../WorkWithMe.SL/WorkWithMeService.svc.cs" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -126,11 +85,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/styles/base.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="278" column="13" lean-forward="false" selection-start-line="278" selection-start-column="13" selection-end-line="278" selection-end-column="13" />
+            <state relative-caret-position="230">
+              <caret line="311" column="1" lean-forward="true" selection-start-line="311" selection-start-column="1" selection-end-line="311" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -139,7 +98,7 @@
       <file leaf-file-name="contactinvite.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contactinvite.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-319">
+            <state relative-caret-position="1190">
               <caret line="70" column="6" lean-forward="false" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
               <folding>
                 <marker date="1493380280914" expanded="true" signature="3997:4868" ph="..." />
@@ -155,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/addcontact.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="15" selection-end-column="5" />
+              <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="15" selection-end-column="5" />
               <folding>
                 <marker date="1494227978829" expanded="true" signature="2265:2323" ph="..." />
                 <marker date="1494227978829" expanded="true" signature="3420:3839" ph="..." />
@@ -169,8 +128,8 @@
       <file leaf-file-name="signup.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/signup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="154" column="12" lean-forward="true" selection-start-line="154" selection-start-column="12" selection-end-line="158" selection-end-column="144" />
+            <state relative-caret-position="2618">
+              <caret line="154" column="12" lean-forward="false" selection-start-line="154" selection-start-column="12" selection-end-line="158" selection-end-column="144" />
               <folding />
             </state>
           </provider>
@@ -179,8 +138,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+            <state relative-caret-position="-850">
+              <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding>
                 <marker date="1494229147696" expanded="true" signature="3669:4047" ph="..." />
                 <marker date="1494229147696" expanded="true" signature="5039:5404" ph="..." />
@@ -200,7 +159,7 @@
       <file leaf-file-name="updateuser.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/updateuser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2061">
+            <state relative-caret-position="4352">
               <caret line="256" column="29" lean-forward="false" selection-start-line="256" selection-start-column="29" selection-end-line="256" selection-end-column="29" />
               <folding>
                 <marker date="1494227543242" expanded="true" signature="6707:6730" ph="data:" />
@@ -210,11 +169,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deleteaccount.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="deleteaccount.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deleteaccount.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="39" lean-forward="false" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+            <state relative-caret-position="510">
+              <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -270,12 +229,12 @@
         <option value="$PROJECT_DIR$/.user.ini" />
         <option value="$PROJECT_DIR$/updateuser.php" />
         <option value="$PROJECT_DIR$/updateuser.php" />
-        <option value="$PROJECT_DIR$/styles/base.css" />
-        <option value="$PROJECT_DIR$/styles/base.css" />
         <option value="$PROJECT_DIR$/addcontact.php" />
         <option value="$PROJECT_DIR$/addcontact.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/deleteaccount.php" />
+        <option value="$PROJECT_DIR$/styles/base.css" />
+        <option value="$PROJECT_DIR$/styles/base.css" />
       </list>
     </option>
   </component>
@@ -314,6 +273,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -370,7 +330,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -393,13 +352,14 @@
     <option name="SHOW_DIALOG" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\AgilePHPProject\WorkWithMe.PHPUI\images" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AgilePHPProject\WorkWithMe.PHPUI" />
       <recent name="C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.PHPUI" />
       <recent name="C:\Git Projects\AgilePHPProject\WorkWithMe.PHPUI" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.PHPUI\images" />
+      <recent name="D:\AgilePHPProject\WorkWithMe.PHPUI\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -536,11 +496,12 @@
       <workItem from="1493933443279" duration="3965000" />
       <workItem from="1494210579061" duration="3768000" />
       <workItem from="1494227191734" duration="2344000" />
+      <workItem from="1494231928625" duration="1404000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136173000" />
+    <option name="totallyTimeSpent" value="137577000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -558,9 +519,9 @@
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14114584" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.54375" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.54583335" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14926931" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.45625" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.45416668" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1042,17 +1003,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="278" column="13" lean-forward="false" selection-start-line="278" selection-start-column="13" selection-end-line="278" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contactinvite.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-319">
+        <state relative-caret-position="1190">
           <caret line="70" column="6" lean-forward="false" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
           <folding>
             <marker date="1493380280914" expanded="true" signature="3997:4868" ph="..." />
@@ -1065,8 +1018,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/signup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="154" column="12" lean-forward="true" selection-start-line="154" selection-start-column="12" selection-end-line="158" selection-end-column="144" />
+        <state relative-caret-position="2618">
+          <caret line="154" column="12" lean-forward="false" selection-start-line="154" selection-start-column="12" selection-end-line="158" selection-end-column="144" />
           <folding />
         </state>
       </provider>
@@ -1074,7 +1027,7 @@
     <entry file="file://$PROJECT_DIR$/addcontact.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="15" selection-end-column="5" />
+          <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="15" selection-end-column="5" />
           <folding>
             <marker date="1494227978829" expanded="true" signature="2265:2323" ph="..." />
             <marker date="1494227978829" expanded="true" signature="3420:3839" ph="..." />
@@ -1086,7 +1039,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/updateuser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2061">
+        <state relative-caret-position="4352">
           <caret line="256" column="29" lean-forward="false" selection-start-line="256" selection-start-column="29" selection-end-line="256" selection-end-column="29" />
           <folding>
             <marker date="1494227543242" expanded="true" signature="6707:6730" ph="data:" />
@@ -1095,10 +1048,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deleteaccount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        <state relative-caret-position="-850">
+          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
             <marker date="1494229147696" expanded="true" signature="3669:4047" ph="..." />
             <marker date="1494229147696" expanded="true" signature="5039:5404" ph="..." />
@@ -1114,10 +1075,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deleteaccount.php">
+    <entry file="file://$PROJECT_DIR$/styles/base.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="39" lean-forward="false" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+        <state relative-caret-position="230">
+          <caret line="311" column="1" lean-forward="true" selection-start-line="311" selection-start-column="1" selection-end-line="311" selection-end-column="1" />
           <folding />
         </state>
       </provider>
