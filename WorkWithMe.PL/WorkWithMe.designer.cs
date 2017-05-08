@@ -275,6 +275,13 @@ namespace WorkWithMe.PL
 			response = ((string)(result.GetParameterValue(15)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spGetImageData")]
+		public ISingleResult<spGetImageDataResult> spGetImageData([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserImgId", DbType="Int")] System.Nullable<int> userImgId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userImgId);
+			return ((ISingleResult<spGetImageDataResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGroupUser")]
@@ -3000,6 +3007,32 @@ namespace WorkWithMe.PL
 				if ((this._OwnerFullName != value))
 				{
 					this._OwnerFullName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spGetImageDataResult
+	{
+		
+		private System.Data.Linq.Binary _ImageContent;
+		
+		public spGetImageDataResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageContent", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false)]
+		public System.Data.Linq.Binary ImageContent
+		{
+			get
+			{
+				return this._ImageContent;
+			}
+			set
+			{
+				if ((this._ImageContent != value))
+				{
+					this._ImageContent = value;
 				}
 			}
 		}

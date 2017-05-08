@@ -99,6 +99,19 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
     $_SESSION["isRedirecting"] = true;
     header("Location:index.php");
 }
+
+if (isset($_SESSION["UserImgId"]))
+{
+    try{
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $imageretval = $client->GetImageData(array('userImgId'=>$_SESSION["UserImgId"]));
+    }
+    catch (SoapFault $exception)
+    {
+        //DoLogin returns null when the login fails
+        $_SESSION["Status"] = "Error getting image data - " . $exception->getMessage();
+    }
+}
 ?>
 
 <!doctype html>
@@ -131,6 +144,12 @@ if (!isset($_SESSION["UserId"])) //this needs to be at end of page to override t
             <label for="Email">E-mail:</label>
             <input type="email" id="txtEmail" name="txtEmail" placeholder="e-mail" required value="<?=$_SESSION["Email"]?>"><br /><br />
 
+            <?php
+            if (isset($imageretval->GetImageDataResult))
+            {
+                echo '<img id="profileimage" src="data:image/jpeg;base64,' . base64_encode($imageretval->GetImageDataResult) . '" width="100" height="100"><br>';
+            }
+            ?>
             <label for="inputImage">Profile Image:</label>
             <input type="hidden" name="MAX_FILE_SIZE" value="102400">
             <input type="file" name="inputImage" id="inputImage" accept=".jpg">

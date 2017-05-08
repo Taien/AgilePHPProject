@@ -52,7 +52,13 @@ namespace WorkWithMe.SL
             return false;
         }
 
-       
+        public byte[] GetImageData(int userImgId)
+        {
+            CImage image = new CImage();
+            image.LoadData(userImgId);
+            return image.Content;
+        }
+
         public CPostList GetPostsForUser(string userId)
         {
             CPostList list = new CPostList();

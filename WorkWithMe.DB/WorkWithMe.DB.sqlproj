@@ -84,6 +84,7 @@
     <Build Include="spGetRepliesForPost.sql" />
     <Build Include="tblUserImg.sql" />
     <Build Include="spUpdateUserWithImage.sql" />
+    <Build Include="spGetImageData.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WorkWithMe.DB.refactorlog" />

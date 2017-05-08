@@ -221,7 +221,7 @@ main p {
 }
 
 main form {
-    width: 60%;
+    width: 96%;
     margin: 0 auto;
     font-family: Verdana, sans-serif;
     text-align: left;
@@ -285,7 +285,7 @@ hr {
 }
 
 #btnPost {
-    width: 19%;
+    width: 18%;
     float: right;
     margin: 27px 3px 27px 3px;
     height: 40px;
@@ -314,6 +314,11 @@ textarea { /*  used with the message posting in index */
 #message hr{
     padding: 0;
     margin: 0;
+}
+
+#profileimage{
+    margin: 0px auto;
+    display: block;
 }
 
 #timestampInfo {

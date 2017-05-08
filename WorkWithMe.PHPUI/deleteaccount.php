@@ -25,7 +25,6 @@ if (!isset($_SESSION["UserId"])) //send user back to index if not logged in
 <main>
 
 </main>
-
 <footer><?php include './includes/footer.php' ?></footer>
 </body>
 </html>

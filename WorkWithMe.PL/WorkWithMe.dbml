@@ -239,4 +239,10 @@
     <Parameter Name="Response" Parameter="response" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.spGetImageData" Method="spGetImageData">
+    <Parameter Name="UserImgId" Parameter="userImgId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="spGetImageDataResult">
+      <Column Name="ImageContent" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

@@ -18,6 +18,7 @@ session_start();
             $_SESSION["Address"] = $retval->DoLoginResult->Address;
             $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
             $_SESSION["Email"] = $retval->DoLoginResult->Email;
+            $_SESSION["UserImgId"] = $retval->DoLoginResult->UserImgId;
             $_SESSION["Status"] = "You have successfully logged in.";
             $_SESSION["GoodStatus"] = true;
         } catch (SoapFault $exception)
@@ -79,7 +80,6 @@ session_start();
     <meta charset="UTF-8">
     <title><?=isset($_SESSION["UserId"]) ? 'WorkWithMe - My Messages' : 'WorkWithMe'?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="./styles/base.css">
 </head>
 <body>
