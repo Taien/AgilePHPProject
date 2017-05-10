@@ -226,7 +226,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[tblGroupUser].[Id]" />
+								<References Name="[dbo].[tblGroupContact].[Id]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -234,29 +234,10 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[tblGroupUser]" />
+					<References Name="[dbo].[tblGroupContact]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[tblGroupInvite].[Id]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[tblGroupInvite]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -275,7 +256,7 @@
 					<References Name="[dbo].[tblPost]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -294,7 +275,7 @@
 					<References Name="[dbo].[tblGroupType]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -313,7 +294,249 @@
 					<References Name="[dbo].[tblUser]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spCreateGroup]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	BEGIN
+		IF EXISTS (SELECT * FROM [dbo].[tblGroup] WHERE Name = @Name)
+		BEGIN
+			SET @Response='Group name is taken.'
+			RETURN 0
+		END
+
+		BEGIN TRY
+			INSERT INTO [dbo].[tblGroup] (Id, Name, Description, GroupType, OwnerUserId, OwnerGroupId, GroupImgId, CanPostDefault, CanInviteDefault, CanDeleteDefault)
+			values (NEWID(), @Name, @Description, @GroupType, @OwnerUserId, @OwnerGroupId, null, @CanPostDefault, @CanInviteDefault, @CanDeleteDefault)
+
+			SET @Response='Successfully created group!'
+			RETURN 1
+		END TRY
+		BEGIN CATCH
+			SET @Response=ERROR_MESSAGE() 
+			RETURN 0
+		END CATCH
+	END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[tblGroup]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[Name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@Name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@Response]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[Name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[GroupType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[OwnerGroupId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[GroupImgId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[CanPostDefault]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[CanInviteDefault]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblGroup].[CanDeleteDefault]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@GroupType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@OwnerGroupId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@CanPostDefault]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@CanInviteDefault]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spCreateGroup].[@CanDeleteDefault]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@Name]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@Description]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@GroupType]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@OwnerUserId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@OwnerGroupId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@CanPostDefault]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@CanInviteDefault]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@CanDeleteDefault]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spCreateGroup].[@Response]">
+						<Property Name="IsOutput" Value="True" />
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="907" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spCreateGroup]&#xD;&#xA;&#x9;@Name nvarchar(50),&#xD;&#xA;&#x9;@Description nvarchar(100),&#xD;&#xA;&#x9;@GroupType int,&#xD;&#xA;&#x9;@OwnerUserId uniqueidentifier,&#xD;&#xA;&#x9;@OwnerGroupId uniqueidentifier null,&#xD;&#xA;&#x9;@CanPostDefault bit,&#xD;&#xA;&#x9;@CanInviteDefault bit,&#xD;&#xA;&#x9;@CanDeleteDefault bit,&#xD;&#xA;&#x9;@Response nvarchar(100) output&#xD;&#xA;AS" />
+			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spCreatePost]">
 			<Property Name="BodyScript">
@@ -996,21 +1219,11 @@ END]]></Value>
 				<Entry>
 					<References Name="[dbo].[tblUserContact].[TargetUserId]" />
 				</Entry>
-				<Entry>
-					<References Name="[dbo].[tblGroupUser]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[tblGroupUser].[UserId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[tblGroupInvite]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[tblGroupInvite].[OwnerUserId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[tblGroupInvite].[TargetUserId]" />
-				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
 				<Entry>
 					<References Name="[dbo].[tblUserImg]" />
 				</Entry>
@@ -1144,6 +1357,84 @@ END]]></Value>
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="--returns the GUID for the user if the login succeed, otherwise returns nothing&#xD;&#xA;&#xD;&#xA;CREATE PROCEDURE [dbo].[spDoLogin]&#xD;&#xA;&#x9;@Username nvarchar(50),&#xD;&#xA;&#x9;@Password nvarchar(24)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spGetContacts]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	select Id, Username, FirstName, MiddleInitial, LastName, EmailAddress
+	from tblUser
+	where Id in
+	(select TargetUserId from [dbo].[tblUserContact] where OwnerUserId = @UserId and InviteStatusId = 2 --invite status of 1 means declined, which allows them to request again
+	 union
+	 select OwnerUserId from [dbo].[tblUserContact] where TargetUserId = @UserId and InviteStatusId = 2)]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[tblUser]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[MiddleInitial]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUser].[EmailAddress]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[TargetUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[OwnerUserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spGetContacts].[@UserId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[tblUserContact].[InviteStatusId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spGetContacts].[@UserId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="456" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spGetContacts]&#xD;&#xA;&#x9;@UserId uniqueidentifier&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spGetImageData]">
@@ -1512,7 +1803,10 @@ FETCH NEXT 10 ROWS ONLY]]></Value>
 	select Id, Username, FirstName, MiddleInitial, LastName, EmailAddress
 	from tblUser
 	where (Username like '%' + @SearchString + '%' 
-	or EmailAddress like '%' + @SearchString + '%') --this line needs another OR for the full name, which I'll have to compute
+	or EmailAddress like '%' + @SearchString + '%'
+	or FirstName + CASE WHEN MiddleInitial=null THEN ' ' 
+	     ELSE ' ' + MiddleInitial + '. ' END + LastName 
+		  like '%' + @SearchString + '%')
 	and Id != @OriginUserId
 	and Id not in --this checks if this person A) is already a contact, B) is already invited, or C) blocked the user requesting contact 
 		(select TargetUserId from [dbo].[tblUserContact] where OwnerUserId = @OriginUserId and InviteStatusId != 1 --invite status of 1 means declined, which allows them to request again
@@ -1600,7 +1894,7 @@ FETCH NEXT 10 ROWS ONLY]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="832" />
+				<Property Name="Length" Value="904" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spSearchUser]&#xD;&#xA;&#x9;@SearchString nvarchar(255),&#xD;&#xA;&#x9;@OriginUserId uniqueidentifier&#xD;&#xA;AS" />
@@ -2657,10 +2951,9 @@ END]]></Value>
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="50" />
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+											<References ExternalSource="BuiltIns" Name="[int]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2700,13 +2993,13 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroup].[GroupImg]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroup].[GroupImgId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[image]" />
+											<References ExternalSource="BuiltIns" Name="[int]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2769,11 +3062,11 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="SqlTable" Name="[dbo].[tblGroupInvite]">
+		<Element Type="SqlTable" Name="[dbo].[tblGroupContact]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupInvite].[Id]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[Id]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -2786,27 +3079,11 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="14" />
+						<AttachedAnnotation Disambiguator="13" />
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupInvite].[OwnerUserId]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupInvite].[TargetUserId]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[OwnerUserId]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -2822,7 +3099,7 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupInvite].[TargetGroupId]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[TargetUserId]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -2838,7 +3115,87 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupInvite].[InviteStatusId]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[TargetGroupId]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[IsGroupAdmin]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[CanPost]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[CanInvite]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[CanDelete]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupContact].[InviteStatusId]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -2877,7 +3234,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="16" />
+						<AttachedAnnotation Disambiguator="15" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2890,129 +3247,6 @@ END]]></Value>
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="Schema">
-				<Entry>
-					<References ExternalSource="BuiltIns" Name="[dbo]" />
-				</Entry>
-			</Relationship>
-		</Element>
-		<Element Type="SqlTable" Name="[dbo].[tblGroupUser]">
-			<Property Name="IsAnsiNullsOn" Value="True" />
-			<Relationship Name="Columns">
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupUser].[Id]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-						<AttachedAnnotation Disambiguator="13" />
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupUser].[UserId]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupUser].[GroupId]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupUser].[IsGroupAdmin]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupUser].[CanPost]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupUser].[CanInvite]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[tblGroupUser].[CanDelete]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -3088,7 +3322,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="15" />
+						<AttachedAnnotation Disambiguator="14" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -3304,7 +3538,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="17" />
+						<AttachedAnnotation Disambiguator="16" />
 					</Element>
 				</Entry>
 				<Entry>

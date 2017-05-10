@@ -35,4 +35,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="UserImgId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="70bca09f-f3c3-4393-bbae-08b8a61c5ea3" ChangeDateTime="05/10/2017 10:44:20" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[tblGroup].[GroupImg]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblGroup]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GroupImgId" />
+  </Operation>
 </Operations>

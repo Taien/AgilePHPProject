@@ -1,8 +1,0 @@
-﻿CREATE TABLE [dbo].[tblGroupInvite]
-(
-	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [OwnerUserId] UNIQUEIDENTIFIER NOT NULL, 
-    [TargetUserId] UNIQUEIDENTIFIER NOT NULL, 
-    [TargetGroupId] UNIQUEIDENTIFIER NOT NULL, 
-    [InviteStatusId] INT NOT NULL
-)

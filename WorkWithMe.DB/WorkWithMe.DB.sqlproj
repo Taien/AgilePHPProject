@@ -66,8 +66,7 @@
     <Build Include="tblUser.sql" />
     <Build Include="tblGroupType.sql" />
     <Build Include="tblPost.sql" />
-    <Build Include="tblGroupInvite.sql" />
-    <Build Include="tblGroupUser.sql" />
+    <Build Include="tblGroupContact.sql" />
     <Build Include="tblGroup.sql" />
     <Build Include="tblInviteStatus.sql" />
     <Build Include="tblCity.sql" />
@@ -86,6 +85,8 @@
     <Build Include="spUpdateUserWithImage.sql" />
     <Build Include="spGetImageData.sql" />
     <Build Include="spDeleteUser.sql" />
+    <Build Include="spCreateGroup.sql" />
+    <Build Include="spGetContacts.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WorkWithMe.DB.refactorlog" />

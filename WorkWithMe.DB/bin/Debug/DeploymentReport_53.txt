@@ -1,0 +1,30 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[tblGroup]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column GroupImgId in table [dbo].[tblGroup] is currently  IMAGE NULL but is being changed to  INT NULL.
+         There is no implicit or explicit conversion.
+       The type for column GroupType in table [dbo].[tblGroup] is currently  NVARCHAR (50) NOT NULL but is being changed to 
+         INT NOT NULL. Data loss could occur.
+
+** User actions
+     Rename
+       [dbo].[tblGroup].[GroupImgId] (Column)
+     Table rebuild
+       [dbo].[tblGroup] (Table)
+     Create
+       [dbo].[tblGroupContact] (Table)
+       [dbo].[spGetContacts] (Procedure)
+       [dbo].[spGreateGroup] (Procedure)
+     Alter
+       [dbo].[spSearchUser] (Procedure)
+
+** Supporting actions
+
+The type for column GroupImgId in table [dbo].[tblGroup] is currently  IMAGE NULL but is being changed to  INT NULL. There is no implicit or explicit conversion.
+The type for column GroupType in table [dbo].[tblGroup] is currently  NVARCHAR (50) NOT NULL but is being changed to  INT NOT NULL. Data loss could occur.
+
