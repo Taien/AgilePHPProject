@@ -301,14 +301,29 @@ hr {
     margin: 10px auto;
 }
 
+.fancyButton {
+    background-size: 100% 100%;
+    background: url(../images/button2.png) transparent no-repeat;
+    border: 0;
+    outline: none;
+    color: #FFFFFF;
+    text-align: left;
+    text-indent: 10px;
+}
+
+.fancyButtonCentered {
+    background-size: 100% 100%;
+    background: url(../images/button2.png) transparent center center no-repeat;
+    border: 0;
+    outline: none;
+    color: #FFFFFF;
+    text-align: center;
+}
 #btnPost {
-    width: 18%;
-    float: right;
-    margin: 27px 3px 27px 3px;
+    width: 19.5%;
+    float: left;
+    margin: 10px auto;
     height: 40px;
-    background-size: 100%;
-    background-image: url(../images/button.png);
-    background-position: center center;
 }
 
 textarea { /*  used with the message posting in index */

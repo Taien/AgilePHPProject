@@ -95,7 +95,7 @@ session_start();
                 echo '<form method="post" id="postForm">
                       <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>
                       <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
-                      <input type="submit" name="btnPost" id="btnPost" value="Post Message">
+                      <input type="submit" class="fancyButton" name="btnPost" id="btnPost" value="Post Message">
                       </form>';
 
                 try {
@@ -118,8 +118,8 @@ session_start();
 
                 $numOfResults = count($resultArray);
 
-                echo '<form method="post" id="prevNextForm"><input type="submit" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
-                      <input type="submit" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
+                echo '<form method="post" id="prevNextForm"><input type="submit" class="fancyButtonCentered" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
+                      <input type="submit" class="fancyButtonCentered" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
                       <input type="hidden" name="txtOffset" id="txtOffset" value="' . $currentOffset . '"></form>';
 
                 for ($i = 0; $i < $numOfResults; $i++)
@@ -158,7 +158,7 @@ session_start();
                             <input type="hidden" value="' . $targetGroupId . '" id="incomingTargetGroupId" name="incomingTargetGroupId"/>
                             <input type="hidden" value="' . $timestamp . '" id="incomingTimestamp" name="incomingTimestamp"/>
                             <input type="hidden" value="' . $ownerFullName . '" id="incomingOwnerFullName" name="incomingOwnerFullName"/>
-                            <input type="submit" value="Reply" id="btnReply" name="btnReply"/>
+                            <input type="submit" class="fancyButton" value="Reply" id="btnReply" name="btnReply"/>
                         </td></tr>
                         </table></form>';
 
