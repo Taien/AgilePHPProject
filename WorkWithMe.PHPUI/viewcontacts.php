@@ -7,7 +7,7 @@ if (!isset($_SESSION["UserId"]))
     $_SESSION["isRedirecting"] = true;
     header("Location:index.php");
 }
-
+/*
 if (isset($_POST["btnSearch"]))
 {
     if (!isset($_POST["txtUser"]) || empty($_POST["txtUser"]))
@@ -35,7 +35,19 @@ else if (isset($_POST["btnAddContact"])) {
     {
         $_SESSION["Status"] = "Failed to invite contact - " . $exception->getMessage();
     }
+}*/
+
+try {
+    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+    $retval = $client->LoadContactsForUser(array('id' => $_SESSION["UserId"]));
+    $resultArray = $retval->LoadContactsForUserResult->CUserContact;
+    var_dump($retval);
+
+} catch (SoapFault $exception)
+{
+    $_SESSION["Status"] = "Error loading contacts - " . $exception->getTraceAsString() . ' - ' . $exception->getMessage();
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,7 +63,7 @@ else if (isset($_POST["btnAddContact"])) {
         <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <main>
             <?php
-            if (isset($_POST["btnSearch"]))
+            /*if (isset($_POST["btnSearch"]))
             {
                 $numOfResults = count($resultArray);
 
@@ -105,7 +117,7 @@ else if (isset($_POST["btnAddContact"])) {
                              <input type="submit" id="btnSearch" name="btnSearch" value="Search My Contacts"> <! -- adds user to database -->
                          </fieldset><br />
                       </form>';
-            }
+            }*/
             ?>
 
         </main>
