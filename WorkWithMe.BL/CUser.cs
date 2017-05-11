@@ -165,7 +165,7 @@ namespace WorkWithMe.BL
                 foreach (tblUser user in users) Add(new CUser(user.Id, user.Username, user.FirstName, user.MiddleInitial, user.LastName, user.Zip, user.Address, user.IsAddressPrivate, user.EmailAddress, user.UserImgId));
             }
         }
-
+        
         public void SearchForUser(string searchString, Guid originUserId)
         {
             Clear();

@@ -37,15 +37,20 @@ else if (isset($_POST["btnAddContact"])) {
     }
 }*/
 
-try {
-    $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-    $retval = $client->LoadContactsForUser(array('id' => $_SESSION["UserId"]));
-    $resultArray = $retval->LoadContactsForUserResult->CUserContact;
-    var_dump($retval);
-
-} catch (SoapFault $exception)
+if (!isset($_POST["btnViewInfo"]))
 {
-    $_SESSION["Status"] = "Error loading contacts - " . $exception->getTraceAsString() . ' - ' . $exception->getMessage();
+    try {
+        $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+        $retval = $client->LoadContactsForUser(array('id' => $_SESSION["UserId"]));
+        $resultArray = $retval->LoadContactsForUserResult->CUserContact;
+    } catch (SoapFault $exception)
+    {
+        $_SESSION["Status"] = "Error loading contacts - " . $exception->getTraceAsString() . ' - ' . $exception->getMessage();
+    }
+}
+else //viewing contact info
+{
+
 }
 
 ?>
@@ -63,6 +68,88 @@ try {
         <div id="rightNav"><?php include './includes/rightnav.php' ?></div>
         <main>
             <?php
+                if (!isset($_POST["btnViewInfo"]))
+                {
+                    $numOfResults = count($resultArray);
+
+                    if ($numOfResults == 0)
+                    {
+                        echo "Sorry - you don't have any contacts yet.  Try adding some users!";
+                    }
+                    else
+                    {
+                        echo '<fieldset>
+                             <legend>Your Current Contacts</legend>';
+
+                        for ($i = 0; $i < $numOfResults; $i++)
+                        {
+                            if ($numOfResults == 1)
+                            {
+                                $id = $resultArray->Id;
+                                $ownerUserId = $resultArray->OwnerUserId;
+                                $targetUserId = $resultArray->TargetUserId;
+                                $inviteStatusId = $resultArray->InviteStatusId;
+                                $ownerFullName = $resultArray->OwnerUserFullName;
+                                $targetFullName = $resultArray->TargetUserFullName;
+                                $inviteStatusDescription = $resultArray->InviteStatusDescription;
+                            }
+                            else
+                            {
+                                $id = $resultArray[$i]->Id;
+                                $ownerUserId = $resultArray[$i]->OwnerUserId;
+                                $targetUserId = $resultArray[$i]->TargetUserId;
+                                $inviteStatusId = $resultArray[$i]->InviteStatusId;
+                                $ownerFullName = $resultArray[$i]->OwnerUserFullName;
+                                $targetFullName = $resultArray[$i]->TargetUserFullName;
+                                $inviteStatusDescription = $resultArray[$i]->InviteStatusDescription;
+                            }
+
+                            if ($ownerUserId == $_SESSION["UserId"])   //person requesting is the owner of the invite
+                            {
+                                echo '    <table class="contactList">
+                                          <tr>
+                                              <td width="20%"> 
+                                                  ' .  $targetFullName . '
+                                              </td>
+                                              <td width="80%">
+                                                  <form method="post">
+                                                      <input type="hidden" id="txtId" name="txtId" value="' . $id . '">
+                                                      <input type="hidden" id="txtName" name="txtName" value="' . $targetFullName . '">
+                                                      <input type="hidden" id="txtContactId" name="txtContactId" value="' . $targetUserId . '">
+                                                      <input type="submit" id="btnViewInfo" name="btnViewInfo" value="View Contact Info">
+                                                      <input type="submit" id="btnDeleteContact" name="btnDeleteContact" value="Delete Contact">
+                                                      <input type="submit" id="btnBlockContact" name="btnBlockContact" value="Delete/Block Contact">
+                                                  </form>
+                                              </td>
+                                          </tr>
+                                      </table>';
+                            }
+                            else      //the person requesting their contacts is the target - not the owner - of the invite
+                            {
+                                echo '    <table class="contactList">
+                                          <tr>
+                                              <td width="20%"> 
+                                                  ' .  $ownerFullName . '
+                                              </td>
+                                              <td width="80%">
+                                                  <form method="post">
+                                                      <input type="hidden" id="txtId" name="txtId" value="' . $id . '">
+                                                      <input type="hidden" id="txtName" name="txtName" value="' . $ownerFullName . '">
+                                                      <input type="hidden" id="txtContactId" name="txtContactId" value="' . $ownerUserId . '">
+                                                      <input type="submit" id="btnViewInfo" name="btnViewInfo" value="View Contact Info">
+                                                      <input type="submit" id="btnDeleteContact" name="btnDeleteContact" value="Delete Contact">
+                                                      <input type="submit" id="btnBlockContact" name="btnBlockContact" value="Delete/Block Contact">
+                                                  </form>
+                                              </td>
+                                          </tr>
+                                      </table>';
+                            }
+                        }
+                        echo '</fieldset>';
+                    }
+                }
+
+
             /*if (isset($_POST["btnSearch"]))
             {
                 $numOfResults = count($resultArray);

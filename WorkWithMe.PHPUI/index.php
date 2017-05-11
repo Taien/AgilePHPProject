@@ -46,7 +46,7 @@ session_start();
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'targetGroupId'=>null,'replyPostId'=>null,'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'targetGroupId'=>null,'replyPostId'=>null,'title'=>$_POST["txtTitle"],'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u><ul><ol><li>"),'isSticky'=>false));
             $_SESSION["Status"] = "Successfully posted message!";
             $_SESSION["GoodStatus"] = true;
         } catch (SoapFault $exception)

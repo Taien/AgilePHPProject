@@ -243,17 +243,6 @@
       <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.spGetContacts" Method="spGetContacts">
-    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
-    <ElementType Name="spGetContactsResult">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="MiddleInitial" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.spCreateGroup" Method="spCreateGroup">
     <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
     <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(100)" />
@@ -265,5 +254,23 @@
     <Parameter Name="CanDeleteDefault" Parameter="canDeleteDefault" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="Response" Parameter="response" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spGetContacts" Method="spGetContacts">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="spGetContactsResult">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.Data.Linq.Binary" DbType="Binary(64) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordSalt" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleInitial" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsAddressPrivate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserImgId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="OwnerFullName" Type="System.String" DbType="NVarChar(105)" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

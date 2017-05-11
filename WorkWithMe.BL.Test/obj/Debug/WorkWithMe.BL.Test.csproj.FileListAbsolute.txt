@@ -1,0 +1,10 @@
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\bin\Debug\WorkWithMe.BL.Test.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\bin\Debug\WorkWithMe.BL.Test.pdb
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\bin\Debug\WorkWithMe.BL.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\bin\Debug\WorkWithMe.PL.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\bin\Debug\WorkWithMe.BL.pdb
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\bin\Debug\WorkWithMe.PL.pdb
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\obj\Debug\WorkWithMe.BL.Test.csprojResolveAssemblyReference.cache
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\obj\Debug\WorkWithMe.BL.Test.dll
+C:\Users\Tyler\Source\Workspaces\Workspace\AgilePHPProject\WorkWithMe.BL.Test\obj\Debug\WorkWithMe.BL.Test.pdb

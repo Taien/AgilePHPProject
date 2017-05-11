@@ -279,19 +279,19 @@ namespace WorkWithMe.PL
 			return ((ISingleResult<spSearchUserResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spGetContacts")]
-		public ISingleResult<spGetContactsResult> spGetContacts([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
-			return ((ISingleResult<spGetContactsResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCreateGroup")]
 		public int spCreateGroup([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(50)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Description", DbType="NVarChar(100)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GroupType", DbType="Int")] System.Nullable<int> groupType, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerUserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerUserId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OwnerGroupId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> ownerGroupId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CanPostDefault", DbType="Bit")] System.Nullable<bool> canPostDefault, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CanInviteDefault", DbType="Bit")] System.Nullable<bool> canInviteDefault, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CanDeleteDefault", DbType="Bit")] System.Nullable<bool> canDeleteDefault, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Response", DbType="NVarChar(100)")] ref string response)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name, description, groupType, ownerUserId, ownerGroupId, canPostDefault, canInviteDefault, canDeleteDefault, response);
 			response = ((string)(result.GetParameterValue(8)));
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spGetContacts")]
+		public ISingleResult<spGetContactsResult> spGetContacts([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<spGetContactsResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -558,7 +558,7 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary GroupImg
 		{
 			get
@@ -2946,13 +2946,27 @@ namespace WorkWithMe.PL
 		
 		private string _Username;
 		
+		private System.Data.Linq.Binary _PasswordHash;
+		
+		private System.Guid _PasswordSalt;
+		
 		private string _FirstName;
 		
 		private string _MiddleInitial;
 		
 		private string _LastName;
 		
+		private System.Nullable<int> _Zip;
+		
+		private string _Address;
+		
+		private bool _IsAddressPrivate;
+		
+		private System.Nullable<int> _UserImgId;
+		
 		private string _EmailAddress;
+		
+		private string _OwnerFullName;
 		
 		public spGetContactsResult()
 		{
@@ -2986,6 +3000,38 @@ namespace WorkWithMe.PL
 				if ((this._Username != value))
 				{
 					this._Username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="Binary(64) NOT NULL", CanBeNull=false)]
+		public System.Data.Linq.Binary PasswordHash
+		{
+			get
+			{
+				return this._PasswordHash;
+			}
+			set
+			{
+				if ((this._PasswordHash != value))
+				{
+					this._PasswordHash = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordSalt", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PasswordSalt
+		{
+			get
+			{
+				return this._PasswordSalt;
+			}
+			set
+			{
+				if ((this._PasswordSalt != value))
+				{
+					this._PasswordSalt = value;
 				}
 			}
 		}
@@ -3038,6 +3084,70 @@ namespace WorkWithMe.PL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zip", DbType="Int")]
+		public System.Nullable<int> Zip
+		{
+			get
+			{
+				return this._Zip;
+			}
+			set
+			{
+				if ((this._Zip != value))
+				{
+					this._Zip = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAddressPrivate", DbType="Bit NOT NULL")]
+		public bool IsAddressPrivate
+		{
+			get
+			{
+				return this._IsAddressPrivate;
+			}
+			set
+			{
+				if ((this._IsAddressPrivate != value))
+				{
+					this._IsAddressPrivate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserImgId", DbType="Int")]
+		public System.Nullable<int> UserImgId
+		{
+			get
+			{
+				return this._UserImgId;
+			}
+			set
+			{
+				if ((this._UserImgId != value))
+				{
+					this._UserImgId = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailAddress", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string EmailAddress
 		{
@@ -3050,6 +3160,22 @@ namespace WorkWithMe.PL
 				if ((this._EmailAddress != value))
 				{
 					this._EmailAddress = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerFullName", DbType="NVarChar(105)")]
+		public string OwnerFullName
+		{
+			get
+			{
+				return this._OwnerFullName;
+			}
+			set
+			{
+				if ((this._OwnerFullName != value))
+				{
+					this._OwnerFullName = value;
 				}
 			}
 		}

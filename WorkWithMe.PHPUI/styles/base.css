@@ -216,7 +216,7 @@ main {                       /* MAIN */
 
 main ul {
     list-style: none;
-    float: left;
+    float: none;
 }
 
 main p {
@@ -324,6 +324,14 @@ hr {
     outline: none;
     color: #FFFFFF;
     text-align: center;
+}
+
+.contactList {
+    width: 100%;
+}
+
+.contactList input{
+    width: 32%;
 }
 
 #btnPost {
