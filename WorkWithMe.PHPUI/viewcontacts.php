@@ -116,9 +116,9 @@ else //viewing contact info
                                                       <input type="hidden" id="txtId" name="txtId" value="' . $id . '">
                                                       <input type="hidden" id="txtName" name="txtName" value="' . $targetFullName . '">
                                                       <input type="hidden" id="txtContactId" name="txtContactId" value="' . $targetUserId . '">
-                                                      <input type="submit" id="btnViewInfo" name="btnViewInfo" value="View Contact Info">
-                                                      <input type="submit" id="btnDeleteContact" name="btnDeleteContact" value="Delete Contact">
-                                                      <input type="submit" id="btnBlockContact" name="btnBlockContact" value="Delete/Block Contact">
+                                                      <input type="submit" class="fbCentered fbWideBlue" id="btnViewInfo" name="btnViewInfo" value="View Contact Info">
+                                                      <input type="submit" class="fbCentered fbWideRed" id="btnDeleteContact" name="btnDeleteContact" value="Delete Contact">
+                                                      <input type="submit" class="fbCentered fbWideRed" id="btnBlockContact" name="btnBlockContact" value="Delete/Block Contact">
                                                   </form>
                                               </td>
                                           </tr>
@@ -136,9 +136,9 @@ else //viewing contact info
                                                       <input type="hidden" id="txtId" name="txtId" value="' . $id . '">
                                                       <input type="hidden" id="txtName" name="txtName" value="' . $ownerFullName . '">
                                                       <input type="hidden" id="txtContactId" name="txtContactId" value="' . $ownerUserId . '">
-                                                      <input type="submit" id="btnViewInfo" name="btnViewInfo" value="View Contact Info">
-                                                      <input type="submit" id="btnDeleteContact" name="btnDeleteContact" value="Delete Contact">
-                                                      <input type="submit" id="btnBlockContact" name="btnBlockContact" value="Delete/Block Contact">
+                                                      <input type="submit" class="fbCentered fbWideBlue" id="btnViewInfo" name="btnViewInfo" value="View Contact Info">
+                                                      <input type="submit" class="fbCentered fbWideRed" id="btnDeleteContact" name="btnDeleteContact" value="Delete Contact">
+                                                      <input type="submit" class="fbCentered fbWideRed" id="btnBlockContact" name="btnBlockContact" value="Delete/Block Contact">
                                                   </form>
                                               </td>
                                           </tr>

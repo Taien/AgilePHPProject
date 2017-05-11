@@ -246,8 +246,8 @@ if (isset($_SESSION["UserImgId"]))
 
             <div id="buttons">
                 <ul>
-                    <li><input type="submit" class="button" id="btnUpdate" name="btnUpdate" value="Save My Updates"></li>
-                    <li><input type="reset" class="button" id="btnClear" name="btnClear" value="Clear Form"></li>
+                    <li><input type="submit" class="button fbCentered fbWideBlue" id="btnUpdate" name="btnUpdate" value="Save My Updates"></li>
+                    <li><input type="reset" class="button fbCentered fbWideBlue" id="btnClear" name="btnClear" value="Clear Form"></li>
                 </ul>
             </div>
         </fieldset><br />

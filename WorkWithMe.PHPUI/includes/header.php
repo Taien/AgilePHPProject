@@ -5,9 +5,11 @@
 if (isset($_SESSION["UserId"]))
 {
     echo '<form method="post" action="./index.php"><div id="log"><ul>
-              <li id="name">Logged in as ' . $_SESSION["FirstName"] . ' ' . $_SESSION["MiddleInitial"] . '. ' . $_SESSION["LastName"] . '</li>
+             
               <li><input type="submit" id="btnLogout" name="btnLogout" value="Logout"></li>
               </ul></div></form>';
+
+    echo '<div id="name">Logged in as ' . $_SESSION["FirstName"] . ' ' . $_SESSION["MiddleInitial"] . '. ' . $_SESSION["LastName"] . '</div>';
 }
 else
 {
@@ -15,7 +17,7 @@ else
           <li><input type="text" id="txtUsername" name="txtUsername" placeholder="Username" required></li>
           <li><input type="password" id="txtPassword" name="txtPassword" placeholder="Password" required></li><br />
           <li><input type="submit" id="btnLogin" name="btnLogin" value="Login"></li>
-          <li><a href="signup.php">Register</a></li>
+          <li><input type="submit" id="btnRegister" name="btnRegister" value="Register"></li>
           </ul></div></form>';
 }
 

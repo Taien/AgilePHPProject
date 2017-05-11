@@ -56,10 +56,16 @@ session_start();
 <main>
     <p>
         <?php
-            echo '<form action="reply.php" method="post"><table id="messageContent" width="99%">
-            <tr><td width="100%"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>
-            <tr><td width="100%">'. $content . '</td></tr>
-            </table></form>';
+            echo '<table id="message"><tr><td width="5" id="messageBar"></td><td>
+                      <table id="messageContent" width="99%">
+                          <tr>
+                              <td width="100%" id="messageTitleBar"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td>
+                          </tr>
+                          <tr>
+                              <td width="100%">'. $content . '</td>
+                          </tr>
+                      </table>
+                  </td></tr></table>';
 
             if (isset($postId))
             {
@@ -94,8 +100,8 @@ session_start();
 
                         include './includes/timestring.php';
 
-                        echo '<table width="100%">
-                                <tr><td width="100%"><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '</div></td></tr>
+                        echo '<table width="100%" id="replyContentTable">
+                                <tr><td width="100%" id="replyTitleBar"><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '<hr/></div></td></tr>
                                 <tr><td width="100%">'. $replyContent . '</td></tr>
                                 </table>';
                     }
@@ -107,7 +113,7 @@ session_start();
             echo '<form method="post" id="postForm">
             <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
             <input type="hidden" name="postId" id="postId" value="' . $postId . '">
-            <input type="submit" name="btnPost" id="btnPost" value="Post Reply">
+            <input type="submit" class="fbNarrowBlue fbCentered" name="btnPost" id="btnPost" value="Post Reply">
             </form>';
         ?>
     </p>

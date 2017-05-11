@@ -103,9 +103,9 @@ try //retrieve user invites
               <input type="hidden" value="' . $ownerUserId . '" id="txtOwnerId" name="txtOwnerId">
               <input type="hidden" value="' . $ownerUserFullName . '" id="txtOwnerFullName" name="txtOwnerFullName">
               <input type="hidden" value="' . $targetUserId . '" id="txtTargetId" name="txtTargetId">
-              <input type="submit" value="Accept" id="btnAccept" name="btnAccept"/>
-              <input type="submit" value="Decline" id="btnDecline" name="btnDecline"/>
-              <input type="submit" value="Block" id="btnBlock" name="btnBlock"/></td></tr>
+              <input type="submit" class="fbNarrowBlue fbCentered" value="Accept" id="btnAccept" name="btnAccept"/>
+              <input type="submit" class="fbNarrowRed fbCentered" value="Decline" id="btnDecline" name="btnDecline"/>
+              <input type="submit" class="fbNarrowRed fbCentered" value="Block" id="btnBlock" name="btnBlock"/></td></tr>
               </table></form>';
     }
 

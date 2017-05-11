@@ -88,7 +88,7 @@ else if (isset($_POST["btnAddContact"])) {
                         echo '<form method="post"><input type="hidden" id="txtId" name="txtId" value="' . $id . '">
                           <input type="hidden" id="txtName" name="txtName" value="' . $firstName . ' ' . $lastName . '">' .
                             $firstName . ' ' . $lastName . ' (' . $email . ') '
-                            . '<input type="submit" id="btnAddContact" name="btnAddContact" value="Invite Contact">
+                            . '<input type="submit" class="fbWideBlue fbCentered" id="btnAddContact" name="btnAddContact" value="Invite Contact">
                           </form><br/>';
                     }
                     echo '</fieldset>';
@@ -102,7 +102,7 @@ else if (isset($_POST["btnAddContact"])) {
                              <label for="txtUser">Member ID/Email:</label>
                              <input type="text" id="txtUser" name="txtUser" placeholder="member\'s user ID or email address" required><br /><br />
 
-                             <input type="submit" id="btnSearch" name="btnSearch" value="Search for Users"> <! -- adds user to database -->
+                             <input type="submit" class="fbWideBlue fbCentered" id="btnSearch" name="btnSearch" value="Search for Users"> <! -- adds user to database -->
                          </fieldset><br />
                       </form>';
             }

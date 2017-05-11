@@ -107,8 +107,9 @@ header li input:hover {
 
 #name {         /* the 2 messages at the top */ 
     position: absolute;
-    top: 120px;
-    left: 5px;
+    top: 80px;
+    left: 14%;
+    color: #FFFFFF;
 }
 
 #errorText {        
@@ -144,13 +145,17 @@ nav ul {
     padding: 0;
     width: 95%;
     background-color: #EEEEEE;
-    border: 2px solid #555555;
+    border-right: 2px solid #888888;
+    border-bottom: 2px solid #888888;
+    border-left: 2px solid #DDDDDD;
+    border-top: 2px solid #DDDDDD;
 }
 
 nav li {
     text-align: left;
     padding: 4px 4px;
     border-bottom: 2px solid #D3D3D3;
+    background: linear-gradient(#FFFFFF,#DDDDDD);
 }
 
 nav ul a {
@@ -179,7 +184,10 @@ nav li a:hover {
     width: 95%;
     float: right;
     background-color: #DDDDDD;
-    border: 2px solid #555555;
+    border-right: 2px solid #888888;
+    border-bottom: 2px solid #888888;
+    border-left: 2px solid #DDDDDD;
+    border-top: 2px solid #DDDDDD;
 }
 
 #rightNav ul a {
@@ -190,6 +198,7 @@ nav li a:hover {
 
 #rightNav li{
     padding: 4px 4px;
+    background: linear-gradient(#FFFFFF,#DDDDDD);
 }
 
 #eventText{
@@ -212,6 +221,11 @@ main {                       /* MAIN */
     margin-top: 10px;
     margin-left: 1.2%;
     margin-right: .8%;
+    margin-bottom: 10px;
+    border-top: 2px solid #DDDDFF;
+    border-left: 2px solid #DDDDFF;
+    border-bottom: 2px solid #6666FF;
+    border-right: 2px solid #6666FF;
 }
 
 main ul {
@@ -304,28 +318,6 @@ hr {
     margin: 10px auto;
 }
 
-.fancyButton {
-    background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    -webkit-background-size: 100% 100%;
-    background: url(../images/button2.png) transparent no-repeat center center;
-    border: 0;
-    outline: none;
-    color: #FFFFFF;
-    text-align: left;
-    text-indent: 10px;
-}
-
-.fancyButtonCentered {
-    background-size: 100% 100%;
-    background: url(../images/button2.png) transparent center center no-repeat;
-    border: 0;
-    outline: none;
-    color: #FFFFFF;
-    text-align: center;
-}
-
 .contactList {
     width: 100%;
 }
@@ -348,10 +340,25 @@ textarea { /*  used with the message posting in index */
     margin: 10px 0;
 }
 
+#messageTitleBar {
+    background: linear-gradient(#4488FF,#FFFFFF);
+}
+
+#messageTitleBar h3 {
+    color: #FFFFFF;
+    text-shadow: 1px 1px #888888;
+}
+
+#replyTitleBar {
+    background: linear-gradient(#8800BB, #FFBBFF);
+    color: #FFFFFF;
+}
+
 #messageContent {
     text-align: left;
-    border: 1px dashed;
-    margin: 5px;
+    border: 1px solid #8888FF;
+    margin: 0px;
+    margin-left: 3px;
     font-family: "Calibri";
 }
 
@@ -377,22 +384,13 @@ textarea { /*  used with the message posting in index */
 }
 
 #btnReply, #btnDelete {
-    width: 100%;
-    height: 100%;
-    min-height: 40px;
+    min-height: 30px;
     vertical-align: bottom;
-}
-
-
-#btnAddContact{
-    display: inline;
-    width: 100px;
-    !important
 }
 
 #replyBar{
     background-color: #0088BB;
-    background: linear-gradient(#44BBFF, #0088BB);
+    background: linear-gradient(#8800BB, #C0D4EE);
 }
 
 #message{
@@ -405,7 +403,7 @@ textarea { /*  used with the message posting in index */
 
 #messageBar{
     background-color: #0044BB;
-    background: linear-gradient(#0088BB, #0044BB);
+    background: linear-gradient(#0044BB, #C0D4EE);
 }
 #replyMessage{
     text-align: left;
@@ -417,7 +415,13 @@ textarea { /*  used with the message posting in index */
 }
 
 #replyContent{
-    border: 1px dotted;
+    border-right: 1px solid #AA44EE;
+    border-left: 1px solid #AA44EE;
+    border-top: 1px solid #AA44EE;
+}
+
+#replyContentTable{
+    border-bottom: 1px solid #AA44EE;
 }
 
 #prevNextForm{
@@ -468,6 +472,49 @@ footer h5 {
     margin-left: .5em;
     padding-top: 1em;
 }
+
+/* Fancy Button Stuff By Tyler */
+.fbLeft {
+    border: 0;
+    outline: none;
+    color: #FFFFFF;
+    text-align: left;
+    text-indent: 30px;
+    text-shadow: 1px 1px #444444;
+}
+
+.fbCentered {
+    border: 0;
+    outline: none;
+    color: #FFFFFF;
+    text-align: center;
+    text-shadow: 1px 1px #444444;
+}
+
+.fbNarrowRed {
+    background: url(../images/button3_100x30_red.png) transparent no-repeat center center;
+    width: 100px;
+    height: 30px;
+}
+
+.fbNarrowBlue {
+    background: url(../images/button3_100x30.png) transparent no-repeat center center;
+    width: 100px;
+    height: 30px;
+}
+
+.fbWideRed{
+    width: 200px;
+    height: 30px;
+    background: url(../images/button3_200x30_red.png) transparent center center no-repeat;
+}
+
+.fbWideBlue{
+    width: 200px;
+    height: 30px;
+    background: url(../images/button3_200x30.png) transparent center center no-repeat;
+}
+
 /* MEDIA QUERIES    MEDIA QUERIES */
 
 

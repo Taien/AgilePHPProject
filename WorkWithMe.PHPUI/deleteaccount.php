@@ -68,7 +68,7 @@ else if (!isset($_POST["txtUserId"])) //send user back to index if not logged in
 
             <p>WARNING:  Account deletion is permanent and irreversible.  Please be absolutely sure you want to delete your account before clicking the button below.
                 This will delete all information associated with your account, including posts, pictures, and your contacts list.</p>
-            <div id="buttons"><ul><li><input type="submit" id="btnDeleteAccount" name="btnDeleteAccount" value="PERMANENTLY Delete Account"></li></ul></div> <! -- adds user to database -->
+            <div id="deleteButton"><ul><li><input type="submit" id="btnDeleteAccount" name="btnDeleteAccount" value="PERMANENTLY Delete Account"></li></ul></div> <! -- adds user to database -->
         </fieldset><br />
     </form>
 </main>

@@ -42,6 +42,12 @@ session_start();
         $_SESSION["Status"] = "You have been logged out.";
         $_SESSION["GoodStatus"] = true;
     }
+    elseif (isset($_POST["btnRegister"]))
+    {
+        $_SESSION["SignupUsername"] = $_POST["txtUsername"];
+        $_SESSION["SignupPassword"] = $_POST["txtPassword"];
+        header("Location:signup.php");
+    }
     elseif (isset($_POST["btnPost"]))
     {
         try{
@@ -66,6 +72,7 @@ session_start();
         {
             //DoLogin returns null when the login fails
             $_SESSION["Status"] = "Message failed to be deleted (what a jerk!) - " . $exception->getMessage();
+
         }
     }
 
@@ -108,7 +115,7 @@ session_start();
                 echo '<form method="post" id="postForm">
                       <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>
                       <textarea name="txtMessage" id="txtMessage" rows="5" required placeholder="enter message here"></textarea>
-                      <input type="submit" class="fancyButton" name="btnPost" id="btnPost" value="Post Message">
+                      <input type="submit" class="fbCentered fbNarrowBlue" name="btnPost" id="btnPost" value="Post">
                       </form>';
 
                 try {
@@ -131,8 +138,8 @@ session_start();
 
                 $numOfResults = count($resultArray);
 
-                echo '<form method="post" id="prevNextForm"><input type="submit" class="fancyButtonCentered" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
-                      <input type="submit" class="fancyButtonCentered" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
+                echo '<form method="post" id="prevNextForm"><input type="submit" class="fbCentered fbWideBlue" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
+                      <input type="submit" class="fbCentered fbWideBlue" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
                       <input type="hidden" name="txtOffset" id="txtOffset" value="' . $currentOffset . '"></form>';
 
                 for ($i = 0; $i < $numOfResults; $i++)
@@ -163,14 +170,14 @@ session_start();
                     echo '<table id="message"><tr><td width="5" id="messageBar"></td><td>
                               <table id="messageContent" width="99%">
                                   <tr>
-                                      <td width="100%" colspan="2">
+                                      <td width="100%" colspan="2" id="messageTitleBar">
                                           <h3>' . $title . '</h3><br/>
                                           <div id="timestampInfo">Posted by ' . $ownerFullName . ' On ' . $timeString . '</div><hr/>
                                        </td>
                                   </tr>
                                   <tr> 
-                                      <td width="85%">'. $content . '</td>
-                                      <td width="15%">
+                                      <td width="99%">'. $content . '</td>
+                                      <td width="100px">
                                           <form action="reply.php" method="post">
                                               <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
                                               <input type="hidden" value="' . $title . '" id="incomingTitle" name="incomingTitle"/>
@@ -179,12 +186,12 @@ session_start();
                                               <input type="hidden" value="' . $targetGroupId . '" id="incomingTargetGroupId" name="incomingTargetGroupId"/>
                                               <input type="hidden" value="' . $timestamp . '" id="incomingTimestamp" name="incomingTimestamp"/>
                                               <input type="hidden" value="' . $ownerFullName . '" id="incomingOwnerFullName" name="incomingOwnerFullName"/>
-                                              <input type="submit" class="fancyButton" value="Reply" id="btnReply" name="btnReply"/>
+                                              <input type="submit" class="fbLeft fbNarrowBlue" value="Reply" id="btnReply" name="btnReply"/>
                                           </form>';
                     if ($ownerUserId == $_SESSION["UserId"]) echo '
                                           <form action="index.php" method="post">
                                               <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
-                                              <input type="submit" class="fancyButton" value="Delete" id="btnDelete" name="btnDelete"/>
+                                              <input type="submit" class="fbLeft fbNarrowRed" value="Delete" id="btnDelete" name="btnDelete"/>
                                           </form>';
                         echo '            </td>
                                       </tr>
@@ -226,8 +233,8 @@ session_start();
 
                             include './includes/timestring.php';
 
-                            echo '<table width="100%">
-                            <tr><td width="100%"><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '</div></td></tr>
+                            echo '<table width="100%" id="replyContentTable">
+                            <tr><td width="100%" id="replyTitleBar"><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '<br/></div></td></tr>
                             <tr><td width="100%">'. $replyContent . '</td></tr>
                             </table>';
                         }
@@ -237,8 +244,8 @@ session_start();
                     echo '</td></tr></table>'; /* closes "message"*/
                 }
 
-                echo '<form method="post" id="prevNextForm"><input type="submit" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
-                      <input type="submit" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
+                echo '<form method="post" id="prevNextForm"><input type="submit" class="fbCentered fbWideBlue" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
+                      <input type="submit" class="fbCentered fbWideBlue" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
                       <input type="hidden" name="txtOffset" id="txtOffset" value="' . $currentOffset . '"></form>';
             }
             elseif (isset($_POST["btnDelete"]))
@@ -246,8 +253,8 @@ session_start();
                 echo 'Are you sure you want to delete the post?';
                 echo '<form method="post">
                           <input type="hidden" value="' . $_POST["incomingPostId"] . '" id="incomingPostId" name="incomingPostId"/>
-                          <input type="submit" class="fancyButton" name="btnConfirmDelete" id="btnConfirmDelete" value="Yes, Delete It"> 
-                          <input type="submit" class="fancyButton" name="btnCancelDelete" id="btnCancelDelete" value="No, Leave It Alone!">     
+                          <input type="submit" class="fbCentered fbWide" name="btnConfirmDelete" id="btnConfirmDelete" value="Yes, Delete It"> 
+                          <input type="submit" class="fbCentered fbWide" name="btnCancelDelete" id="btnCancelDelete" value="No, Leave It Alone!">     
                       </form>
                 ';
             }

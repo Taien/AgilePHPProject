@@ -28,6 +28,8 @@ if (isset($_POST["btnRegister"]))
             $_SESSION["isRedirecting"] = true;
             $_SESSION["Status"] = "Successfully created user!";
             $_SESSION["GoodStatus"] = true;
+            $_SESSION["SignupUsername"] = null;
+            $_SESSION["SignupPassword"] = null;
             header("Location:index.php");
         }
         else
@@ -153,10 +155,10 @@ if (isset($_POST["btnRegister"]))
             <legend>Security</legend><br />
 
             <label for="txtUsername">Username:</label>
-            <input type="text" name="txtUsername" id="txtUsername" placeholder="username" required><br />
+            <input type="text" name="txtUsername" id="txtUsername" placeholder="username" required <?php if (isset($_SESSION["SignupUsername"])) echo 'value="' . $_SESSION["SignupUsername"] . '"'; ?>><br />
 
             <label for="txtPassword">Password:</label>
-            <input type="password" name="txtPassword" id="txtPassword" placeholder="enter password" required minlength="6" maxlength="24"><br />
+            <input type="password" name="txtPassword" id="txtPassword" placeholder="enter password" required minlength="6" maxlength="24" <?php if (isset($_SESSION["SignupPassword"])) echo 'value="' . $_SESSION["SignupPassword"] . '"'; ?>><br />
 
             <label for="txtPwdVerify">Password Verify:</label>
             <input type="password" name="txtPwdVerify" id="txtPwdVerify" placeholder="re-enter password" required minlength="6" maxlength="24"><br /><br />
@@ -167,8 +169,8 @@ if (isset($_POST["btnRegister"]))
 
             <div id="buttons">
                 <ul>
-                    <li><input type="submit" class="button" id="btnRegister" name="btnRegister" value="Register"></li>
-                    <li><input type="reset" class="button" id="btnClear" name="btnClear" value="Clear"></li>
+                    <li><input type="submit" class="button fbCentered fbWideBlue" id="btnRegister" name="btnRegister" value="Register"></li>
+                    <li><input type="reset" class="button fbCentered fbWideBlue" id="btnClear" name="btnClear" value="Clear"></li>
                 </ul>
             </div>
         </fieldset><br />
