@@ -95,6 +95,10 @@ namespace WorkWithMe.BL
             tblPost post = (from p in oDC.tblPosts where p.Id == Id select p).FirstOrDefault();
 
             oDC.tblPosts.DeleteOnSubmit(post);
+
+            List<tblPost> replies = (from p in oDC.tblPosts where p.ReplyPostId == Id select p).ToList();
+            oDC.tblPosts.DeleteAllOnSubmit(replies);
+
             oDC.SubmitChanges();
         }
     }

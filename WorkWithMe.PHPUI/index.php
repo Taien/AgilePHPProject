@@ -55,6 +55,19 @@ session_start();
             $_SESSION["Status"] = "Message failed to post - " . $exception->getMessage();
         }
     }
+    elseif (isset($_POST["btnConfirmDelete"]))
+    {
+        try{
+            $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
+            $retval = $client->DeletePost(array('id'=>$_POST["incomingPostId"]));
+            $_SESSION["Status"] = "Successfully deleted message!";
+            $_SESSION["GoodStatus"] = true;
+        } catch (SoapFault $exception)
+        {
+            //DoLogin returns null when the login fails
+            $_SESSION["Status"] = "Message failed to be deleted (what a jerk!) - " . $exception->getMessage();
+        }
+    }
 
     if (!isset($currentOffset))
     {
@@ -90,7 +103,7 @@ session_start();
 <main>
     <p>
         <?php
-            if (isset($_SESSION["UserId"]))
+            if (isset($_SESSION["UserId"]) && (!isset($_POST["btnDelete"])))
             {
                 echo '<form method="post" id="postForm">
                       <input type="text" maxlength="50" id="txtTitle" name="txtTitle" required placeholder="Post Title"><br/>
@@ -147,20 +160,37 @@ session_start();
 
                     include './includes/timestring.php'; //sets $timeString, which decodes the timestamp
 
-                    echo '<form action="reply.php" method="post"><table id="message" width="99%">
-                        <tr><td width="100%" colspan="2"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' On ' . $timeString . '</div><hr/></td></tr>
-                        <tr><td width="85%">'. $content . '</td>
-                        <td width="15%">
-                            <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
-                            <input type="hidden" value="' . $title . '" id="incomingTitle" name="incomingTitle"/>
-                            <input type="hidden" value="' . $content . '" id="incomingContent" name="incomingContent"/>
-                            <input type="hidden" value="' . $ownerUserId . '" id="incomingOwnerId" name="incomingOwnerId"/>
-                            <input type="hidden" value="' . $targetGroupId . '" id="incomingTargetGroupId" name="incomingTargetGroupId"/>
-                            <input type="hidden" value="' . $timestamp . '" id="incomingTimestamp" name="incomingTimestamp"/>
-                            <input type="hidden" value="' . $ownerFullName . '" id="incomingOwnerFullName" name="incomingOwnerFullName"/>
-                            <input type="submit" class="fancyButton" value="Reply" id="btnReply" name="btnReply"/>
-                        </td></tr>
-                        </table></form>';
+                    echo '<table id="message"><tr><td width="5" id="messageBar"></td><td>
+                              <table id="messageContent" width="99%">
+                                  <tr>
+                                      <td width="100%" colspan="2">
+                                          <h3>' . $title . '</h3><br/>
+                                          <div id="timestampInfo">Posted by ' . $ownerFullName . ' On ' . $timeString . '</div><hr/>
+                                       </td>
+                                  </tr>
+                                  <tr> 
+                                      <td width="85%">'. $content . '</td>
+                                      <td width="15%">
+                                          <form action="reply.php" method="post">
+                                              <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
+                                              <input type="hidden" value="' . $title . '" id="incomingTitle" name="incomingTitle"/>
+                                              <input type="hidden" value="' . $content . '" id="incomingContent" name="incomingContent"/>
+                                              <input type="hidden" value="' . $ownerUserId . '" id="incomingOwnerId" name="incomingOwnerId"/>
+                                              <input type="hidden" value="' . $targetGroupId . '" id="incomingTargetGroupId" name="incomingTargetGroupId"/>
+                                              <input type="hidden" value="' . $timestamp . '" id="incomingTimestamp" name="incomingTimestamp"/>
+                                              <input type="hidden" value="' . $ownerFullName . '" id="incomingOwnerFullName" name="incomingOwnerFullName"/>
+                                              <input type="submit" class="fancyButton" value="Reply" id="btnReply" name="btnReply"/>
+                                          </form>';
+                    if ($ownerUserId == $_SESSION["UserId"]) echo '
+                                          <form action="index.php" method="post">
+                                              <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
+                                              <input type="submit" class="fancyButton" value="Delete" id="btnDelete" name="btnDelete"/>
+                                          </form>';
+                        echo '            </td>
+                                      </tr>
+                                  </table>';
+
+
 
                     //display replies under post
                     try {
@@ -174,19 +204,21 @@ session_start();
                     $numOfReplies = count($replyResultArray);
                     if ($numOfReplies > 0)
                     {
-                        echo '<table id="replyMessage" width="96%">
-                              <tr><td width="50" id="replyBar"></td>
+                        echo '<table id="replyMessage" width="99%">
+                              <tr><td width="10" id="replyBar"></td>
                               <td id="replyContent">';
                         for ($j = 0; $j < $numOfReplies; $j++)
                         {
                             if ($numOfReplies == 1)
                             {
+                                $postId = $replyResultArray->Id;
                                 $replyContent = $replyResultArray->Content;
                                 $timestamp = $replyResultArray->TimeStamp;
                                 $replyOwnerFullName = $replyResultArray->OwnerFullName;
                             }
                             else
                             {
+                                $postId = $replyResultArray[$j]->Id;
                                 $replyContent = $replyResultArray[$j]->Content;
                                 $timestamp = $replyResultArray[$j]->TimeStamp;
                                 $replyOwnerFullName = $replyResultArray[$j]->OwnerFullName;
@@ -200,13 +232,24 @@ session_start();
                             </table>';
                         }
 
-                        echo '</td></tr></table>';
+                        echo '</td></tr></table>'; /* closes replyMessage */
                     }
+                    echo '</td></tr></table>'; /* closes "message"*/
                 }
 
                 echo '<form method="post" id="prevNextForm"><input type="submit" name="btnPrev" id="btnPrev" value="Previous 10" ' . ($currentOffset == 0 ? 'disabled' : "") . '>
                       <input type="submit" name="btnNext" id="btnNext" value="Next 10" ' . ($numOfResults < 10 ? 'disabled': "") . '>
                       <input type="hidden" name="txtOffset" id="txtOffset" value="' . $currentOffset . '"></form>';
+            }
+            elseif (isset($_POST["btnDelete"]))
+            {
+                echo 'Are you sure you want to delete the post?';
+                echo '<form method="post">
+                          <input type="hidden" value="' . $_POST["incomingPostId"] . '" id="incomingPostId" name="incomingPostId"/>
+                          <input type="submit" class="fancyButton" name="btnConfirmDelete" id="btnConfirmDelete" value="Yes, Delete It"> 
+                          <input type="submit" class="fancyButton" name="btnCancelDelete" id="btnCancelDelete" value="No, Leave It Alone!">     
+                      </form>
+                ';
             }
             else
             {

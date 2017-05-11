@@ -56,7 +56,7 @@ session_start();
 <main>
     <p>
         <?php
-            echo '<form action="reply.php" method="post"><table id="message" width="99%">
+            echo '<form action="reply.php" method="post"><table id="messageContent" width="99%">
             <tr><td width="100%"><h3>' . $title . '</h3><br/><div id="timestampInfo">Posted by ' . $ownerFullName . ' At ' . $timestamp . '</div><hr/></td></tr>
             <tr><td width="100%">'. $content . '</td></tr>
             </table></form>';
@@ -74,8 +74,8 @@ session_start();
                 $numOfReplies = count($replyResultArray);
                 if ($numOfReplies > 0)
                 {
-                    echo '<table id="replyMessage" width="96%">
-                                  <tr><td width="50" id="replyBar"></td>
+                    echo '<table id="replyMessage" width="99%">
+                                  <tr><td width="10" id="replyBar"></td>
                                   <td id="replyContent">';
                     for ($j = 0; $j < $numOfReplies; $j++)
                     {

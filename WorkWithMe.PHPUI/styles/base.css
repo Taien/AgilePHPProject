@@ -14,6 +14,7 @@ header{     /* Header - Title and horizontal link bar */
     height: 120px;
     font-family: Georgia;
     background-color: lightsteelblue;
+    background: linear-gradient(darkblue,lightsteelblue);
     position: relative;
 }
 
@@ -58,6 +59,7 @@ header li {
     width: 40%;
     height: 40%;
     text-align: center;
+    color: #FFFFFF;
 }
 
 header li a {
@@ -207,8 +209,9 @@ main {                       /* MAIN */
     font-size: large;
     text-align: center;
     background-color: #C0D4EE;
-    margin: 15px auto;
-    padding: 5px;
+    margin-top: 10px;
+    margin-left: 1.2%;
+    margin-right: .8%;
 }
 
 main ul {
@@ -303,7 +306,10 @@ hr {
 
 .fancyButton {
     background-size: 100% 100%;
-    background: url(../images/button2.png) transparent no-repeat;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    background: url(../images/button2.png) transparent no-repeat center center;
     border: 0;
     outline: none;
     color: #FFFFFF;
@@ -319,6 +325,7 @@ hr {
     color: #FFFFFF;
     text-align: center;
 }
+
 #btnPost {
     width: 19.5%;
     float: left;
@@ -333,20 +340,20 @@ textarea { /*  used with the message posting in index */
     margin: 10px 0;
 }
 
-#message {
+#messageContent {
     text-align: left;
     border: 1px dashed;
     margin: 5px;
     font-family: "Calibri";
 }
 
-#message h3 {
+#messageContent h3 {
     padding: 0;
     margin: 0;
     display: inline;
 }
 
-#message hr{
+#messageContent hr{
     padding: 0;
     margin: 0;
 }
@@ -361,12 +368,13 @@ textarea { /*  used with the message posting in index */
     padding: 0;
 }
 
-#btnReply {
+#btnReply, #btnDelete {
     width: 100%;
     height: 100%;
     min-height: 40px;
     vertical-align: bottom;
 }
+
 
 #btnAddContact{
     display: inline;
@@ -376,13 +384,28 @@ textarea { /*  used with the message posting in index */
 
 #replyBar{
     background-color: #0088BB;
+    background: linear-gradient(#44BBFF, #0088BB);
 }
 
+#message{
+    width: 100%;
+}
+
+#messageContent table{
+    border-padding: 0;
+}
+
+#messageBar{
+    background-color: #0044BB;
+    background: linear-gradient(#0088BB, #0044BB);
+}
 #replyMessage{
     text-align: left;
     margin: 0 auto;
-    padding: 0 5px;
+    padding: 0px;
     font-family: "Calibri";
+    width: 100%;
+    border-spacing: 4px;
 }
 
 #replyContent{
@@ -407,13 +430,14 @@ textarea { /*  used with the message posting in index */
 
 footer {              /* footer */
     width: 100%;
-    height: auto;
+    height: 25px;
     clear: both;
     font-size: small;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
     background-color: lightsteelblue;
+    line-height: 25px;
 }
 
 footer h5 {
@@ -428,24 +452,25 @@ footer h5 {
 }
 
 .slide {
-   width: 100%;
+    width: 100%;
+    height: 350px;
 }
 
 .caption {
     margin-left: .5em;
     padding-top: 1em;
 }
-                                /* MEDIA QUERIES    MEDIA QUERIES */
+/* MEDIA QUERIES    MEDIA QUERIES */
 
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {     /*laptop*/
 
-    
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {      /*TABLET*/
 
-    header h1{    
+    header h1{
         width: 20%;
     }
 
@@ -464,44 +489,47 @@ footer h5 {
         position: static;
         max-width: none;
     }
-    
+
     nav, #rightNav {        /* NAV's */
         width: 46%;
-        margin: 5px 2px;
     }
 
     main {      /* main sections */
         width: 98%;
         clear: both;
-        margin: 5px auto;
+        margin: 10px auto;
     }
-    
+
+    .slide {
+        height: auto;
+    }
 }
 
 @media only screen and (max-width: 767px) {      /*SMARTPHONE*/
-    
+
     header img {        /* header stuff */
         width: 27%;
     }
 
     header h1 {
-        display: none;    
+        display: none;
     }
 
     #log {
         width: 68%;
-    }    
-
-    header li input, header li a {
-        width: 98%;
-        height: 23%;
-        margin: 1px auto;
     }
 
     header li a {
-        margin-right: 5px;
+
         position: static;
         max-width: none;
+    }
+
+    header li input, header li a {
+        width: 80%;
+        height: 22%;
+        float: right;
+        margin: 4px 10px 1px 0;
     }
 
     #errorText {
@@ -520,7 +548,11 @@ footer h5 {
     }
 
     footer h5 {
-        width: 98%; 
-    }    
-    
+        width: 98%;
+    }
+
+    .slide {
+        height: auto;
+    }
+
 }

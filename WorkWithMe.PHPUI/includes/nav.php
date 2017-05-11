@@ -30,8 +30,6 @@ if (isset($_SESSION["UserId"]))
 
     echo '<ul>
               <li><a href="index.php">Me ' . $name . '</a></li>
-              <li>&#8600 My Workplace 1</li>
-              <li>&#8600 &#8600 Workplace Subgroup</li>
           </ul>';
 }
 else
