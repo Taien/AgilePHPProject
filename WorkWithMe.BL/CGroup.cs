@@ -20,16 +20,18 @@ namespace WorkWithMe.BL
         public string Name { get; set;  }
         public string GroupType { get; set; }
         public Guid OwnerUserId { get; set; }
-        public Guid OwnerGroupId { get; set; }
+        public Guid? OwnerGroupId { get; set; }
         public bool CanPostDefault { get; set; }
         public bool CanInviteDefault { get; set; }
         public bool CanDeleteDefault { get; set; }
+
+        public int? GroupImgId { get; set; }
 
         public CGroup() { }
 
         public CGroup(Guid id) { Id = id;  }
 
-        public CGroup(Guid id, string name, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+        public CGroup(Guid id, string name, string description, string grouptype, Guid owneruserid, Guid? ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault, int? groupimgid)
         {
             Id = id;
             Name = name;
@@ -39,10 +41,11 @@ namespace WorkWithMe.BL
             OwnerGroupId = ownergroupid;
             CanPostDefault = canpostdefault;
             CanInviteDefault = caninvitedefault;
-            CanDeleteDefault = candeletedefault; 
+            CanDeleteDefault = candeletedefault;
+            GroupImgId = groupimgid;
         }
 
-        public CGroup(string name, string description, string grouptype, Guid owneruserid, Guid ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
+        public CGroup(string name, string description, string grouptype, Guid owneruserid, Guid? ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault, int? groupimgid)
         {
             Name = name;
             Description = description;
@@ -52,6 +55,7 @@ namespace WorkWithMe.BL
             CanPostDefault = canpostdefault;
             CanInviteDefault = caninvitedefault;
             CanDeleteDefault = candeletedefault;
+            GroupImgId = groupimgid;
         }
 
         public void Create()
@@ -61,13 +65,15 @@ namespace WorkWithMe.BL
                 WorkWithMeDataContext oDC = new WorkWithMeDataContext();
 
                 tblGroup g = new tblGroup();
-                g.Id = Id; 
+                g.Id = Id;
+                g.Name = Name;
                 g.Description = Description;
                 g.GroupType = GroupType;
                 g.OwnerGroupId = OwnerGroupId;
                 g.CanPostDefault = CanPostDefault;
                 g.CanInviteDefault = CanInviteDefault;
-                g.CanDeleteDefault = CanDeleteDefault; 
+                g.CanDeleteDefault = CanDeleteDefault;
+                g.GroupImgId = GroupImgId;
                
 
                 oDC.tblGroups.InsertOnSubmit(g);
@@ -93,7 +99,8 @@ namespace WorkWithMe.BL
                  group.OwnerGroupId = OwnerGroupId;
                  group.CanPostDefault = CanPostDefault;
                  group.CanInviteDefault = CanInviteDefault;
-                 group.CanDeleteDefault = CanDeleteDefault; 
+                 group.CanDeleteDefault = CanDeleteDefault;
+                 group.GroupImgId = GroupImgId;
 
                  oDC.SubmitChanges();
              }

@@ -28,7 +28,7 @@ session_start();
     {
         try{
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
-            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'replyPostId'=>$_POST["postId"],'title'=>"",'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u>"),'isSticky'=>false));
+            $retval = $client->CreatePost(array('posterId'=>$_SESSION["UserId"],'replyPostId'=>$_POST["postId"],'title'=>"",'content'=>strip_tags($_POST["txtMessage"],"<br><p><b><i><hr><u><ul><ol><li>"),'isSticky'=>false));
             $_SESSION["Status"] = "Successfully replied to message!";
             $_SESSION["GoodStatus"] = true;
             $_SESSION["isRedirecting"] = true;

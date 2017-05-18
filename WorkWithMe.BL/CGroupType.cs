@@ -73,4 +73,20 @@ namespace WorkWithMe.BL
             }
         }
     }
+
+    public class CGroupTypeList : List<CGroupType>
+    {
+        public void Load()
+        {
+            Clear();
+            using (WorkWithMeDataContext oDC = new WorkWithMeDataContext())
+            {
+                List<tblGroupType> results = (from g in oDC.tblGroupTypes select g).ToList();
+                foreach (tblGroupType g in results)
+                {
+                    Add(new CGroupType(g.Id, g.Description));
+                }
+            }
+        }
+    }
 }

@@ -7,18 +7,7 @@ session_start();
         try {
             $client = new SoapClient("http://wwmservice.azurewebsites.net/WorkWithMeService.svc?wsdl");
             $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
-            //var_dump($retval);
-            //echo $retval->DoLoginResult->Id;
-            $_SESSION["UserId"] = $retval->DoLoginResult->Id;
-            $_SESSION["Username"] = $retval->DoLoginResult->Username;
-            $_SESSION["FirstName"] = $retval->DoLoginResult->FirstName;
-            $_SESSION["MiddleInitial"] = $retval->DoLoginResult->MiddleInitial;
-            $_SESSION["LastName"] = $retval->DoLoginResult->LastName;
-            $_SESSION["Zip"] = $retval->DoLoginResult->Zip;
-            $_SESSION["Address"] = $retval->DoLoginResult->Address;
-            $_SESSION["IsAddressPrivate"] = $retval->DoLoginResult->IsAddressPrivate;
-            $_SESSION["Email"] = $retval->DoLoginResult->Email;
-            $_SESSION["UserImgId"] = $retval->DoLoginResult->UserImgId;
+            include './includes/storeuserdata.php';
             $_SESSION["Status"] = "You have successfully logged in.";
             $_SESSION["GoodStatus"] = true;
         } catch (SoapFault $exception)
@@ -39,6 +28,7 @@ session_start();
         $_SESSION["Address"] = null;
         $_SESSION["IsAddressPrivate"] = null;
         $_SESSION["Email"] = null;
+        $_SESSION["UserImgId"] = null;
         $_SESSION["Status"] = "You have been logged out.";
         $_SESSION["GoodStatus"] = true;
     }
@@ -176,7 +166,7 @@ session_start();
                                        </td>
                                   </tr>
                                   <tr> 
-                                      <td width="99%">'. $content . '</td>
+                                      <td width="100%">'. $content . '</td>
                                       <td width="100px">
                                           <form action="reply.php" method="post">
                                               <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
@@ -220,6 +210,7 @@ session_start();
                             {
                                 $postId = $replyResultArray->Id;
                                 $replyContent = $replyResultArray->Content;
+                                $replyOwnerId = $replyResultArray->OwnerUserId;
                                 $timestamp = $replyResultArray->TimeStamp;
                                 $replyOwnerFullName = $replyResultArray->OwnerFullName;
                             }
@@ -227,6 +218,7 @@ session_start();
                             {
                                 $postId = $replyResultArray[$j]->Id;
                                 $replyContent = $replyResultArray[$j]->Content;
+                                $replyOwnerId = $replyResultArray[$j]->OwnerUserId;
                                 $timestamp = $replyResultArray[$j]->TimeStamp;
                                 $replyOwnerFullName = $replyResultArray[$j]->OwnerFullName;
                             }
@@ -234,8 +226,16 @@ session_start();
                             include './includes/timestring.php';
 
                             echo '<table width="100%" id="replyContentTable">
-                            <tr><td width="100%" id="replyTitleBar"><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '<br/></div></td></tr>
-                            <tr><td width="100%">'. $replyContent . '</td></tr>
+                            <tr><td width="100%" id="replyTitleBar"';
+                            if ($replyOwnerId == $_SESSION["UserId"]) echo ' colspan="2"';
+                            echo '><div id="timestampInfo">Posted by ' . $replyOwnerFullName . ' On ' . $timeString . '<br/></div></td></tr>
+                            <tr><td width="100%">'. $replyContent . '</td>';
+                            if ($replyOwnerId == $_SESSION["UserId"]) echo '
+                                         <td width="100px"><form action="index.php" method="post">
+                                              <input type="hidden" value="' . $postId . '" id="incomingPostId" name="incomingPostId"/>
+                                              <input type="submit" class="fbLeft fbNarrowRed" value="Delete" id="btnDelete" name="btnDelete"/>
+                                          </form></td>';
+                            echo '</tr>
                             </table>';
                         }
 
@@ -253,8 +253,8 @@ session_start();
                 echo 'Are you sure you want to delete the post?';
                 echo '<form method="post">
                           <input type="hidden" value="' . $_POST["incomingPostId"] . '" id="incomingPostId" name="incomingPostId"/>
-                          <input type="submit" class="fbCentered fbWide" name="btnConfirmDelete" id="btnConfirmDelete" value="Yes, Delete It"> 
-                          <input type="submit" class="fbCentered fbWide" name="btnCancelDelete" id="btnCancelDelete" value="No, Leave It Alone!">     
+                          <input type="submit" class="fbCentered fbWideBlue" name="btnConfirmDelete" id="btnConfirmDelete" value="Yes, Delete It"> 
+                          <input type="submit" class="fbCentered fbWideBlue" name="btnCancelDelete" id="btnCancelDelete" value="No, Leave It Alone!">     
                       </form>
                 ';
             }

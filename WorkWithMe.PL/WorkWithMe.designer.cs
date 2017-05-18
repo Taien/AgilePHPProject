@@ -399,7 +399,7 @@ namespace WorkWithMe.PL
 		
 		private System.Nullable<System.Guid> _OwnerGroupId;
 		
-		private System.Data.Linq.Binary _GroupImg;
+		private System.Nullable<int> _GroupImg;
 		
 		private bool _CanPostDefault;
 		
@@ -423,8 +423,8 @@ namespace WorkWithMe.PL
     partial void OnOwnerUserIdChanged();
     partial void OnOwnerGroupIdChanging(System.Nullable<System.Guid> value);
     partial void OnOwnerGroupIdChanged();
-    partial void OnGroupImgChanging(System.Data.Linq.Binary value);
-    partial void OnGroupImgChanged();
+    partial void OnGroupImgIdChanging(System.Nullable<int> value);
+    partial void OnGroupImgIdChanged();
     partial void OnCanPostDefaultChanging(bool value);
     partial void OnCanPostDefaultChanged();
     partial void OnCanInviteDefaultChanging(bool value);
@@ -558,8 +558,8 @@ namespace WorkWithMe.PL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary GroupImg
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupImg", DbType="Int")]
+		public System.Nullable<int> GroupImgId
 		{
 			get
 			{
@@ -569,11 +569,11 @@ namespace WorkWithMe.PL
 			{
 				if ((this._GroupImg != value))
 				{
-					this.OnGroupImgChanging(value);
+					this.OnGroupImgIdChanging(value);
 					this.SendPropertyChanging();
 					this._GroupImg = value;
-					this.SendPropertyChanged("GroupImg");
-					this.OnGroupImgChanged();
+					this.SendPropertyChanged("GroupImgId");
+					this.OnGroupImgIdChanged();
 				}
 			}
 		}

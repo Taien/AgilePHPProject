@@ -78,6 +78,9 @@ namespace WorkWithMe.SL
         void DeleteGroupType(int id);
 
         [OperationContract]
+        CGroupTypeList GetGroupTypes();
+
+        [OperationContract]
         void CreateInviteStatus(string description);
 
         [OperationContract]

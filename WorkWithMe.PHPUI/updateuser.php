@@ -30,17 +30,7 @@ if (isset($_POST["btnUpdate"]))
             if ($retval->UpdateUserWithImageResult) //true if update succeeded
             {
                 $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
-                $_SESSION["Username"] = $_POST["txtUsername"];
-                $_SESSION["FirstName"] = $_POST["txtFName"];
-                $_SESSION["MiddleInitial"] = $_POST["txtMI"];
-                $_SESSION["LastName"] = $_POST["txtLName"];
-                $_SESSION["Zip"] = $_POST["txtZip"];
-                $_SESSION["Address"] = $_POST["txtAddress"];
-                $_SESSION["Email"] = $_POST["txtEmail"];
-                $_SESSION["IsAddressPrivate"] = isset($_POST["chkAddressPrivate"]);
-                $_SESSION["State"] = $_POST["lstState"];
-                $_SESSION["City"] = $_POST["txtCity"];
-                //probably should store image id in session too
+                include './includes/storeuserdata.php';
                 $_SESSION["Status"] = "Successfully updated user info.";
                 $_SESSION["GoodStatus"] = true;
             }
@@ -57,16 +47,7 @@ if (isset($_POST["btnUpdate"]))
             if ($retval->UpdateUserResult) //true if update succeeded
             {
                 $retval = $client->DoLogin(array('username'=>$_POST["txtUsername"],'password'=>$_POST["txtPassword"]));
-                $_SESSION["Username"] = $_POST["txtUsername"];
-                $_SESSION["FirstName"] = $_POST["txtFName"];
-                $_SESSION["MiddleInitial"] = $_POST["txtMI"];
-                $_SESSION["LastName"] = $_POST["txtLName"];
-                $_SESSION["Zip"] = $_POST["txtZip"];
-                $_SESSION["Address"] = $_POST["txtAddress"];
-                $_SESSION["Email"] = $_POST["txtEmail"];
-                $_SESSION["IsAddressPrivate"] = isset($_POST["chkAddressPrivate"]);
-                $_SESSION["State"] = $_POST["lstState"];
-                $_SESSION["City"] = $_POST["txtCity"];
+                include './includes/storeuserdata.php';
                 $_SESSION["Status"] = "Successfully updated user info.";
                 $_SESSION["GoodStatus"] = true;
             }
@@ -225,7 +206,7 @@ if (isset($_SESSION["UserImgId"]))
                    placeholder="5 digit zip code" required value="<?=$_SESSION["Zip"]?>"><br />
 
             <label for="chkAddressPrivate">Keep Address Private:</label>
-            <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="<?=$_SESSION["IsAddressPrivate"] ? "true" : "false"?>"><br/><br />
+            <input type="checkbox" name="chkAddressPrivate" id="chkAddressPrivate" value="IsAddressPrivate" <?=$_SESSION["IsAddressPrivate"] ? "checked" : ""?>><br/><br />
         </fieldset>
 
         <fieldset>

@@ -148,6 +148,7 @@ namespace WorkWithMe.BL
                 Zip = user.Zip;
                 Address = user.Address;
                 IsAddressPrivate = user.IsAddressPrivate;
+                Email = user.EmailAddress;
                 UserImgId = user.UserImgId;
             }
         }

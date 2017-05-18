@@ -14,7 +14,7 @@
       <Column Name="GroupType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="OwnerUserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="OwnerGroupId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="GroupImg" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GroupImgId" Storage="_GroupImg" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CanPostDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="CanInviteDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="CanDeleteDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />

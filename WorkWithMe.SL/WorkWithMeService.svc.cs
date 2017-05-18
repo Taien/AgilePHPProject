@@ -122,13 +122,13 @@ namespace WorkWithMe.SL
 
        public void CreateGroup(string name, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
         {
-            CGroup group = new CGroup(name, description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
+            CGroup group = new CGroup(name, description, grouptype, Guid.Parse(owneruserid), ownergroupid == null ? Guid.Empty : Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault, null);
             group.Create(); 
         }
 
        public void UpdateGroup(string id, string name, string description, string grouptype, string owneruserid, string ownergroupid, bool canpostdefault, bool caninvitedefault, bool candeletedefault)
         {
-            CGroup group = new CGroup(Guid.Parse(id), name, description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault);
+            CGroup group = new CGroup(Guid.Parse(id), name, description, grouptype, Guid.Parse(owneruserid), Guid.Parse(ownergroupid), canpostdefault, caninvitedefault, candeletedefault, null);
             group.Update(); 
         }
 
@@ -154,6 +154,13 @@ namespace WorkWithMe.SL
         {
             CGroupType grouptype = new CGroupType(id);
             grouptype.Delete();
+        }
+
+        public CGroupTypeList GetGroupTypes()
+        {
+            CGroupTypeList list = new CGroupTypeList();
+            list.Load();
+            return list;
         }
 
         public void CreateInviteStatus(string description)
